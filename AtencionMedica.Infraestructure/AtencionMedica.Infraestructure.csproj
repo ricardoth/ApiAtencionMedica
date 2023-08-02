@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Configurations\" />
+    <ProjectReference Include="..\AtencionMedica.Domain\AtencionMedica.Domain.csproj" />
   </ItemGroup>
 
 </Project>

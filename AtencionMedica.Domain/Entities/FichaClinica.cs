@@ -1,13 +1,19 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
+    [Table("FichaClinica")]
     public class FichaClinica
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long IdFichaClinica { get; set; }
+        [ForeignKey("IdPaciente")]
         public int IdPaciente { get; set; }
+        [ForeignKey("IdMedico")]
         public int IdMedico { get; set; }
+        [ForeignKey("IdPersonal")]
         public int? IdPersonal { get; set; }
+        [ForeignKey("IdEstadoFichaClinica")]
         public int IdEstadoFichaClinica { get; set; }
+        [ForeignKey("IdModulo")]
         public int IdModulo { get; set; }
         public DateTime? FechaAtencion { get; set; }
         public bool EsActivo { get; set; }

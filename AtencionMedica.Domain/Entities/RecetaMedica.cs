@@ -1,10 +1,13 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
-    internal class RecetaMedica
+    [Table("RecetaMedica")]
+    public class RecetaMedica
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdRecetaMedica { get; set; }
+        [ForeignKey("IdHistorialClinico")]
         public long IdHistorialClinico { get; set; }
+        [ForeignKey("IdMedicamento")]
         public int IdMedicamento { get; set; }
         public decimal Cantidad { get; set; }
         public string? Instrucciones { get; set; }

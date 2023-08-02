@@ -1,10 +1,13 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
+    [Table("AgendaMedico")]
     public class AgendaMedico
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long IdAgendaMedico { get; set; }
+        [ForeignKey("IdMedico")]
         public int IdMedico { get; set; }
+        [ForeignKey("IdEstadoAgendaMedico")]
         public int IdEstadoAgendaMedico { get; set; }
         public DateTime? FecInicio { get; set; }
         public DateTime? FecFin { get; set; }

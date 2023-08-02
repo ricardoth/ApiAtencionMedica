@@ -4,6 +4,7 @@
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long IdFichaClinicaDetalle { get; set; }
+        [ForeignKey("IdFichaClinica")]
         public long IdFichaClinica { get; set; }
         public string? AgudezaVisual { get; set; }
         public string? PresionIntraocular { get; set; }

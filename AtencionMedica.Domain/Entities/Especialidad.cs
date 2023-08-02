@@ -1,5 +1,6 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
+    [Table("Especialidad")]
     public class Especialidad
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

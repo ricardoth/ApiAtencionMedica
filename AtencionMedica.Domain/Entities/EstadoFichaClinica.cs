@@ -1,5 +1,6 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
+    [Table("EstadoFichaClinica")]
     public class EstadoFichaClinica
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

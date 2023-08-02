@@ -1,9 +1,11 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
+    [Table("LugarAtencion")]
     public class LugarAtencion
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdLugarAtencion { get; set; }
+        [ForeignKey("IdComuna")]
         public int IdComuna { get; set; }
         public string NombreLugar { get; set; }
         public string Direccion { get; set; }

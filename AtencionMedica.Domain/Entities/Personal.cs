@@ -1,5 +1,6 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
+    [Table("Personal")]
     public class Personal
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
