@@ -13,5 +13,6 @@
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public bool EsActivo { get; set; }
+        public virtual IEnumerable<FichaClinica> FichaClinicas { get; set; }
     }
 }

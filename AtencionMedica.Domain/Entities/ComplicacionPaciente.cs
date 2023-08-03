@@ -10,7 +10,7 @@
         [ForeignKey("IdComplicacion")]
         public int IdComplicacion { get; set; }
         public DateTime? FecComplicacion { get; set; }
-        public virtual IEnumerable<Complicacion> Complicaciones { get; set; }
-        public virtual IEnumerable<Paciente> Pacientes { get; set; }
+        public virtual Complicacion Complicacion { get; set; }
+        public virtual Paciente Paciente { get; set; }
     }
 }

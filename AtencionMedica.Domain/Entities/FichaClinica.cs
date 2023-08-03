@@ -23,6 +23,7 @@
         public virtual Medico Medico { get; set; }
         public virtual Personal? Personal { get; set; }
         public virtual EstadoFichaClinica EstadoFichaClinica { get; set; }
-        public virtual Modulo Modulo{ get; set; }
+        public virtual Modulo Modulo { get; set; }
+        public virtual IEnumerable<FichaClinicaDetalle> FichaClinicaDetalles { get; set; }
     }
 }

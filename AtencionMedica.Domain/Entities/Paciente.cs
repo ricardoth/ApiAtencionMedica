@@ -19,5 +19,12 @@
         public bool EsActivo { get; set; }
         public DateTime? FecCreacion { get; set; }
         public DateTime? FecActualizacion { get; set; }
+        public virtual IEnumerable<FichaClinica> FichaClinicas { get; set; }
+        public virtual IEnumerable<PacienteAdultoMayor> PacienteAdultoMayors { get; set; }
+        public virtual IEnumerable<PacienteDiabetico> PacienteDiabeticos { get; set; }
+        public virtual IEnumerable<PatologiaPaciente> PatologiaPacientes { get; set; }
+        public virtual IEnumerable<ComplicacionPaciente> ComplicacionPacientes { get; set; }
+        public virtual IEnumerable<HistorialClinico> HistorialClinicos { get; set; }
+        
     }
 }

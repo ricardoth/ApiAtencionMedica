@@ -12,7 +12,7 @@
         public string CasaEstudio { get; set; }
         public DateTime FechaObtencionEspecialidad { get; set; }
         public bool EsActivo { get; set; }
-        public virtual IEnumerable<Especialidad> Especialidades { get; set; }
-        public virtual IEnumerable<Medico> Medicos { get; set; }
+        public virtual Especialidad Especialidad { get; set; }
+        public virtual Medico Medico { get; set; }
     }
 }

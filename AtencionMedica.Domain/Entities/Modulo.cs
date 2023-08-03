@@ -11,5 +11,6 @@
         public string? Descripcion { get; set; }
         public bool EsActivo { get; set; }
         public virtual LugarAtencion LugarAtencion { get; set;}
+        public virtual IEnumerable<FichaClinica> FichaClinicas { get; set; }    
     }
 }

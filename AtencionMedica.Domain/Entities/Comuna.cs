@@ -9,5 +9,6 @@
         public string Region { get; set; }
         public string SiglaRegion { get; set; }
         public bool EsActivo { get; set; }
+        public virtual IEnumerable<LugarAtencion> LugarAtenciones { get; set; }
     }
 }

@@ -4,7 +4,7 @@
     public class PacienteAdultoMayor
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdAdultoMayor { get; set; }
+        public int IdPacienteAdultoMayor { get; set; }
         [ForeignKey("IdPaciente")]
         public int IdPaciente { get; set; }
         public bool AutoValente { get; set; }

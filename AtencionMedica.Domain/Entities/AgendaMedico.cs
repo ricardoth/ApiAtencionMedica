@@ -16,7 +16,7 @@
         public bool EsActivo { get; set; }
         public DateTime? FecCreacion { get; set; }
         public DateTime? FecActualizacion { get; set; }
-        public virtual IEnumerable<Medico> Medicos { get; set; }    
-        public virtual IEnumerable<EstadoAgendaMedico> EstadoAgendaMedicos { get; set; }
+        public virtual Medico Medico { get; set; }    
+        public virtual EstadoAgendaMedico EstadoAgendaMedico { get; set; }
     }
 }

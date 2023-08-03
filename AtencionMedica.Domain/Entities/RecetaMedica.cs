@@ -9,7 +9,7 @@
         public long IdHistorialClinico { get; set; }
         [ForeignKey("IdMedicamento")]
         public int IdMedicamento { get; set; }
-        public decimal Cantidad { get; set; }
+        public int Cantidad { get; set; }
         public string? Instrucciones { get; set; }
         public string? Observacion { get; set; }
         public DateTime? FecInicio { get; set; } 
@@ -17,8 +17,8 @@
         public bool EsActivo { get; set; }  
         public DateTime? FecCreacion { get; set; }
         public DateTime? FecActualizacion { get; set; }
-        public virtual IEnumerable<HistorialClinico> HistorialesClinicos { get; set; }
-        public virtual IEnumerable<Medicamento> Medicamentos { get; set; }
+        public virtual HistorialClinico HistorialClinico { get; set; }
+        public virtual Medicamento Medicamento { get; set; }
 
     }
 }
