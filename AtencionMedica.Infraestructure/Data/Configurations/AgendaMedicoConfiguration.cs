@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace AtencionMedica.Infraestructure.Data.Configurations
+﻿namespace AtencionMedica.Infraestructure.Data.Configurations
 {
     public class AgendaMedicoConfiguration : IEntityTypeConfiguration<AgendaMedico>
     {
@@ -10,11 +8,42 @@ namespace AtencionMedica.Infraestructure.Data.Configurations
 
             entity.ToTable("AgendaMedico");
 
-            //entity.HasMany(c => c.EstadoAgendaMedicos)
-            //    .WithOne()
-                
+            entity.Property(e => e.FecInicio)
+                .HasColumnType("datetime")
+                .IsUnicode(false);
 
-           
+            entity.Property(e => e.FecFin)
+                .HasColumnType("datetime")
+                .IsUnicode(false);
+
+            entity.Property(e => e.FecCreacion)
+                .HasColumnType("datetime")
+                .IsUnicode(false);
+
+            entity.Property(e => e.FecActualizacion)
+                .HasColumnType("datetime")
+                .IsUnicode(false);
+
+            entity.Property(e => e.HoraInicio)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+
+            entity.Property(e => e.HoraFin)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+
+            entity.HasOne(c => c.Medico)
+                .WithMany(p => p.AgendaMedicos)
+                .HasForeignKey(d => d.IdMedico)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AgendaMedico_Medico");
+
+            entity.HasOne(c => c.EstadoAgendaMedico)
+                .WithMany(p => p.AgendaMedicos)
+                .HasForeignKey(d => d.IdEstadoAgendaMedico)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_AgendaMedico_EstadoAgendaMedico");
+
 
 
         }
