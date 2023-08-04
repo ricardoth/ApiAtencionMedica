@@ -9,6 +9,18 @@
 
             entity.ToTable("PatologiaPaciente");
 
+            entity.Property(e => e.FecComplicacion)
+                .HasColumnType("datetime")
+                .IsUnicode(false);
+
+            entity.Property(e => e.FecCreacion)
+                .HasColumnType("datetime")
+                .IsUnicode(false);
+
+            entity.Property(e => e.FecActualizacion)
+                .HasColumnType("datetime")
+                .IsUnicode(false);
+
             entity.HasOne(c => c.Paciente)
                 .WithMany(p => p.PatologiaPacientes)
                 .HasForeignKey(d => d.IdPaciente)

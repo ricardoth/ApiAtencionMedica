@@ -9,6 +9,23 @@
 
             entity.ToTable("LugarAtencion");
 
+            entity.Property(e => e.NombreLugar)
+              .HasMaxLength(100)
+              .IsRequired()
+              .IsUnicode(false);
+
+            entity.Property(e => e.Direccion)
+              .HasMaxLength(200)
+              .IsUnicode(false);
+
+            entity.Property(e => e.Fono)
+              .HasMaxLength(20)
+              .IsUnicode(false);
+
+            entity.Property(e => e.HorarioAtencion)
+              .HasMaxLength(30)
+              .IsUnicode(false);
+
             entity.HasOne(c => c.Comuna)
                .WithMany(p => p.LugarAtenciones)
                .HasForeignKey(d => d.IdComuna)

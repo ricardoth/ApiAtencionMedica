@@ -18,7 +18,6 @@
                .HasMaxLength(200)
                .IsUnicode(false);
 
-
             entity.HasOne(c => c.LugarAtencion)
                .WithMany(p => p.Modulos)
                .HasForeignKey(d => d.IdModulo)
