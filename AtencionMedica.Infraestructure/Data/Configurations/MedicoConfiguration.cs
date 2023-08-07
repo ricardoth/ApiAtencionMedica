@@ -4,8 +4,10 @@
     {
         public void Configure(EntityTypeBuilder<Medico> entity)
         {
-            entity
-            .HasKey(e => e.IdMedico);
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id)
+                .HasColumnName("IdMedico");
 
             entity.ToTable("Medico");
 

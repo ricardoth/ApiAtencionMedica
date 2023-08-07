@@ -1,10 +1,8 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
     [Table("PacienteDiabetico")]
-    public class PacienteDiabetico
+    public class PacienteDiabetico : BaseEntity
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdPacienteDiabetico { get; set; }
         [ForeignKey("IdPaciente")]
         public int IdPaciente { get; set; }
         public DateTime? FecEvaluacionDiabetes { get; set; }

@@ -1,10 +1,8 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
     [Table("Personal")]
-    public class Personal
+    public class Personal : BaseEntity
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdPersonal { get; set; }
         public int Rut { get; set; }
         public string Dv { get; set; }
         public string Nombres { get; set; }

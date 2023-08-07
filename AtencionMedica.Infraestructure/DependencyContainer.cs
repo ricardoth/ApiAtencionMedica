@@ -1,8 +1,4 @@
-﻿using AtencionMedica.Infraestructure.Seeders.Interfaces;
-using AtencionMedica.Infraestructure.Seeders;
-using static AtencionMedica.Infraestructure.Seeders.Interfaces.ISeed;
-
-namespace AtencionMedica.Infraestructure
+﻿namespace AtencionMedica.Infraestructure
 {
     public static class DependencyContainer
     {
@@ -10,9 +6,10 @@ namespace AtencionMedica.Infraestructure
         {
             //DatabaseSettings databaseSettings = configuration.GetSection(DatabaseSettings.SettingName).Get<DatabaseSettings>();
             //serviceCollection.AddSingleton(databaseSettings);
-
             serviceCollection.AddDbContext<AtencionMedicaContext>(opt =>
                 opt.UseSqlServer(configuration.GetConnectionString("AtencionMedicaConnection")));
+
+            serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>(); 
 
             serviceCollection.AddTransient<IInitialize, SeedData>();
 

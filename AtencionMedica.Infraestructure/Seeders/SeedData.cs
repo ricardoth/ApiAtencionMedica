@@ -5,23 +5,15 @@
         private readonly IList<IGenericSeed> seeds;
 
         public SeedData(
-            ISeed<Complicacion> seedComplicacion,
             ISeed<Comuna> seedComuna,
-            ISeed<Especialidad> seedEspecialidad,
             ISeed<EstadoAgendaMedico> seedEstadoAgendaMedico,
-            ISeed<EstadoFichaClinica> seedEstadoFichaClinica,
-            ISeed<Medicamento> seedMedicamento,
-            ISeed<Patologia> seedPatologia)
+            ISeed<EstadoFichaClinica> seedEstadoFichaClinica)
         {
             seeds = new List<IGenericSeed>
             {
-                seedComplicacion,
                 seedComuna,
-                seedEspecialidad,
                 seedEstadoAgendaMedico, 
                 seedEstadoFichaClinica,
-                seedMedicamento,
-                seedPatologia,
             };
         }
         public void Initialize(ModelBuilder modelBuilder)

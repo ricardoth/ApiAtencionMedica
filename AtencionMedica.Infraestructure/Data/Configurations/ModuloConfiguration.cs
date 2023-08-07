@@ -4,8 +4,10 @@
     {
         public void Configure(EntityTypeBuilder<Modulo> entity)
         {
-            entity
-            .HasKey(e => e.IdModulo);
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Id) 
+                .HasColumnName("IdModulo");
 
             entity.ToTable("Modulo");
 
@@ -20,7 +22,7 @@
 
             entity.HasOne(c => c.LugarAtencion)
                .WithMany(p => p.Modulos)
-               .HasForeignKey(d => d.IdModulo)
+               .HasForeignKey(d => d.Id)
                .OnDelete(DeleteBehavior.ClientSetNull)
                .HasConstraintName("FK_Modulo_LugarAtencion");
         }

@@ -8,3 +8,6 @@ global using Microsoft.EntityFrameworkCore.Migrations;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using static AtencionMedica.Infraestructure.Seeders.Interfaces.ISeed;
 global using AtencionMedica.Infraestructure.Seeders.Interfaces;
+global using AtencionMedica.Domain.Interfaces;
+global using AtencionMedica.Infraestructure.Repositories;
+global using AtencionMedica.Infraestructure.Seeders;

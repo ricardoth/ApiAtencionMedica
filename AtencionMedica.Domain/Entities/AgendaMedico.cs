@@ -1,7 +1,7 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
     [Table("AgendaMedico")]
-    public class AgendaMedico
+    public class AgendaMedico 
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long IdAgendaMedico { get; set; }
