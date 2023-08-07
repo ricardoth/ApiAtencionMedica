@@ -10,9 +10,7 @@
             ISeed<Especialidad> seedEspecialidad,
             ISeed<EstadoAgendaMedico> seedEstadoAgendaMedico,
             ISeed<EstadoFichaClinica> seedEstadoFichaClinica,
-            ISeed<LugarAtencion> seedLugarAtencion,
             ISeed<Medicamento> seedMedicamento,
-            ISeed<Modulo> seedModulo,
             ISeed<Patologia> seedPatologia)
         {
             seeds = new List<IGenericSeed>
@@ -22,8 +20,6 @@
                 seedEspecialidad,
                 seedEstadoAgendaMedico, 
                 seedEstadoFichaClinica,
-                seedLugarAtencion,
-                seedModulo,
                 seedMedicamento,
                 seedPatologia,
             };
