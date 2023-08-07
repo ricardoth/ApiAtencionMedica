@@ -1,11 +1,16 @@
-﻿using System.Reflection;
+﻿using AtencionMedica.Infraestructure.Seeders.Interfaces;
+using System.Reflection;
 
 namespace AtencionMedica.Infraestructure.Data
 {
     public class AtencionMedicaContext : DbContext
     {
-        public AtencionMedicaContext(DbContextOptions<AtencionMedicaContext> options) : base(options)
+        private readonly string defaultSchema;
+        private readonly IInitialize seedDataService;
+        public AtencionMedicaContext(DbContextOptions<AtencionMedicaContext> options,
+             IInitialize seedDataService) : base(options)
         {
+            this.seedDataService = seedDataService;
         }
 
         public DbSet<AgendaMedico> AgendaMedicos { get; set; }
@@ -35,6 +40,8 @@ namespace AtencionMedica.Infraestructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            seedDataService.Initialize(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

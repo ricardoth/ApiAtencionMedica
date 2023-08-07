@@ -9,7 +9,7 @@
 
             entity.ToTable("Modulo");
 
-            entity.Property(e => e.Nombre)
+            entity.Property(e => e.NombreModulo)
                .IsRequired()
                .HasMaxLength(100)
                .IsUnicode(false);

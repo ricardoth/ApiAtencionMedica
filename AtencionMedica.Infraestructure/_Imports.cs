@@ -6,3 +6,5 @@ global using AtencionMedica.Infraestructure.Options;
 global using AtencionMedica.Infraestructure.Data;
 global using Microsoft.EntityFrameworkCore.Migrations;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using static AtencionMedica.Infraestructure.Seeders.Interfaces.ISeed;
+global using AtencionMedica.Infraestructure.Seeders.Interfaces;

@@ -12,13 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-builder.Services.AddDbContext<AtencionMedicaContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("AtencionMedicaConnection")));
-//builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
-
-//builder.Services.UseDependencyInjectorConfiguration(builder.Configuration);
+builder.Services.UseDependencyInjectorConfiguration(builder.Configuration);
 builder.Services.ConfigureCors();
 
 var app = builder.Build();

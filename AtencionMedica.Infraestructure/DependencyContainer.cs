@@ -1,4 +1,8 @@
-﻿namespace AtencionMedica.Infraestructure
+﻿using AtencionMedica.Infraestructure.Seeders.Interfaces;
+using AtencionMedica.Infraestructure.Seeders;
+using static AtencionMedica.Infraestructure.Seeders.Interfaces.ISeed;
+
+namespace AtencionMedica.Infraestructure
 {
     public static class DependencyContainer
     {
@@ -9,6 +13,10 @@
 
             serviceCollection.AddDbContext<AtencionMedicaContext>(opt =>
                 opt.UseSqlServer(configuration.GetConnectionString("AtencionMedicaConnection")));
+
+            serviceCollection.AddTransient<IInitialize, SeedData>();
+
+            serviceCollection.AddTransient<ISeed<Medicamento>, SeedMedicamento>();
         }
     }
 }
