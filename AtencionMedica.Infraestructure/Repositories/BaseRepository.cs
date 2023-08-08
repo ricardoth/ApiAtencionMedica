@@ -23,7 +23,7 @@
        
         public async Task<T> GetById(int id) => await _entities.FindAsync(id);
 
-        public void Update(T entity) => _entities.Update(entity);
+        public  void Update(T entity) => _entities.Update(entity);
        
     }
 }

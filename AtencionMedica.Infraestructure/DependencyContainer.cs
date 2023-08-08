@@ -6,6 +6,9 @@
         {
             //DatabaseSettings databaseSettings = configuration.GetSection(DatabaseSettings.SettingName).Get<DatabaseSettings>();
             //serviceCollection.AddSingleton(databaseSettings);
+            serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
             serviceCollection.AddDbContext<AtencionMedicaContext>(opt =>
                 opt.UseSqlServer(configuration.GetConnectionString("AtencionMedicaConnection")));
 
