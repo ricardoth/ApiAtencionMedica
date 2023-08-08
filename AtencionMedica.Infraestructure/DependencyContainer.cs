@@ -1,4 +1,6 @@
-﻿namespace AtencionMedica.Infraestructure
+﻿
+
+namespace AtencionMedica.Infraestructure
 {
     public static class DependencyContainer
     {
@@ -30,6 +32,7 @@
 
             #region Domain
             serviceCollection.AddTransient<IPatologiaService, PatologiaService>();
+            serviceCollection.AddTransient<IComplicacionService, ComplicacionService>();
             #endregion
         }
     }

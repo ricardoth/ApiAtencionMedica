@@ -5,3 +5,5 @@ global using System.Net;
 global using AtencionMedica.Domain.Dtos;
 global using AutoMapper;
 global using AtencionMedica.Domain.Entities;
+global using AtencionMedica.Domain.CustomEntities;
+global using AtencionMedica.WebApi.Responses;

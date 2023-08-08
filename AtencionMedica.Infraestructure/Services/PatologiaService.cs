@@ -1,4 +1,4 @@
-﻿namespace AtencionMedica.Domain.Services
+﻿namespace AtencionMedica.Infraestructure.Services
 {
     public class PatologiaService : IPatologiaService
     {
@@ -8,7 +8,7 @@
         {
             _unitOfWork = unitOfWork;
         }
-        
+
         public async Task<ICollection<Patologia>> GetPatologias()
         {
             try
@@ -78,6 +78,5 @@
                 throw new Exception($"No se pudo eliminar el elemento, Error en PatologiaService: {ex.Message}", ex);
             }
         }
-
     }
 }
