@@ -19,7 +19,7 @@
             _entities.Remove(entity);
         }
 
-        public IEnumerable<T> GetAll() =>  _entities.AsEnumerable();
+        public async Task<ICollection<T>> GetAll() => await _entities.ToListAsync();
        
         public async Task<T> GetById(int id) => await _entities.FindAsync(id);
 

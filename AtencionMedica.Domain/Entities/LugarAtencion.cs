@@ -13,6 +13,6 @@
         public string HorarioAtencion { get; set; }
         public bool EsActivo { get; set; }
         public virtual Comuna Comuna { get; set; }
-        public virtual IEnumerable<Modulo> Modulos { get; set; }    
+        public virtual ICollection<Modulo> Modulos { get; set; }    
     }
 }

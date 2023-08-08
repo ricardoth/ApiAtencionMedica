@@ -29,7 +29,7 @@
 
             entity.HasOne(c => c.Paciente)
                .WithMany(p => p.PacienteDiabeticos)
-               .HasForeignKey(d => d.Id)
+               .HasForeignKey(d => d.IdPaciente)
                .OnDelete(DeleteBehavior.ClientSetNull)
                .HasConstraintName("FK_PacienteDiabetico_Paciente");
         }

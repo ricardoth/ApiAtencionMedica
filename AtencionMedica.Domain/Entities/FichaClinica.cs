@@ -24,6 +24,6 @@
         public virtual Personal? Personal { get; set; }
         public virtual EstadoFichaClinica EstadoFichaClinica { get; set; }
         public virtual Modulo Modulo { get; set; }
-        public virtual IEnumerable<FichaClinicaDetalle> FichaClinicaDetalles { get; set; }
+        public virtual ICollection<FichaClinicaDetalle> FichaClinicaDetalles { get; set; }
     }
 }

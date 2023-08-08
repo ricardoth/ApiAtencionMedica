@@ -5,6 +5,6 @@
     {
         public string NombreEspecialidad { get; set; }
         public bool EsActivo { get; set; }
-        public virtual IEnumerable<EspecialidadMedico> EspecialidadMedicos { get; set; }
+        public virtual ICollection<EspecialidadMedico> EspecialidadMedicos { get; set; }
     }
 }

@@ -5,7 +5,7 @@
     {
         public string? NombreMedicamento { get; set; }
         public bool EsActivo { get; set; }
-        public virtual IEnumerable<RecetaMedica> RecetaMedicas { get; set; }
+        public virtual ICollection<RecetaMedica> RecetaMedicas { get; set; }
 
     }
 }

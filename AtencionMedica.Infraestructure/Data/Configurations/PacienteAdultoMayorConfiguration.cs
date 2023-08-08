@@ -15,7 +15,7 @@ namespace AtencionMedica.Infraestructure.Data.Configurations
 
             entity.HasOne(c => c.Paciente)
                .WithMany(p => p.PacienteAdultoMayors)
-               .HasForeignKey(d => d.Id)
+               .HasForeignKey(d => d.IdPaciente)
                .OnDelete(DeleteBehavior.ClientSetNull)
                .HasConstraintName("FK_PacienteAdultoMayor_Paciente");
         }

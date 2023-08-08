@@ -22,7 +22,7 @@
 
             entity.HasOne(c => c.LugarAtencion)
                .WithMany(p => p.Modulos)
-               .HasForeignKey(d => d.Id)
+               .HasForeignKey(d => d.IdLugarAtencion)
                .OnDelete(DeleteBehavior.ClientSetNull)
                .HasConstraintName("FK_Modulo_LugarAtencion");
         }

@@ -14,6 +14,6 @@
         public DateTime? FecCreacion { get; set;}
         public DateTime? FecActualizacion { get; set;}
         public virtual Paciente? Paciente { get; set; }
-        public virtual IEnumerable<RecetaMedica> RecetaMedicas { get; set; }    
+        public virtual ICollection<RecetaMedica> RecetaMedicas { get; set; }    
     }
 }

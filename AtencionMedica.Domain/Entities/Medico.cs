@@ -11,8 +11,8 @@
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public bool EsActivo { get; set; }
-        public virtual IEnumerable<AgendaMedico> AgendaMedicos { get; set; }
-        public virtual IEnumerable<EspecialidadMedico> EspecialidadMedicos { get; set; }
-        public virtual IEnumerable<FichaClinica> FichaClinicas { get; set; }
+        public virtual ICollection<AgendaMedico> AgendaMedicos { get; set; }
+        public virtual ICollection<EspecialidadMedico> EspecialidadMedicos { get; set; }
+        public virtual ICollection<FichaClinica> FichaClinicas { get; set; }
     }
 }
