@@ -11,7 +11,5 @@ global using AtencionMedica.Infraestructure.Seeders.Interfaces;
 global using AtencionMedica.Domain.Interfaces;
 global using AtencionMedica.Infraestructure.Repositories;
 global using AtencionMedica.Infraestructure.Seeders;
-global using AtencionMedica.Domain.Interfaces.InterfaceServices;
 global using AutoMapper;
-global using AtencionMedica.Domain.Dtos;
-global using AtencionMedica.Infraestructure.Services;
+global using AtencionMedica.Application.Interfaces;

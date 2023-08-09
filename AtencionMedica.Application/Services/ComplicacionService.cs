@@ -1,4 +1,4 @@
-﻿namespace AtencionMedica.Infraestructure.Services
+﻿namespace AtencionMedica.Application.Services
 {
     public class ComplicacionService : IComplicacionService
     {
@@ -69,7 +69,7 @@
             try
             {
                 await _unitOfWork.ComplicacionRepository.Delete(id);
-                await _unitOfWork.SaveChangesAsync();   
+                await _unitOfWork.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -77,6 +77,5 @@
                 throw new Exception($"Ha ocurrido un error en ComplicacionService: {ex.Message}", ex);
             }
         }
-
     }
 }

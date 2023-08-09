@@ -1,4 +1,6 @@
-﻿namespace AtencionMedica.WebApi.Configurations
+﻿using AtencionMedica.Application;
+
+namespace AtencionMedica.WebApi.Configurations
 {
     public static class DependencyInjectorConfiguration
     {
@@ -21,7 +23,7 @@
 
             //service.Configure<BasicAuthCredentials>(configuration.GetSection("BasicAuthCredentials"));
 
-            //service.AddRepositories(configuration);
+            service.AddApplicationDependencies(configuration);
             service.AddDataAccess(configuration);
 
             #endregion

@@ -1,6 +1,4 @@
-﻿
-
-namespace AtencionMedica.Infraestructure
+﻿namespace AtencionMedica.Infraestructure
 {
     public static class DependencyContainer
     {
@@ -8,9 +6,6 @@ namespace AtencionMedica.Infraestructure
         {
             //DatabaseSettings databaseSettings = configuration.GetSection(DatabaseSettings.SettingName).Get<DatabaseSettings>();
             //serviceCollection.AddSingleton(databaseSettings);
-            serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-
             serviceCollection.AddDbContext<AtencionMedicaContext>(opt =>
                 opt.UseSqlServer(configuration.GetConnectionString("AtencionMedicaConnection")));
 
@@ -29,11 +24,6 @@ namespace AtencionMedica.Infraestructure
             serviceCollection.AddTransient<ISeed<Medicamento>, SeedMedicamento>();
             serviceCollection.AddTransient<ISeed<Modulo>, SeedModulo>();
             serviceCollection.AddTransient<ISeed<Patologia>, SeedPatologia>();
-
-            #region Domain
-            serviceCollection.AddTransient<IPatologiaService, PatologiaService>();
-            serviceCollection.AddTransient<IComplicacionService, ComplicacionService>();
-            #endregion
         }
     }
 }

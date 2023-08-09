@@ -1,4 +1,4 @@
-﻿namespace AtencionMedica.Domain.Dtos
+﻿namespace AtencionMedica.Application.DTOs
 {
     public class PatologiaDto
     {

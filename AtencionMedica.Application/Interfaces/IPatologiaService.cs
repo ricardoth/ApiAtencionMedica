@@ -1,4 +1,4 @@
-﻿namespace AtencionMedica.Domain.Interfaces.InterfaceServices
+﻿namespace AtencionMedica.Application.Interfaces
 {
     public interface IPatologiaService
     {

@@ -1,4 +1,4 @@
-﻿namespace AtencionMedica.Infraestructure.Services
+﻿namespace AtencionMedica.Application.Services
 {
     public class PatologiaService : IPatologiaService
     {

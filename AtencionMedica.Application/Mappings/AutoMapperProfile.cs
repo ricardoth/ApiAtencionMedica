@@ -1,4 +1,4 @@
-﻿namespace AtencionMedica.Infraestructure.Mappings
+﻿namespace AtencionMedica.Application.Mappings
 {
     public class AutoMapperProfile : Profile
     {

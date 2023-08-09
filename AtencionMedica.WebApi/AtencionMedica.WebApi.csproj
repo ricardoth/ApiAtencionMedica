@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AtencionMedica.Application\AtencionMedica.Application.csproj" />
     <ProjectReference Include="..\AtencionMedica.Domain\AtencionMedica.Domain.csproj" />
     <ProjectReference Include="..\AtencionMedica.Infraestructure\AtencionMedica.Infraestructure.csproj" />
   </ItemGroup>

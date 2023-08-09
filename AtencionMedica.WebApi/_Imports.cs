@@ -1,9 +1,9 @@
 ﻿global using AtencionMedica.Infraestructure;
 global using Microsoft.AspNetCore.Mvc;
-global using AtencionMedica.Domain.Interfaces.InterfaceServices;
 global using System.Net;
-global using AtencionMedica.Domain.Dtos;
 global using AutoMapper;
 global using AtencionMedica.Domain.Entities;
 global using AtencionMedica.Domain.CustomEntities;
 global using AtencionMedica.WebApi.Responses;
+global using AtencionMedica.Application.Interfaces;
+global using AtencionMedica.Application.DTOs;
