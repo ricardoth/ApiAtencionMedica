@@ -1,7 +1,4 @@
-using AtencionMedica.Infraestructure.Data;
 using AtencionMedica.WebApi.Configurations;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);

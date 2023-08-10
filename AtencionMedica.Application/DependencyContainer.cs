@@ -10,6 +10,7 @@
             #region Domain
             serviceCollection.AddTransient<IPatologiaService, PatologiaService>();
             serviceCollection.AddTransient<IComplicacionService, ComplicacionService>();
+            serviceCollection.AddTransient<IEspecialidadService, EspecialidadService>();
             #endregion
         }
     }
