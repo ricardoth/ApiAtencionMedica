@@ -1,6 +1,4 @@
-﻿using AtencionMedica.Domain.Entities;
-
-namespace AtencionMedica.Application.Services
+﻿namespace AtencionMedica.Application.Services
 {
     public class EspecialidadService : IEspecialidadService
     {
@@ -19,20 +17,18 @@ namespace AtencionMedica.Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"Ha ocurrido un error en EspecialidadService: {ex.Message}", ex);
+                throw new NotFoundException($"Ha ocurrido un error en EspecialidadService");
             }
         }
 
         public async Task<Especialidad> GetEspecialidad(int id)
         {
-            try
-            {
-                return await _unitOfWork.EspecialidadRepository.GetById(id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Ha ocurrido un error en EspecialidadService: {ex.Message}", ex);
-            }
+            var result = await _unitOfWork.EspecialidadRepository.GetById(id);
+            if (result == null)
+                throw new NotFoundException("No existe la especialidad en la BD");
+            return result;
+
+
         }
 
         public async Task<bool> Actualizar(Especialidad especialidad)
@@ -49,7 +45,7 @@ namespace AtencionMedica.Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"Ha ocurrido un error en EspecialidadService: {ex.Message}", ex);
+                throw new BadRequestException($"No se pudo actualizar el elemento");
             }
         }
 
@@ -62,7 +58,7 @@ namespace AtencionMedica.Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"Ha ocurrido un error en EspecialidadService: {ex.Message}", ex);
+                throw new Exception($"No se pudo crear el elemento");
             }
         }
 
@@ -76,7 +72,7 @@ namespace AtencionMedica.Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception($"Ha ocurrido un error en EspecialidadService: {ex.Message}", ex);
+                throw new BadRequestException($"No se pudo eliminar el elemento");
             }
         }
     }

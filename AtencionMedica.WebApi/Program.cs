@@ -1,4 +1,6 @@
 using AtencionMedica.WebApi.Configurations;
+using AtencionMedica.WebApi.Middleware;
+using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.UseDependencyInjectorConfiguration(builder.Configuration);
 builder.Services.ConfigureCors();
+builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 
 var app = builder.Build();
 
@@ -30,6 +33,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.MapControllers();
 

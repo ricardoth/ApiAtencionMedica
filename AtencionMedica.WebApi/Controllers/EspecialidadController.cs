@@ -33,8 +33,8 @@
         public async Task<IActionResult> Get(int id)
         {
             var result = await _especialidadService.GetEspecialidad(id);
-            if (result == null)
-                return NotFound();
+            //if (result == null)
+            //    return NotFound();
 
             var especialidadDto = _mapper.Map<EspecialidadDto>(result);
             var response = new ApiResponse<EspecialidadDto>(especialidadDto);

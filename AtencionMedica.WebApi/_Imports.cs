@@ -7,3 +7,5 @@ global using AtencionMedica.Domain.CustomEntities;
 global using AtencionMedica.WebApi.Responses;
 global using AtencionMedica.Application.Interfaces;
 global using AtencionMedica.Application.DTOs;
+global using AtencionMedica.Domain.Exceptions;
+global using System.Text.Json;
