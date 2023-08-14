@@ -11,6 +11,7 @@
             serviceCollection.AddTransient<IPatologiaService, PatologiaService>();
             serviceCollection.AddTransient<IComplicacionService, ComplicacionService>();
             serviceCollection.AddTransient<IEspecialidadService, EspecialidadService>();
+            serviceCollection.AddTransient<IEstadoFichaClinicaService, EstadoFichaClinicaService>();    
             #endregion
         }
     }

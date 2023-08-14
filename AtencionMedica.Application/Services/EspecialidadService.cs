@@ -11,24 +11,22 @@
 
         public async Task<ICollection<Especialidad>> GetEspecialidades()
         {
-            try
-            {
-                return await _unitOfWork.EspecialidadRepository.GetAll();
-            }
-            catch (Exception ex)
-            {
-                throw new NotFoundException($"Ha ocurrido un error en EspecialidadService");
-            }
+            var result = await _unitOfWork.EspecialidadRepository.GetAll();
+
+            if (result == null)
+                throw new BadRequestException("No se pudo obtener la lista de la BD");
+
+            return result;
         }
 
         public async Task<Especialidad> GetEspecialidad(int id)
         {
             var result = await _unitOfWork.EspecialidadRepository.GetById(id);
+
             if (result == null)
                 throw new NotFoundException("No existe la especialidad en la BD");
+
             return result;
-
-
         }
 
         public async Task<bool> Actualizar(Especialidad especialidad)
