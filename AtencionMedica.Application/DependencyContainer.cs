@@ -1,9 +1,13 @@
-﻿namespace AtencionMedica.Application
+﻿using System.Reflection;
+
+namespace AtencionMedica.Application
 {
     public static class DependencyContainer
     {
         public static void AddApplicationDependencies(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
+            serviceCollection.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
             //Automapper
             serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

@@ -1,4 +1,5 @@
-﻿using AtencionMedica.Application;
+﻿using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace AtencionMedica.WebApi.Configurations
 {
@@ -7,12 +8,11 @@ namespace AtencionMedica.WebApi.Configurations
         public static void UseDependencyInjectorConfiguration(this IServiceCollection service, IConfiguration configuration)
         {
             #region Main Dependencies (don't touch)
-            service.AddControllers(options =>
+            service.AddControllers().AddJsonOptions(opt =>
             {
-                //options.Filters.Add(new ApiValidStateFilterAttribute());
-                //options.Filters.Add(new ApiExceptionFilterAttribute(trace));
+                opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                opt.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
             });
-
             #endregion
 
 

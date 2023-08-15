@@ -9,3 +9,4 @@ global using AtencionMedica.Application.Interfaces;
 global using AtencionMedica.Application.DTOs;
 global using AtencionMedica.Domain.Exceptions;
 global using System.Text.Json;
+global using AtencionMedica.Application;

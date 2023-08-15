@@ -11,26 +11,22 @@
 
         public async Task<ICollection<Patologia>> GetPatologias()
         {
-            try
-            {
-                var patologias = await _unitOfWork.PatologiaRepository.GetAll();
-                return patologias;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Ha ocurrido un error en PatologiaService: {ex.Message}", ex);
-            }
+            var patologias = await _unitOfWork.PatologiaRepository.GetAll();
+            
+            if(patologias == null)
+                throw new BadRequestException($"No se pudo obtener la lista de registros de la BD");
+
+            return patologias;
         }
+
         public async Task<Patologia> GetPatologia(int id)
         {
-            try
-            {
-                return await _unitOfWork.PatologiaRepository.GetById(id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"No se pudo obtener el elemento, Error en PatologiaService: {ex.Message}", ex);
-            }
+            var patologia = await _unitOfWork.PatologiaRepository.GetById(id);
+
+            if (patologia == null)
+                throw new Exception($"No se encuentra la patología en la BD");
+
+            return patologia;
         }
 
         public async Task<bool> Actualizar(Patologia patologia)

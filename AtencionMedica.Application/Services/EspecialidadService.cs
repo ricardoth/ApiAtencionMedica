@@ -2,11 +2,13 @@
 {
     public class EspecialidadService : IEspecialidadService
     {
-        private readonly IUnitOfWork _unitOfWork;   
+        private readonly IUnitOfWork _unitOfWork; 
+        private readonly IValidator<Especialidad> _validator;   
 
-        public EspecialidadService(IUnitOfWork unitOfWork)
+        public EspecialidadService(IUnitOfWork unitOfWork, IValidator<Especialidad> validator)
         {
             _unitOfWork = unitOfWork;        
+            _validator = validator;
         }
 
         public async Task<ICollection<Especialidad>> GetEspecialidades()
@@ -31,6 +33,13 @@
 
         public async Task<bool> Actualizar(Especialidad especialidad)
         {
+            var validationResult = _validator.Validate(especialidad);
+            if (!validationResult.IsValid)
+            {
+                var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ValidationResultException(errores);
+            }
+
             try
             {
                 var especialidadBd = await _unitOfWork.EspecialidadRepository.GetById(especialidad.Id);
@@ -43,12 +52,22 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException($"No se pudo actualizar el elemento");
+                throw new BadRequestException($"No se pudo actualizar el registro de la BD");
             }
         }
 
         public async Task Agregar(Especialidad especialidad)
         {
+            var validationResult = _validator.Validate(especialidad);
+            if (!validationResult.IsValid)
+            {
+                var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ValidationResultException(errores);
+            }
+
+            if (especialidad.Id <= 0)
+                throw new BadRequestException("Debe ingresar un Id válido");
+
             try
             {
                 await _unitOfWork.EspecialidadRepository.Add(especialidad);
@@ -56,12 +75,15 @@
             }
             catch (Exception ex)
             {
-                throw new Exception($"No se pudo crear el elemento");
+                throw new BadRequestException($"No se pudo crear el registro en la BD");
             }
         }
 
         public async Task<bool> Eliminar(int id)
         {
+            if (id <= 0)
+                throw new NoContentException("El Id ingresado no es válido");
+
             try
             {
                 await _unitOfWork.EspecialidadRepository.Delete(id);
@@ -70,7 +92,7 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException($"No se pudo eliminar el elemento");
+                throw new BadRequestException($"No se pudo eliminar el registro de la BD");
             }
         }
     }

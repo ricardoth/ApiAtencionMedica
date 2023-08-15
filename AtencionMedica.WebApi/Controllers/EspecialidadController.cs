@@ -7,7 +7,8 @@
         private readonly IEspecialidadService _especialidadService;
         private readonly IMapper _mapper;
 
-        public EspecialidadController(IEspecialidadService especialidadService, IMapper mapper)
+        public EspecialidadController(IEspecialidadService especialidadService, 
+            IMapper mapper)
         {
             _especialidadService = especialidadService;
             _mapper = mapper;
@@ -33,9 +34,6 @@
         public async Task<IActionResult> Get(int id)
         {
             var result = await _especialidadService.GetEspecialidad(id);
-            //if (result == null)
-            //    return NotFound();
-
             var especialidadDto = _mapper.Map<EspecialidadDto>(result);
             var response = new ApiResponse<EspecialidadDto>(especialidadDto);
             return Ok(response);
@@ -59,17 +57,11 @@
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Put(int id, EspecialidadDto especialidadDto)
         {
-            if (especialidadDto == null)
-                return NotFound();
-
             especialidadDto.IdEspecialidad = id;
             var especialidad = _mapper.Map<Especialidad>(especialidadDto);
             especialidad.Id = id;
 
             var result = await _especialidadService.Actualizar(especialidad);
-            if (!result)
-                return BadRequest();
-
             var response = new ApiResponse<bool>(result);
             return Ok(response);
         }
@@ -80,14 +72,7 @@
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == 0)
-                return NoContent();
-
             var result = await _especialidadService.Eliminar(id);
-
-            if (!result)
-                return BadRequest();
-
             var response = new ApiResponse<bool>(result);
             return Ok(response);
         }

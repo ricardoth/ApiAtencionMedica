@@ -17,11 +17,22 @@
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Get()
-        { 
+        {
             var result = await _estadoFichaClinicaService.GetEstadoFichasClinicas();
             var estadoFichaClinicasDtos = _mapper.Map<ICollection<EstadoFichaClinicaDto>>(result);
             var response = new ApiResponse<ICollection<EstadoFichaClinicaDto>>(estadoFichaClinicasDtos);
             return Ok(response);
+        }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await _estadoFichaClinicaService.GetEstadoFichaClinica(id);
+            var estadoFichaClinicaDto = _mapper.Map<EstadoFichaClinicaDto>(result);
+            var response = new ApiResponse<EstadoFichaClinicaDto>(estadoFichaClinicaDto);
+            return Ok(response);    
         }
     }
 }

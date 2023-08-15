@@ -48,6 +48,12 @@
                     errorResponse.Message = unauthorizedApiAccessException.Message;
                     context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                     break;
+
+                case NoContentException noContentException:
+                    errorResponse.Message = noContentException.Message;
+                    context.Response.StatusCode = (int)HttpStatusCode.NoContent;
+                    break;
+
                 default:
                     _logger.LogError(exception, "Ha ocurrido un error inesperado en la API");
                     break;

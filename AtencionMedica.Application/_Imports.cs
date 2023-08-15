@@ -7,3 +7,4 @@ global using AtencionMedica.Application.Services;
 global using AtencionMedica.Application.DTOs;
 global using AutoMapper;
 global using AtencionMedica.Domain.Exceptions;
+global using FluentValidation;
