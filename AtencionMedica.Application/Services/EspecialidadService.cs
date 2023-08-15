@@ -40,6 +40,9 @@
                 throw new ValidationResultException(errores);
             }
 
+            if (especialidad.Id <= 0)
+                throw new BadRequestException("Debe ingresar un Id válido");
+
             try
             {
                 var especialidadBd = await _unitOfWork.EspecialidadRepository.GetById(especialidad.Id);
@@ -64,9 +67,6 @@
                 var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
                 throw new ValidationResultException(errores);
             }
-
-            if (especialidad.Id <= 0)
-                throw new BadRequestException("Debe ingresar un Id válido");
 
             try
             {

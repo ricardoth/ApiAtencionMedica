@@ -54,6 +54,11 @@
                     context.Response.StatusCode = (int)HttpStatusCode.NoContent;
                     break;
 
+                case ValidationResultException validationResultException:
+                    errorResponse.Message = validationResultException.Message;
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    break;
+
                 default:
                     _logger.LogError(exception, "Ha ocurrido un error inesperado en la API");
                     break;

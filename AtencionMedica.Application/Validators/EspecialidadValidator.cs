@@ -8,9 +8,6 @@
                 .NotNull().WithMessage("El nombre no puede ser núlo");
 
             RuleFor(especialidad => especialidad.NombreEspecialidad)
-                .Empty().WithMessage("El nombre no puede estar vacío");
-
-            RuleFor(especialidad => especialidad.NombreEspecialidad)
                 .Length(3, 100)
                 .WithMessage("El nombre no puede estar vacío");
 
