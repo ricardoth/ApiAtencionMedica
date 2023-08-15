@@ -20,9 +20,6 @@
         public async Task<IActionResult> Get()
         {
             var result = await _especialidadService.GetEspecialidades();
-            if (result == null)
-                return BadRequest();
-
             var especialidadesDto = _mapper.Map<ICollection<EspecialidadDto>>(result);
             var response = new ApiResponse<ICollection<EspecialidadDto>>(especialidadesDto);
             return Ok(response);
