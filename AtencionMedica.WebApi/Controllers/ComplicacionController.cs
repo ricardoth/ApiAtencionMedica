@@ -20,9 +20,6 @@
         public async Task<IActionResult> Get()
         {
             var result = await _complicacionService.GetComplicaciones();
-            if (result == null)
-                return BadRequest();
-
             var complicacionesDto = _mapper.Map<ICollection<ComplicacionDto>>(result);
             var response = new ApiResponse<ICollection<ComplicacionDto>>(complicacionesDto);
             return Ok(response);
@@ -34,9 +31,6 @@
         public async Task<IActionResult> Get(int id)
         {
             var result = await _complicacionService.GetComplicacion(id);
-            if (result == null)
-                return NotFound();
-
             var complicacionDto = _mapper.Map<ComplicacionDto>(result);
             var response = new ApiResponse<ComplicacionDto>(complicacionDto);
             return Ok(response);
@@ -60,17 +54,11 @@
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Put(int id, ComplicacionDto complicacionDto)
         {
-            if (complicacionDto == null)
-                return NotFound();
-
             complicacionDto.IdComplicacion = id;
             var complicacion = _mapper.Map<Complicacion>(complicacionDto);
             complicacion.Id = id;
 
             var result = await _complicacionService.Actualizar(complicacion);
-            if (!result)
-                return BadRequest();
-
             var response = new ApiResponse<bool>(result);
             return Ok(response);
         }
@@ -81,14 +69,7 @@
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == 0)
-                return NoContent();
-
             var result = await _complicacionService.Eliminar(id);
-
-            if (!result)
-                return BadRequest();
-
             var response = new ApiResponse<bool>(result);
             return Ok(response);
         }

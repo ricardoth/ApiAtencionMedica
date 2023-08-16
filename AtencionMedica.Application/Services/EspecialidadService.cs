@@ -41,7 +41,7 @@
             }
 
             if (especialidad.Id <= 0)
-                throw new BadRequestException("Debe ingresar un Id válido");
+                throw new NotFoundException("Debe ingresar un Id válido");
 
             try
             {
@@ -82,7 +82,7 @@
         public async Task<bool> Eliminar(int id)
         {
             if (id <= 0)
-                throw new NoContentException("El Id ingresado no es válido");
+                throw new NotFoundException("Debe ingresar un Id válido");
 
             try
             {

@@ -1,40 +1,47 @@
-﻿namespace AtencionMedica.Application.Services
+﻿using AtencionMedica.Domain.Entities;
+
+namespace AtencionMedica.Application.Services
 {
     public class ComplicacionService : IComplicacionService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IValidator<Complicacion> _validator;
 
-        public ComplicacionService(IUnitOfWork unitOfWork)
+        public ComplicacionService(IUnitOfWork unitOfWork, IValidator<Complicacion> validator)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
         }
 
         public async Task<ICollection<Complicacion>> GetComplicaciones()
         {
-            try
-            {
-                return await _unitOfWork.ComplicacionRepository.GetAll();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Ha ocurrido un error en ComplicacionService: {ex.Message}", ex);
-            }
+            var result = await _unitOfWork.ComplicacionRepository.GetAll();
+
+            if (result == null)
+                throw new BadRequestException("No se pudo obtener la lista de la BD");
+
+            return result;
         }
 
         public async Task<Complicacion> GetComplicacion(int id)
         {
-            try
-            {
-                return await _unitOfWork.ComplicacionRepository.GetById(id);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Ha ocurrido un error en ComplicacionService: {ex.Message}", ex);
-            }
+            var result = await _unitOfWork.ComplicacionRepository.GetById(id);
+
+            if (result == null)
+                throw new NotFoundException("No existe la especialidad en la BD");
+
+            return result;
         }
 
         public async Task Agregar(Complicacion complicacion)
         {
+            var validationResult = _validator.Validate(complicacion);
+            if (!validationResult.IsValid)
+            {
+                var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ValidationResultException(errores);
+            }
+
             try
             {
                 await _unitOfWork.ComplicacionRepository.Add(complicacion);
@@ -42,12 +49,22 @@
             }
             catch (Exception ex)
             {
-                throw new Exception($"Ha ocurrido un error en ComplicacionService: {ex.Message}", ex);
+                throw new BadRequestException($"No se pudo crear el registro en la BD");
             }
         }
 
         public async Task<bool> Actualizar(Complicacion complicacion)
         {
+            var validationResult = _validator.Validate(complicacion);
+            if (!validationResult.IsValid)
+            {
+                var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ValidationResultException(errores);
+            }
+
+            if (complicacion.Id <= 0)
+                throw new NotFoundException("Debe ingresar un Id válido");
+
             try
             {
                 var complicacionBd = await _unitOfWork.ComplicacionRepository.GetById(complicacion.Id);
@@ -60,12 +77,15 @@
             }
             catch (Exception ex)
             {
-                throw new Exception($"Ha ocurrido un error en ComplicacionService: {ex.Message}", ex);
+                throw new BadRequestException($"No se pudo actualizar el registro de la BD");
             }
         }
 
         public async Task<bool> Eliminar(int id)
         {
+            if (id <= 0)
+                throw new NotFoundException("Debe ingresar un Id válido");
+
             try
             {
                 await _unitOfWork.ComplicacionRepository.Delete(id);
@@ -74,7 +94,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception($"Ha ocurrido un error en ComplicacionService: {ex.Message}", ex);
+                throw new BadRequestException($"No se pudo eliminar el registro de la BD");
             }
         }
     }
