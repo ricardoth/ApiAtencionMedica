@@ -11,26 +11,22 @@
 
         public async Task<EstadoFichaClinica> GetEstadoFichaClinica(int id)
         {
-            try
-            {
-                return await _unitOfWork.EstadoFichaClinicaRepository.GetById(id);  
-            }
-            catch (Exception ex)
-            {
-                throw new NotFoundException("No se encuentra el elemento en la BD");
-            }
+            var result = await _unitOfWork.EstadoFichaClinicaRepository.GetById(id);
+
+            if (result == null)
+                throw new NotFoundException("No se pudo obtener el registro de la BD");
+
+            return result;
         }
 
         public async Task<ICollection<EstadoFichaClinica>> GetEstadoFichasClinicas()
         {
-            try
-            {
-                return await _unitOfWork.EstadoFichaClinicaRepository.GetAll(); 
-            }
-            catch (Exception ex)
-            {
-                throw new BadRequestException("No se pudo obtener los registros de la BD");
-            }
+            var result = await _unitOfWork.EstadoFichaClinicaRepository.GetAll();
+
+            if (result == null) 
+                throw new BadRequestException("No se pudo obtener el registro de la BD");
+
+           return result;
         }
     }
 }
