@@ -1,6 +1,4 @@
-﻿using AtencionMedica.Domain.Entities;
-
-namespace AtencionMedica.Application.Services
+﻿namespace AtencionMedica.Application.Services
 {
     public class ComplicacionService : IComplicacionService
     {

@@ -1,12 +1,16 @@
-﻿namespace AtencionMedica.Application.Services
+﻿using AtencionMedica.Domain.Entities;
+
+namespace AtencionMedica.Application.Services
 {
     public class PatologiaService : IPatologiaService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IValidator<Patologia> _validator;
 
-        public PatologiaService(IUnitOfWork unitOfWork)
+        public PatologiaService(IUnitOfWork unitOfWork, IValidator<Patologia> validator)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
         }
 
         public async Task<ICollection<Patologia>> GetPatologias()
@@ -24,13 +28,23 @@
             var patologia = await _unitOfWork.PatologiaRepository.GetById(id);
 
             if (patologia == null)
-                throw new Exception($"No se encuentra la patología en la BD");
+                throw new NotFoundException($"No se encuentra la patología en la BD");
 
             return patologia;
         }
 
         public async Task<bool> Actualizar(Patologia patologia)
         {
+            var validationResult = _validator.Validate(patologia);
+            if (!validationResult.IsValid)
+            {
+                var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ValidationResultException(errores);
+            }
+
+            if (patologia.Id <= 0)
+                throw new NotFoundException("Debe ingresar un Id válido");
+
             try
             {
                 var patologiaBd = await _unitOfWork.PatologiaRepository.GetById(patologia.Id);
@@ -43,26 +57,35 @@
             }
             catch (Exception ex)
             {
-                throw new Exception($"No se pudo actualizar el elemento, Error en PatologiaService: {ex.Message}", ex);
+                throw new BadRequestException($"No se pudo actualizar el registro de la BD");
             }
         }
 
         public async Task Agregar(Patologia patologia)
         {
+            var validationResult = _validator.Validate(patologia);
+            if (!validationResult.IsValid)
+            {
+                var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ValidationResultException(errores);
+            }
+
             try
             {
-                //Validar que no exista el registro
                 await _unitOfWork.PatologiaRepository.Add(patologia);
                 await _unitOfWork.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception($"No se pudo agregar el elemento, Error en PatologiaService: {ex.Message}", ex);
+                throw new BadRequestException($"No se pudo crear el registro en la BD");
             }
         }
 
         public async Task<bool> Eliminar(int id)
         {
+            if (id <= 0)
+                throw new NotFoundException("Debe ingresar un Id válido");
+
             try
             {
                 await _unitOfWork.PatologiaRepository.Delete(id);
@@ -71,7 +94,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception($"No se pudo eliminar el elemento, Error en PatologiaService: {ex.Message}", ex);
+                throw new BadRequestException($"No se pudo eliminar el registro de la BD");
             }
         }
     }

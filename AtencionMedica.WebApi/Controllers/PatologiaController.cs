@@ -19,9 +19,6 @@
         public async Task<IActionResult> Get()
         {
             var result = await _patologiaService.GetPatologias();
-            if (result == null)
-                return BadRequest();
-
             var patologiasDto = _mapper.Map<ICollection<PatologiaDto>>(result);
             var response = new ApiResponse<ICollection<PatologiaDto>>(patologiasDto);
             return Ok(response);
@@ -33,9 +30,6 @@
         public async Task<IActionResult> Get(int id)
         {
             var result = await _patologiaService.GetPatologia(id);
-            if (result == null)
-                return NotFound();
-
             var patologiaDto = _mapper.Map<PatologiaDto>(result);
             var response = new ApiResponse<PatologiaDto>(patologiaDto);
             return Ok(response);
@@ -59,17 +53,11 @@
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Put(int id, PatologiaDto patologiaDto)
         {
-            if (patologiaDto == null)
-                return NotFound();
-
             patologiaDto.IdPatologia = id;
             var patologia = _mapper.Map<Patologia>(patologiaDto);
             patologia.Id = id;
 
             var result = await _patologiaService.Actualizar(patologia);
-            if (!result)
-                return BadRequest();
-
             var response = new ApiResponse<bool>(result);
             return Ok(response);  
         }
@@ -80,14 +68,7 @@
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Delete(int id)
         {
-            if(id == 0)
-                return NoContent();
-
             var result = await _patologiaService.Eliminar(id);
-
-            if(!result)
-                return BadRequest();
-
             var response = new ApiResponse<bool>(result);
             return Ok(response);
         }
