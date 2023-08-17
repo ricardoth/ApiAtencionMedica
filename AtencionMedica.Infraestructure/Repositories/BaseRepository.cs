@@ -22,7 +22,7 @@
        
         public async Task<T> GetById(int id) => await _context.Set<T>().FindAsync(id);
 
-        public  void Update(T entity) => _context.Set<T>().Update(entity);
+        public void Update(T entity) => _context.Set<T>().Update(entity);
        
     }
 }
