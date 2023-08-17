@@ -26,7 +26,7 @@
 
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get(int id)
         {
             var result = await _estadoFichaClinicaService.GetEstadoFichaClinica(id);

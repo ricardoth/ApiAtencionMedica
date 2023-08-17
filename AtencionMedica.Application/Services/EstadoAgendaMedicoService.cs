@@ -9,14 +9,24 @@
             _unitOfWork = unitOfWork;
         }
 
-        public Task<EstadoAgendaMedico> GetEstadoAgendaMedico(int id)
+        public async Task<EstadoAgendaMedico> GetEstadoAgendaMedico(int id)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.EstadoAgendaMedicoRepository.GetById(id);
+
+            if (result == null)
+                throw new NotFoundException("No se encuentra el registro en la BD");
+
+            return result;
         }
 
-        public Task<ICollection<EstadoAgendaMedico>> GetEstadoAgendasMedicos()
+        public async Task<ICollection<EstadoAgendaMedico>> GetEstadoAgendasMedicos()
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.EstadoAgendaMedicoRepository.GetAll();
+
+            if (result == null)
+                throw new BadRequestException("No se encuentran registros en la BD");
+
+            return result;
         }
     }
 }
