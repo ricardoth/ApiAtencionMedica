@@ -4,6 +4,7 @@
     {
         private readonly AtencionMedicaContext _context;
         private readonly IRepository<Complicacion> _complicacionRepository;
+        private readonly IRepository<Comuna> _comunaRepository;
         private readonly IRepository<Especialidad> _especialidadRepository;
         private readonly IRepository<EstadoAgendaMedico> _estadoAgendaMedicoRepository;
         private readonly IRepository<EstadoFichaClinica> _estadoFichaClinicaRepository;
@@ -22,6 +23,7 @@
         }
 
         public IRepository<Complicacion> ComplicacionRepository => _complicacionRepository ?? new BaseRepository<Complicacion>(_context);
+        public IRepository<Comuna> ComunaRepository => _comunaRepository ?? new BaseRepository<Comuna>(_context);
         public IRepository<Especialidad> EspecialidadRepository => _especialidadRepository ?? new BaseRepository<Especialidad>(_context);
         public IRepository<EstadoAgendaMedico> EstadoAgendaMedicoRepository => _estadoAgendaMedicoRepository ?? new BaseRepository<EstadoAgendaMedico>(_context);
         public IRepository<EstadoFichaClinica> EstadoFichaClinicaRepository => _estadoFichaClinicaRepository ?? new BaseRepository<EstadoFichaClinica>(_context);   

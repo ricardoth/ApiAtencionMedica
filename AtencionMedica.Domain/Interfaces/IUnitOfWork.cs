@@ -3,6 +3,7 @@
     public interface IUnitOfWork : IDisposable
     {
         IRepository<Complicacion> ComplicacionRepository { get; }
+        IRepository<Comuna> ComunaRepository { get; }
         IRepository<Especialidad> EspecialidadRepository { get; }
         IRepository<EstadoAgendaMedico> EstadoAgendaMedicoRepository { get; }
         IRepository<EstadoFichaClinica> EstadoFichaClinicaRepository { get; }

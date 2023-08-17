@@ -17,6 +17,8 @@ namespace AtencionMedica.Application
             serviceCollection.AddTransient<IEspecialidadService, EspecialidadService>();
             serviceCollection.AddTransient<IEstadoFichaClinicaService, EstadoFichaClinicaService>();
             serviceCollection.AddTransient<IEstadoAgendaMedicoService, EstadoAgendaMedicoService>();
+            serviceCollection.AddTransient<IMedicamentoService, MedicamentoService>();
+            serviceCollection.AddTransient<IComunaService, ComunaService>();    
             #endregion
         }
     }

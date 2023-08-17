@@ -23,6 +23,10 @@
             CreateMap<EstadoAgendaMedico, EstadoAgendaMedicoDto>()
                 .ForMember(des => des.IdEstadoFichaClinica, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
+
+            CreateMap<Comuna, ComunaDto>()
+                .ForMember(des => des.IdComuna, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
         }
     }
 }
