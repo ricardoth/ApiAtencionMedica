@@ -4,12 +4,15 @@
     {
         public ComplicacionValidator()
         {
-            RuleFor(especialidad => especialidad.NombreComplicacion)
+            RuleFor(e => e.NombreComplicacion)
                 .NotNull().WithMessage("El nombre no puede ser núlo");
 
-            RuleFor(especialidad => especialidad.NombreComplicacion)
+            RuleFor(e => e.NombreComplicacion)
+               .NotEmpty().WithMessage("El nombre no puede estar vacío");
+
+            RuleFor(e => e.NombreComplicacion)
                 .Length(3, 100)
-                .WithMessage("El nombre no puede estar vacío");
+                .WithMessage("El nombre debe tener un mínimo de 3 y máximo de 150 caractéres");
         }
     }
 }

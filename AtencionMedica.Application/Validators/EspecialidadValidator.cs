@@ -4,12 +4,15 @@
     {
         public EspecialidadValidator()
         {
-            RuleFor(especialidad => especialidad.NombreEspecialidad)
+            RuleFor(e => e.NombreEspecialidad)
                 .NotNull().WithMessage("El nombre no puede ser núlo");
 
-            RuleFor(especialidad => especialidad.NombreEspecialidad)
+            RuleFor(e => e.NombreEspecialidad)
+                .NotEmpty().WithMessage("El nombre no puede estar vacío");
+
+            RuleFor(e => e.NombreEspecialidad)
                 .Length(3, 100)
-                .WithMessage("El nombre no puede estar vacío");
+                .WithMessage("El nombre debe tener un mínimo de 3 y máximo de 150 caractéres");
 
         }
     }

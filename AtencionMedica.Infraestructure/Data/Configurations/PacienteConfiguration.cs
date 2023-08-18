@@ -35,6 +35,10 @@
                .HasMaxLength(200)
                .IsUnicode(false);
 
+            entity.Property(e => e.Direccion)
+               .HasMaxLength(200)
+               .IsUnicode(false);
+
             entity.Property(e => e.Correo)
                .HasMaxLength(200)
                .IsUnicode(false);
