@@ -6,11 +6,13 @@
         {
             //DatabaseSettings databaseSettings = configuration.GetSection(DatabaseSettings.SettingName).Get<DatabaseSettings>();
             //serviceCollection.AddSingleton(databaseSettings);
+   
             serviceCollection.AddDbContext<AtencionMedicaContext>(opt =>
                 opt.UseSqlServer(configuration.GetConnectionString("AtencionMedicaConnection")));
 
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>(); 
+            serviceCollection.AddTransient<IPacientePaginationRepository, PacientePaginationRepository>(); 
 
             //Seeders de BD Tablas Base
             serviceCollection.AddTransient<IInitialize, SeedData>();

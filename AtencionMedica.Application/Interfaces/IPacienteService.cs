@@ -1,8 +1,8 @@
 ﻿namespace AtencionMedica.Application.Interfaces
 {
-    public interface IPacienteService
+    public interface IPacienteService 
     {
-        Task<ICollection<Paciente>> GetPacientes();
+        Task<PagedList<Paciente>> GetPacientes(PacienteQueryFilter filtros);
         Task<Paciente> GetPaciente(int id);
         Task Agregar(Paciente paciente);
         Task<bool> Actualizar(Paciente paciente);

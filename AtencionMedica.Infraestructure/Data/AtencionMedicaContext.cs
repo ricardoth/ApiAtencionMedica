@@ -1,5 +1,4 @@
-﻿using AtencionMedica.Infraestructure.Seeders.Interfaces;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace AtencionMedica.Infraestructure.Data
 {

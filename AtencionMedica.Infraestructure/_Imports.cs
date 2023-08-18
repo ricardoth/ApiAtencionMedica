@@ -13,3 +13,5 @@ global using AtencionMedica.Infraestructure.Repositories;
 global using AtencionMedica.Infraestructure.Seeders;
 global using AutoMapper;
 global using AtencionMedica.Application.Interfaces;
+global using AtencionMedica.Domain.CustomEntities;
+global using Microsoft.Extensions.Options;

@@ -15,7 +15,7 @@
         {
             var result = await _unitOfWork.EspecialidadRepository.GetAll();
 
-            if (result == null)
+            if (result is null)
                 throw new BadRequestException("No se pudo obtener la lista de la BD");
 
             return result;
@@ -25,7 +25,7 @@
         {
             var result = await _unitOfWork.EspecialidadRepository.GetById(id);
 
-            if (result == null)
+            if (result is null)
                 throw new NotFoundException("No existe la especialidad en la BD");
 
             return result;

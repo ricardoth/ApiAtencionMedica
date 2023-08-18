@@ -11,21 +11,19 @@ namespace AtencionMedica.WebApi.Configurations
             service.AddControllers().AddJsonOptions(opt =>
             {
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-                opt.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
+                opt.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             });
             #endregion
 
 
             #region Others Dependencies
-
             //service.AddAuthentication("BasicAuthentication")
             //    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             //service.Configure<BasicAuthCredentials>(configuration.GetSection("BasicAuthCredentials"));
-
+            service.Configure<PaginationOptions>(configuration.GetSection("Pagination"));
             service.AddApplicationDependencies(configuration);
             service.AddDataAccess(configuration);
-
             #endregion
         }
 
