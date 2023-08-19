@@ -1,6 +1,4 @@
-﻿using AtencionMedica.Domain.QueryFilters;
-
-namespace AtencionMedica.WebApi.Controllers
+﻿namespace AtencionMedica.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

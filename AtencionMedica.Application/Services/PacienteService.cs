@@ -1,21 +1,19 @@
-﻿using Microsoft.Extensions.Options;
-
-namespace AtencionMedica.Application.Services
+﻿namespace AtencionMedica.Application.Services
 {
     public class PacienteService : IPacienteService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IPacientePaginationRepository _pacientePaginationRepository;
+        private readonly IPaginationRepository<Paciente> _paginationRepository;
         private readonly IValidator<Paciente> _validator;
         private readonly PaginationOptions _paginationOptions;
 
-        public PacienteService(IUnitOfWork unitOfWork, 
-            IPacientePaginationRepository pacientePaginationRepository, 
+        public PacienteService(IUnitOfWork unitOfWork,
+            IPaginationRepository<Paciente> paginationRepository, 
             IValidator<Paciente> validator, 
             IOptions<PaginationOptions> paginationOptions)
         {
             _unitOfWork = unitOfWork;
-            _pacientePaginationRepository = pacientePaginationRepository;
+            _paginationRepository = paginationRepository;
             _validator = validator;
             _paginationOptions = paginationOptions.Value;
 
@@ -26,8 +24,8 @@ namespace AtencionMedica.Application.Services
             filtros.PageNumber = filtros.PageNumber == 0 ? _paginationOptions.DefaultPageNumber : filtros.PageNumber;
             filtros.PageSize = filtros.PageSize == 0 ? _paginationOptions.DefaultPageSize : filtros.PageSize;
 
-            var totalCount = await _pacientePaginationRepository.GetTotalPacientesCount();
-            var result = await _pacientePaginationRepository.GetPacientesPagination(filtros.PageNumber, filtros.PageSize);
+            var totalCount = await _paginationRepository.GetTotalAllCount();
+            var result = await _paginationRepository.GetAllPagination(filtros.PageNumber, filtros.PageSize);
 
             return PagedList<Paciente>.Create(result, filtros.PageNumber, filtros.PageSize, totalCount);
         }

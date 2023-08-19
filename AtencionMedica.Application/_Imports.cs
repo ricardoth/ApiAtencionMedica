@@ -10,3 +10,4 @@ global using AtencionMedica.Domain.Exceptions;
 global using FluentValidation;
 global using AtencionMedica.Domain.CustomEntities;
 global using AtencionMedica.Domain.QueryFilters;
+global using Microsoft.Extensions.Options;

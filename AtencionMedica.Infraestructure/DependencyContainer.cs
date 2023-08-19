@@ -11,8 +11,8 @@
                 opt.UseSqlServer(configuration.GetConnectionString("AtencionMedicaConnection")));
 
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            serviceCollection.AddScoped(typeof(IPaginationRepository<>), typeof(PaginationRepository<>));
             serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>(); 
-            serviceCollection.AddTransient<IPacientePaginationRepository, PacientePaginationRepository>(); 
 
             //Seeders de BD Tablas Base
             serviceCollection.AddTransient<IInitialize, SeedData>();
