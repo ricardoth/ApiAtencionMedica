@@ -16,7 +16,6 @@
             _paginationRepository = paginationRepository;
             _validator = validator;
             _paginationOptions = paginationOptions.Value;
-
         }
 
         public async Task<PagedList<Paciente>> GetPacientes(PacienteQueryFilter filtros)
@@ -24,15 +23,26 @@
             filtros.PageNumber = filtros.PageNumber == 0 ? _paginationOptions.DefaultPageNumber : filtros.PageNumber;
             filtros.PageSize = filtros.PageSize == 0 ? _paginationOptions.DefaultPageSize : filtros.PageSize;
 
-            var totalCount = await _paginationRepository.GetTotalAllCount();
-            var result = await _paginationRepository.GetAllPagination(filtros.PageNumber, filtros.PageSize);
+            try
+            {
+                var totalCount = await _paginationRepository.GetAllTotalCount();
+                var result = await _paginationRepository.GetAllPagination(filtros.PageNumber, filtros.PageSize);
+                return PagedList<Paciente>.Create(result, filtros.PageNumber, filtros.PageSize, totalCount);
+            }
+            catch (Exception ex)
+            {
 
-            return PagedList<Paciente>.Create(result, filtros.PageNumber, filtros.PageSize, totalCount);
+                throw new BadRequestException("No se pudo obtener la lista de la Bd");
+            }
         }
 
-        public Task<Paciente> GetPaciente(int id)
+        public async Task<Paciente> GetPaciente(int id)
         {
-            throw new NotImplementedException();
+            var result = await _unitOfWork.PacienteRepository.GetById(id);
+            if (result is null)
+                throw new NotFoundException("No se encuentra el registro en la BD");
+
+            return result;
         }
 
         public Task<bool> Actualizar(Paciente paciente)

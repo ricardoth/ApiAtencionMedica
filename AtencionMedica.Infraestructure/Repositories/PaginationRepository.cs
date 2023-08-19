@@ -15,7 +15,7 @@
             return await _context.Set<T>().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
-        public async Task<int> GetTotalAllCount()
+        public async Task<int> GetAllTotalCount()
         {
             return await _context.Set<T>().CountAsync();
         }
