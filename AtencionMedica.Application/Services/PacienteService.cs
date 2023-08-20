@@ -31,7 +31,6 @@
             }
             catch (Exception ex)
             {
-
                 throw new BadRequestException("No se pudo obtener la lista de la Bd");
             }
         }
@@ -45,19 +44,80 @@
             return result;
         }
 
-        public Task<bool> Actualizar(Paciente paciente)
+        public async Task<bool> Actualizar(Paciente paciente)
         {
-            throw new NotImplementedException();
+            var validationResult = _validator.Validate(paciente);
+            if (!validationResult.IsValid)
+            {
+                var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ValidationResultException(errores);
+            }
+
+            if (paciente.Id <= 0)
+                throw new NotFoundException("Debe ingresar un Id válido");
+
+            try
+            {
+                var pacienteBd = await _unitOfWork.PacienteRepository.GetById(paciente.Id);
+                pacienteBd.Rut = paciente.Rut;
+                pacienteBd.Dv = paciente.Dv;
+                pacienteBd.Nombres = paciente.Nombres;
+                pacienteBd.ApellidoPaterno = paciente.ApellidoPaterno;
+                pacienteBd.ApellidoMaterno = paciente.ApellidoMaterno;
+                pacienteBd.Direccion = paciente.Direccion;
+                pacienteBd.FechaNacimiento = paciente.FechaNacimiento;
+                pacienteBd.Telefono = paciente.Telefono;
+                pacienteBd.Correo = paciente.Correo;
+                pacienteBd.EstadoCivil = paciente.EstadoCivil;
+                pacienteBd.Sexo = paciente.Sexo;
+                pacienteBd.EsActivo = paciente.EsActivo;
+                pacienteBd.FecActualizacion = DateTime.Now;
+
+                _unitOfWork.PacienteRepository.Update(pacienteBd);
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException("No se pudo actualizar el registro");
+            }
         }
 
-        public Task Agregar(Paciente paciente)
+        public async Task Agregar(Paciente paciente)
         {
-            throw new NotImplementedException();
+            var validationResult = _validator.Validate(paciente);
+            if (!validationResult.IsValid)
+            {
+                var errores = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ValidationResultException(errores);
+            }
+
+            try
+            {
+                await _unitOfWork.PacienteRepository.Add(paciente);
+                await _unitOfWork.SaveChangesAsync();   
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException("No se pudo agregar el registro a la Bd");
+            }
         }
 
-        public Task<bool> Eliminar(int id)
+        public async Task<bool> Eliminar(int id)
         {
-            throw new NotImplementedException();
+            if (id <= 0)
+                throw new NotFoundException("Debe ingresar un número válido");
+
+            try
+            {
+                await _unitOfWork.PatologiaRepository.Delete(id);
+                await _unitOfWork.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException("No se pudo eliminar el registro de la Bd");
+            }
         }
     }
 }

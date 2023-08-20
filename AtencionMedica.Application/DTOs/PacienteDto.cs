@@ -2,7 +2,7 @@
 {
     public class PacienteDto
     {
-        public int IdUsuario { get; set; }
+        public int? IdUsuario { get; set; }
         public int Rut { get; set; }
         public string Dv { get; set; }
         public string Nombres { get; set; }
