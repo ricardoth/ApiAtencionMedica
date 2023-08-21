@@ -4,6 +4,7 @@ using AtencionMedica.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtencionMedica.Infraestructure.Migrations
 {
     [DbContext(typeof(AtencionMedicaContext))]
-    partial class AtencionMedicaContextModelSnapshot : ModelSnapshot
+    [Migration("20230821160927_BaseEntityEsActivo")]
+    partial class BaseEntityEsActivo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

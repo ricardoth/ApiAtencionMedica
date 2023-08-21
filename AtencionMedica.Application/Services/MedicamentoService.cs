@@ -84,7 +84,7 @@
 
             try
             {
-                await _unitOfWork.MedicamentoRepository.Delete(id);
+                await _unitOfWork.MedicamentoRepository.SoftDelete(id);
                 await _unitOfWork.SaveChangesAsync();
                 return true;
             }

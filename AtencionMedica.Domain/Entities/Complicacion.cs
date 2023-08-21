@@ -4,7 +4,6 @@
     public class Complicacion : BaseEntity
     {
         public string? NombreComplicacion { get; set; }
-        public bool EsActivo { get; set; }
         public virtual ICollection<ComplicacionPaciente>? ComplicacionPacientes { get; set; }
     }
 }

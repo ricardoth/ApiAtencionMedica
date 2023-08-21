@@ -7,7 +7,6 @@
         public int IdLugarAtencion { get; set; }
         public string NombreModulo { get; set; }
         public string? Descripcion { get; set; }
-        public bool EsActivo { get; set; }
         public virtual LugarAtencion LugarAtencion { get; set;}
         public virtual ICollection<FichaClinica> FichaClinicas { get; set; }    
     }

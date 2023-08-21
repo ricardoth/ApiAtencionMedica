@@ -86,7 +86,7 @@
 
             try
             {
-                await _unitOfWork.ComplicacionRepository.Delete(id);
+                await _unitOfWork.ComplicacionRepository.SoftDelete(id);
                 await _unitOfWork.SaveChangesAsync();
                 return true;
             }

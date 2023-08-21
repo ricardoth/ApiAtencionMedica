@@ -110,7 +110,7 @@
 
             try
             {
-                await _unitOfWork.PatologiaRepository.Delete(id);
+                await _unitOfWork.PatologiaRepository.SoftDelete(id);
                 await _unitOfWork.SaveChangesAsync();
                 return true;
             }

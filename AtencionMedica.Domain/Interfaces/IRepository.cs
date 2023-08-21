@@ -6,6 +6,7 @@
         Task<T> GetById(int id);
         Task Add(T entity);
         void Update(T entity);  
-        Task Delete(int id);    
+        Task<bool> SoftDelete(int id);    
+        Task<bool> HardDelete(int id);
     }
 }
