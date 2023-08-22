@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AtencionMedica.Infraestructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDbSeedersBase : Migration
+    public partial class InitBd_ReinicioDeBdPorMuchosCambios : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -109,9 +109,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                     Dv = table.Column<string>(type: "varchar(2)", unicode: false, maxLength: 2, nullable: false),
                     Nombres = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: false),
                     ApellidoPaterno = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: false),
-                    ApellidoMaterno = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: false),
-                    Correo = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: false),
-                    Telefono = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: false),
+                    ApellidoMaterno = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: true),
+                    Correo = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: true),
+                    Telefono = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -131,14 +131,14 @@ namespace AtencionMedica.Infraestructure.Migrations
                     ApellidoPaterno = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: false),
                     ApellidoMaterno = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: true),
                     FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Direccion = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: true),
                     Telefono = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     Correo = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: true),
                     EstadoCivil = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     Sexo = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
-                    EsActivo = table.Column<bool>(type: "bit", nullable: false),
                     FecCreacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true)
+                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,7 +206,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                 name: "AgendaMedico",
                 columns: table => new
                 {
-                    IdAgendaMedico = table.Column<long>(type: "bigint", nullable: false)
+                    IdAgendaMedico = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdMedico = table.Column<int>(type: "int", nullable: false),
                     IdEstadoAgendaMedico = table.Column<int>(type: "int", nullable: false),
@@ -214,9 +214,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                     FecFin = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
                     HoraInicio = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
                     HoraFin = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
-                    EsActivo = table.Column<bool>(type: "bit", nullable: false),
                     FecCreacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true)
+                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -268,7 +268,8 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdPaciente = table.Column<int>(type: "int", nullable: false),
                     IdComplicacion = table.Column<int>(type: "int", nullable: false),
-                    FecComplicacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: false)
+                    FecComplicacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: false),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -289,15 +290,15 @@ namespace AtencionMedica.Infraestructure.Migrations
                 name: "HistorialClinico",
                 columns: table => new
                 {
-                    IdHistorialClinico = table.Column<long>(type: "bigint", nullable: false)
+                    IdHistorialClinico = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdPaciente = table.Column<int>(type: "int", nullable: false),
                     FechaHistorial = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
                     Diagnostico = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
                     Nota = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
-                    EsActivo = table.Column<bool>(type: "bit", nullable: false),
                     FecCreacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true)
+                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -317,7 +318,8 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdPaciente = table.Column<int>(type: "int", nullable: false),
                     AutoValente = table.Column<bool>(type: "bit", nullable: false),
-                    Dependencia = table.Column<bool>(type: "bit", nullable: false)
+                    Dependencia = table.Column<bool>(type: "bit", nullable: false),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -342,7 +344,8 @@ namespace AtencionMedica.Infraestructure.Migrations
                     Amputacion = table.Column<bool>(type: "bit", nullable: false),
                     FecAmputacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
                     Retinopatia = table.Column<bool>(type: "bit", nullable: false),
-                    FecRetinopatia = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true)
+                    FecRetinopatia = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -358,14 +361,14 @@ namespace AtencionMedica.Infraestructure.Migrations
                 name: "PatologiaPaciente",
                 columns: table => new
                 {
-                    IdPatologiaPaciente = table.Column<long>(type: "bigint", nullable: false)
+                    IdPatologiaPaciente = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdPatologia = table.Column<int>(type: "int", nullable: false),
                     IdPaciente = table.Column<int>(type: "int", nullable: false),
                     FecComplicacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    EsActivo = table.Column<bool>(type: "bit", nullable: false),
                     FecCreacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true)
+                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -409,16 +412,16 @@ namespace AtencionMedica.Infraestructure.Migrations
                 {
                     IdRecetaMedica = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdHistorialClinico = table.Column<long>(type: "bigint", nullable: false),
+                    IdHistorialClinico = table.Column<int>(type: "int", nullable: false),
                     IdMedicamento = table.Column<int>(type: "int", nullable: false),
                     Cantidad = table.Column<int>(type: "int", unicode: false, nullable: false),
                     Instrucciones = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
                     Observacion = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
                     FecInicio = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
                     FecFin = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    EsActivo = table.Column<bool>(type: "bit", nullable: false),
                     FecCreacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true)
+                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -439,7 +442,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                 name: "FichaClinica",
                 columns: table => new
                 {
-                    IdFichaClinica = table.Column<long>(type: "bigint", nullable: false)
+                    IdFichaClinica = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdPaciente = table.Column<int>(type: "int", nullable: false),
                     IdMedico = table.Column<int>(type: "int", nullable: false),
@@ -447,9 +450,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                     IdEstadoFichaClinica = table.Column<int>(type: "int", nullable: false),
                     IdModulo = table.Column<int>(type: "int", nullable: false),
                     FechaAtencion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: false),
-                    EsActivo = table.Column<bool>(type: "bit", nullable: false),
                     FecCreacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true)
+                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -485,16 +488,16 @@ namespace AtencionMedica.Infraestructure.Migrations
                 name: "FichaClinicaDetalle",
                 columns: table => new
                 {
-                    IdFichaClinicaDetalle = table.Column<long>(type: "bigint", nullable: false)
+                    IdFichaClinicaDetalle = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdFichaClinica = table.Column<long>(type: "bigint", nullable: false),
+                    IdFichaClinica = table.Column<int>(type: "int", nullable: false),
                     AgudezaVisual = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     PresionIntraocular = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     FondoDeOjo = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
                     Observacion = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
-                    EsActivo = table.Column<bool>(type: "bit", nullable: false),
                     FecCreacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
-                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true)
+                    FecActualizacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
+                    EsActivo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

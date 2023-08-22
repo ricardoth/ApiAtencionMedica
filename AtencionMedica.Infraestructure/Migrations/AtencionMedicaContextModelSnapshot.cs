@@ -24,11 +24,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.AgendaMedico", b =>
                 {
-                    b.Property<long>("IdAgendaMedico")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdAgendaMedico");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdAgendaMedico"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
@@ -65,7 +66,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int>("IdMedico")
                         .HasColumnType("int");
 
-                    b.HasKey("IdAgendaMedico");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdEstadoAgendaMedico");
 
@@ -99,11 +100,15 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.ComplicacionPaciente", b =>
                 {
-                    b.Property<int>("IdComplicacionPaciente")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdComplicacionPaciente");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdComplicacionPaciente"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("EsActivo")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecComplicacion")
                         .IsRequired()
@@ -116,7 +121,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int>("IdPaciente")
                         .HasColumnType("int");
 
-                    b.HasKey("IdComplicacionPaciente");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdComplicacion");
 
@@ -3099,11 +3104,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.EspecialidadMedico", b =>
                 {
-                    b.Property<int>("IdEspecialidadMedico")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdEspecialidadMedico");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEspecialidadMedico"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CasaEstudio")
                         .IsRequired()
@@ -3124,7 +3130,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int>("IdMedico")
                         .HasColumnType("int");
 
-                    b.HasKey("IdEspecialidadMedico");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdEspecialidad");
 
@@ -3269,11 +3275,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.FichaClinica", b =>
                 {
-                    b.Property<long>("IdFichaClinica")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdFichaClinica");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdFichaClinica"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
@@ -3306,7 +3313,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int?>("IdPersonal")
                         .HasColumnType("int");
 
-                    b.HasKey("IdFichaClinica");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdEstadoFichaClinica");
 
@@ -3323,11 +3330,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.FichaClinicaDetalle", b =>
                 {
-                    b.Property<long>("IdFichaClinicaDetalle")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdFichaClinicaDetalle");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdFichaClinicaDetalle"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AgudezaVisual")
                         .HasMaxLength(100)
@@ -3350,8 +3358,8 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<long>("IdFichaClinica")
-                        .HasColumnType("bigint");
+                    b.Property<int>("IdFichaClinica")
+                        .HasColumnType("int");
 
                     b.Property<string>("Observacion")
                         .HasMaxLength(500)
@@ -3363,7 +3371,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.HasKey("IdFichaClinicaDetalle");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdFichaClinica");
 
@@ -3372,11 +3380,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.HistorialClinico", b =>
                 {
-                    b.Property<long>("IdHistorialClinico")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdHistorialClinico");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdHistorialClinico"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Diagnostico")
                         .HasMaxLength(500)
@@ -3406,7 +3415,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(500)");
 
-                    b.HasKey("IdHistorialClinico");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdPaciente");
 
@@ -3415,11 +3424,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.LugarAtencion", b =>
                 {
-                    b.Property<int>("IdLugarAtencion")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdLugarAtencion");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdLugarAtencion"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Direccion")
                         .IsRequired()
@@ -3451,7 +3461,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.HasKey("IdLugarAtencion");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdComuna");
 
@@ -3748,11 +3758,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.PatologiaPaciente", b =>
                 {
-                    b.Property<long>("IdPatologiaPaciente")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdPatologiaPaciente");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdPatologiaPaciente"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
@@ -3775,7 +3786,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int>("IdPatologia")
                         .HasColumnType("int");
 
-                    b.HasKey("IdPatologiaPaciente");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdPaciente");
 
@@ -3843,11 +3854,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.RecetaMedica", b =>
                 {
-                    b.Property<int>("IdRecetaMedica")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdRecetaMedica");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRecetaMedica"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Cantidad")
                         .IsUnicode(false)
@@ -3872,8 +3884,8 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
-                    b.Property<long>("IdHistorialClinico")
-                        .HasColumnType("bigint");
+                    b.Property<int>("IdHistorialClinico")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdMedicamento")
                         .HasColumnType("int");
@@ -3888,7 +3900,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(500)");
 
-                    b.HasKey("IdRecetaMedica");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdHistorialClinico");
 

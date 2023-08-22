@@ -1,10 +1,8 @@
 ﻿namespace AtencionMedica.Domain.Entities
 {
     [Table("AgendaMedico")]
-    public class AgendaMedico 
+    public class AgendaMedico : BaseEntity
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long IdAgendaMedico { get; set; }
         [ForeignKey("IdMedico")]
         public int IdMedico { get; set; }
         [ForeignKey("IdEstadoAgendaMedico")]
@@ -13,7 +11,6 @@
         public DateTime? FecFin { get; set; }
         public string? HoraInicio { get; set; }
         public string? HoraFin { get; set; }
-        public bool EsActivo { get; set; }
         public DateTime? FecCreacion { get; set; }
         public DateTime? FecActualizacion { get; set; }
         public virtual Medico Medico { get; set; }    

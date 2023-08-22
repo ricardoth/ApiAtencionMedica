@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtencionMedica.Infraestructure.Migrations
 {
     [DbContext(typeof(AtencionMedicaContext))]
-    [Migration("20230809192210_ActualizacionBd")]
-    partial class ActualizacionBd
+    [Migration("20230822034108_InitBd_ReinicioDeBdPorMuchosCambios")]
+    partial class InitBd_ReinicioDeBdPorMuchosCambios
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.AgendaMedico", b =>
                 {
-                    b.Property<long>("IdAgendaMedico")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdAgendaMedico");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdAgendaMedico"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
@@ -68,7 +69,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int>("IdMedico")
                         .HasColumnType("int");
 
-                    b.HasKey("IdAgendaMedico");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdEstadoAgendaMedico");
 
@@ -102,11 +103,15 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.ComplicacionPaciente", b =>
                 {
-                    b.Property<int>("IdComplicacionPaciente")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdComplicacionPaciente");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdComplicacionPaciente"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("EsActivo")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecComplicacion")
                         .IsRequired()
@@ -119,7 +124,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int>("IdPaciente")
                         .HasColumnType("int");
 
-                    b.HasKey("IdComplicacionPaciente");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdComplicacion");
 
@@ -130,11 +135,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.Comuna", b =>
                 {
-                    b.Property<int>("IdComuna")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdComuna");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdComuna"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
@@ -157,14 +163,14 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(10)");
 
-                    b.HasKey("IdComuna");
+                    b.HasKey("Id");
 
                     b.ToTable("Comuna", (string)null);
 
                     b.HasData(
                         new
                         {
-                            IdComuna = 1,
+                            Id = 1,
                             EsActivo = true,
                             NombreComuna = "Arica",
                             Region = "Región de Tarapacá",
@@ -172,7 +178,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 2,
+                            Id = 2,
                             EsActivo = true,
                             NombreComuna = "Camarones",
                             Region = "Región de Tarapacá",
@@ -180,7 +186,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 3,
+                            Id = 3,
                             EsActivo = true,
                             NombreComuna = "Alto Hospicio",
                             Region = "Región de Antofagasta",
@@ -188,7 +194,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 4,
+                            Id = 4,
                             EsActivo = true,
                             NombreComuna = "Iquique",
                             Region = "Región de Antofagasta",
@@ -196,7 +202,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 5,
+                            Id = 5,
                             EsActivo = true,
                             NombreComuna = "Camiña",
                             Region = "Región de Antofagasta",
@@ -204,7 +210,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 6,
+                            Id = 6,
                             EsActivo = true,
                             NombreComuna = "Colchane",
                             Region = "Región de Antofagasta",
@@ -212,7 +218,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 7,
+                            Id = 7,
                             EsActivo = true,
                             NombreComuna = "Huara",
                             Region = "Región de Antofagasta",
@@ -220,7 +226,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 8,
+                            Id = 8,
                             EsActivo = true,
                             NombreComuna = "Pica",
                             Region = "Región de Antofagasta",
@@ -228,7 +234,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 9,
+                            Id = 9,
                             EsActivo = true,
                             NombreComuna = "Pozo Almonte",
                             Region = "Región de Antofagasta",
@@ -236,7 +242,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 10,
+                            Id = 10,
                             EsActivo = true,
                             NombreComuna = "Caldera",
                             Region = "Región de Atacama",
@@ -244,7 +250,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 11,
+                            Id = 11,
                             EsActivo = true,
                             NombreComuna = "Chanaral",
                             Region = "Región de Atacama",
@@ -252,7 +258,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 12,
+                            Id = 12,
                             EsActivo = true,
                             NombreComuna = "Copiapó",
                             Region = "Región de Atacama",
@@ -260,7 +266,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 13,
+                            Id = 13,
                             EsActivo = true,
                             NombreComuna = "Diego de Almagro",
                             Region = "Región de Atacama",
@@ -268,7 +274,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 14,
+                            Id = 14,
                             EsActivo = true,
                             NombreComuna = "Freirina",
                             Region = "Región de Atacama",
@@ -276,7 +282,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 15,
+                            Id = 15,
                             EsActivo = true,
                             NombreComuna = "Huasco",
                             Region = "Región de Atacama",
@@ -284,7 +290,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 16,
+                            Id = 16,
                             EsActivo = true,
                             NombreComuna = "Tierra Amarilla",
                             Region = "Región de Atacama",
@@ -292,7 +298,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 17,
+                            Id = 17,
                             EsActivo = true,
                             NombreComuna = "Vallenar",
                             Region = "Región de Atacama",
@@ -300,7 +306,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 18,
+                            Id = 18,
                             EsActivo = true,
                             NombreComuna = "Andacollo",
                             Region = "Región de Coquimbo",
@@ -308,7 +314,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 19,
+                            Id = 19,
                             EsActivo = true,
                             NombreComuna = "Canela",
                             Region = "Región de Coquimbo",
@@ -316,7 +322,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 20,
+                            Id = 20,
                             EsActivo = true,
                             NombreComuna = "Combarbalá",
                             Region = "Región de Coquimbo",
@@ -324,7 +330,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 21,
+                            Id = 21,
                             EsActivo = true,
                             NombreComuna = "Coquimbo",
                             Region = "Región de Coquimbo",
@@ -332,7 +338,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 22,
+                            Id = 22,
                             EsActivo = true,
                             NombreComuna = "Illapel",
                             Region = "Región de Coquimbo",
@@ -340,7 +346,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 23,
+                            Id = 23,
                             EsActivo = true,
                             NombreComuna = "La Higuera",
                             Region = "Región de Coquimbo",
@@ -348,7 +354,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 24,
+                            Id = 24,
                             EsActivo = true,
                             NombreComuna = "La Serena",
                             Region = "Región de Coquimbo",
@@ -356,7 +362,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 25,
+                            Id = 25,
                             EsActivo = true,
                             NombreComuna = "Los Vilos",
                             Region = "Región de Coquimbo",
@@ -364,7 +370,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 26,
+                            Id = 26,
                             EsActivo = true,
                             NombreComuna = "Monte Patria",
                             Region = "Región de Coquimbo",
@@ -372,7 +378,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 27,
+                            Id = 27,
                             EsActivo = true,
                             NombreComuna = "Ovalle",
                             Region = "Región de Coquimbo",
@@ -380,7 +386,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 28,
+                            Id = 28,
                             EsActivo = true,
                             NombreComuna = "Paihuano",
                             Region = "Región de Coquimbo",
@@ -388,7 +394,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 29,
+                            Id = 29,
                             EsActivo = true,
                             NombreComuna = "Punitaqui",
                             Region = "Región de Coquimbo",
@@ -396,7 +402,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 30,
+                            Id = 30,
                             EsActivo = true,
                             NombreComuna = "Río Hurtado",
                             Region = "Región de Coquimbo",
@@ -404,7 +410,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 31,
+                            Id = 31,
                             EsActivo = true,
                             NombreComuna = "Salamanca",
                             Region = "Región de Coquimbo",
@@ -412,7 +418,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 32,
+                            Id = 32,
                             EsActivo = true,
                             NombreComuna = "Vicuña",
                             Region = "Región de Coquimbo",
@@ -420,7 +426,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 33,
+                            Id = 33,
                             EsActivo = true,
                             NombreComuna = "Algarrobo",
                             Region = "Región de Valparaíso",
@@ -428,7 +434,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 34,
+                            Id = 34,
                             EsActivo = true,
                             NombreComuna = "Cabildo",
                             Region = "Región de Valparaíso",
@@ -436,7 +442,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 35,
+                            Id = 35,
                             EsActivo = true,
                             NombreComuna = "Calera",
                             Region = "Región de Valparaíso",
@@ -444,7 +450,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 36,
+                            Id = 36,
                             EsActivo = true,
                             NombreComuna = "Calle Larga",
                             Region = "Región de Valparaíso",
@@ -452,7 +458,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 37,
+                            Id = 37,
                             EsActivo = true,
                             NombreComuna = "Cartagena",
                             Region = "Región de Valparaíso",
@@ -460,7 +466,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 38,
+                            Id = 38,
                             EsActivo = true,
                             NombreComuna = "Casablanca",
                             Region = "Región de Valparaíso",
@@ -468,7 +474,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 39,
+                            Id = 39,
                             EsActivo = true,
                             NombreComuna = "Catemu",
                             Region = "Región de Valparaíso",
@@ -476,7 +482,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 40,
+                            Id = 40,
                             EsActivo = true,
                             NombreComuna = "Concón",
                             Region = "Región de Valparaíso",
@@ -484,7 +490,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 41,
+                            Id = 41,
                             EsActivo = true,
                             NombreComuna = "El Quisco",
                             Region = "Región de Valparaíso",
@@ -492,7 +498,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 42,
+                            Id = 42,
                             EsActivo = true,
                             NombreComuna = "El Tabo",
                             Region = "Región de Valparaíso",
@@ -500,7 +506,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 43,
+                            Id = 43,
                             EsActivo = true,
                             NombreComuna = "Hijuelas",
                             Region = "Región de Valparaíso",
@@ -508,7 +514,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 44,
+                            Id = 44,
                             EsActivo = true,
                             NombreComuna = "Isla de Pascua",
                             Region = "Región de Valparaíso",
@@ -516,7 +522,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 45,
+                            Id = 45,
                             EsActivo = true,
                             NombreComuna = "Juan Fernández",
                             Region = "Región de Valparaíso",
@@ -524,7 +530,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 46,
+                            Id = 46,
                             EsActivo = true,
                             NombreComuna = "La Cruz",
                             Region = "Región de Valparaíso",
@@ -532,7 +538,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 47,
+                            Id = 47,
                             EsActivo = true,
                             NombreComuna = "La Ligua",
                             Region = "Región de Valparaíso",
@@ -540,7 +546,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 48,
+                            Id = 48,
                             EsActivo = true,
                             NombreComuna = "Limache",
                             Region = "Región de Valparaíso",
@@ -548,7 +554,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 49,
+                            Id = 49,
                             EsActivo = true,
                             NombreComuna = "Llaillay",
                             Region = "Región de Valparaíso",
@@ -556,7 +562,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 50,
+                            Id = 50,
                             EsActivo = true,
                             NombreComuna = "Los Andes",
                             Region = "Región de Valparaíso",
@@ -564,7 +570,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 51,
+                            Id = 51,
                             EsActivo = true,
                             NombreComuna = "Nogales",
                             Region = "Región de Valparaíso",
@@ -572,7 +578,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 52,
+                            Id = 52,
                             EsActivo = true,
                             NombreComuna = "Olmué",
                             Region = "Región de Valparaíso",
@@ -580,7 +586,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 53,
+                            Id = 53,
                             EsActivo = true,
                             NombreComuna = "Panquehue",
                             Region = "Región de Valparaíso",
@@ -588,7 +594,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 54,
+                            Id = 54,
                             EsActivo = true,
                             NombreComuna = "Papudo",
                             Region = "Región de Valparaíso",
@@ -596,7 +602,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 55,
+                            Id = 55,
                             EsActivo = true,
                             NombreComuna = "Petorca",
                             Region = "Región de Valparaíso",
@@ -604,7 +610,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 56,
+                            Id = 56,
                             EsActivo = true,
                             NombreComuna = "Puchuncaví",
                             Region = "Región de Valparaíso",
@@ -612,7 +618,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 57,
+                            Id = 57,
                             EsActivo = true,
                             NombreComuna = "Putaendo",
                             Region = "Región de Valparaíso",
@@ -620,7 +626,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 58,
+                            Id = 58,
                             EsActivo = true,
                             NombreComuna = "Quillota",
                             Region = "Región de Valparaíso",
@@ -628,7 +634,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 59,
+                            Id = 59,
                             EsActivo = true,
                             NombreComuna = "Quilpué",
                             Region = "Región de Valparaíso",
@@ -636,7 +642,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 60,
+                            Id = 60,
                             EsActivo = true,
                             NombreComuna = "Quintero",
                             Region = "Región de Valparaíso",
@@ -644,7 +650,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 61,
+                            Id = 61,
                             EsActivo = true,
                             NombreComuna = "Rinconada",
                             Region = "Región de Valparaíso",
@@ -652,7 +658,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 62,
+                            Id = 62,
                             EsActivo = true,
                             NombreComuna = "San Antonio",
                             Region = "Región de Valparaíso",
@@ -660,7 +666,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 63,
+                            Id = 63,
                             EsActivo = true,
                             NombreComuna = "San Esteban",
                             Region = "Región de Valparaíso",
@@ -668,7 +674,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 64,
+                            Id = 64,
                             EsActivo = true,
                             NombreComuna = "San Felipe",
                             Region = "Región de Valparaíso",
@@ -676,7 +682,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 65,
+                            Id = 65,
                             EsActivo = true,
                             NombreComuna = "Santa María",
                             Region = "Región de Valparaíso",
@@ -684,7 +690,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 66,
+                            Id = 66,
                             EsActivo = true,
                             NombreComuna = "Santo Domingo",
                             Region = "Región de Valparaíso",
@@ -692,7 +698,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 67,
+                            Id = 67,
                             EsActivo = true,
                             NombreComuna = "Valparaíso",
                             Region = "Región de Valparaíso",
@@ -700,7 +706,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 68,
+                            Id = 68,
                             EsActivo = true,
                             NombreComuna = "Villa Alemana",
                             Region = "Región de Valparaíso",
@@ -708,7 +714,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 69,
+                            Id = 69,
                             EsActivo = true,
                             NombreComuna = "Viña del Mar",
                             Region = "Región de Valparaíso",
@@ -716,7 +722,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 70,
+                            Id = 70,
                             EsActivo = true,
                             NombreComuna = "Zapallar",
                             Region = "Región de Valparaíso",
@@ -724,7 +730,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 71,
+                            Id = 71,
                             EsActivo = true,
                             NombreComuna = "Alhué",
                             Region = "Región Metropolitana de Santiago",
@@ -732,7 +738,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 72,
+                            Id = 72,
                             EsActivo = true,
                             NombreComuna = "Buin",
                             Region = "Región Metropolitana de Santiago",
@@ -740,7 +746,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 73,
+                            Id = 73,
                             EsActivo = true,
                             NombreComuna = "Calera de Tango",
                             Region = "Región Metropolitana de Santiago",
@@ -748,7 +754,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 74,
+                            Id = 74,
                             EsActivo = true,
                             NombreComuna = "Cerrillos",
                             Region = "Región Metropolitana de Santiago",
@@ -756,7 +762,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 75,
+                            Id = 75,
                             EsActivo = true,
                             NombreComuna = "Cerro Navia",
                             Region = "Región Metropolitana de Santiago",
@@ -764,7 +770,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 76,
+                            Id = 76,
                             EsActivo = true,
                             NombreComuna = "Colina",
                             Region = "Región Metropolitana de Santiago",
@@ -772,7 +778,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 77,
+                            Id = 77,
                             EsActivo = true,
                             NombreComuna = "Conchalí",
                             Region = "Región Metropolitana de Santiago",
@@ -780,7 +786,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 78,
+                            Id = 78,
                             EsActivo = true,
                             NombreComuna = "Curacaví",
                             Region = "Región Metropolitana de Santiago",
@@ -788,7 +794,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 79,
+                            Id = 79,
                             EsActivo = true,
                             NombreComuna = "El Bosque",
                             Region = "Región Metropolitana de Santiago",
@@ -796,7 +802,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 80,
+                            Id = 80,
                             EsActivo = true,
                             NombreComuna = "El Monte",
                             Region = "Región Metropolitana de Santiago",
@@ -804,7 +810,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 81,
+                            Id = 81,
                             EsActivo = true,
                             NombreComuna = "Estación Central",
                             Region = "Región Metropolitana de Santiago",
@@ -812,7 +818,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 82,
+                            Id = 82,
                             EsActivo = true,
                             NombreComuna = "Huechuraba",
                             Region = "Región Metropolitana de Santiago",
@@ -820,7 +826,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 83,
+                            Id = 83,
                             EsActivo = true,
                             NombreComuna = "Independencia",
                             Region = "Región Metropolitana de Santiago",
@@ -828,7 +834,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 84,
+                            Id = 84,
                             EsActivo = true,
                             NombreComuna = "Isla de Maipo",
                             Region = "Región Metropolitana de Santiago",
@@ -836,7 +842,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 85,
+                            Id = 85,
                             EsActivo = true,
                             NombreComuna = "La Cisterna",
                             Region = "Región Metropolitana de Santiago",
@@ -844,7 +850,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 86,
+                            Id = 86,
                             EsActivo = true,
                             NombreComuna = "La Florida",
                             Region = "Región Metropolitana de Santiago",
@@ -852,7 +858,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 87,
+                            Id = 87,
                             EsActivo = true,
                             NombreComuna = "La Granja",
                             Region = "Región Metropolitana de Santiago",
@@ -860,7 +866,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 88,
+                            Id = 88,
                             EsActivo = true,
                             NombreComuna = "La Pintana",
                             Region = "Región Metropolitana de Santiago",
@@ -868,7 +874,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 89,
+                            Id = 89,
                             EsActivo = true,
                             NombreComuna = "La Reina",
                             Region = "Región Metropolitana de Santiago",
@@ -876,7 +882,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 90,
+                            Id = 90,
                             EsActivo = true,
                             NombreComuna = "Lampa",
                             Region = "Región Metropolitana de Santiago",
@@ -884,7 +890,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 91,
+                            Id = 91,
                             EsActivo = true,
                             NombreComuna = "Las Condes",
                             Region = "Región Metropolitana de Santiago",
@@ -892,7 +898,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 92,
+                            Id = 92,
                             EsActivo = true,
                             NombreComuna = "Lo Barnechea",
                             Region = "Región Metropolitana de Santiago",
@@ -900,7 +906,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 93,
+                            Id = 93,
                             EsActivo = true,
                             NombreComuna = "Lo Espejo",
                             Region = "Región Metropolitana de Santiago",
@@ -908,7 +914,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 94,
+                            Id = 94,
                             EsActivo = true,
                             NombreComuna = "Lo Prado",
                             Region = "Región Metropolitana de Santiago",
@@ -916,7 +922,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 95,
+                            Id = 95,
                             EsActivo = true,
                             NombreComuna = "Macul",
                             Region = "Región Metropolitana de Santiago",
@@ -924,7 +930,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 96,
+                            Id = 96,
                             EsActivo = true,
                             NombreComuna = "Maipú",
                             Region = "Región Metropolitana de Santiago",
@@ -932,7 +938,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 97,
+                            Id = 97,
                             EsActivo = true,
                             NombreComuna = "María Pinto",
                             Region = "Región Metropolitana de Santiago",
@@ -940,7 +946,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 98,
+                            Id = 98,
                             EsActivo = true,
                             NombreComuna = "Melipilla",
                             Region = "Región Metropolitana de Santiago",
@@ -948,7 +954,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 99,
+                            Id = 99,
                             EsActivo = true,
                             NombreComuna = "Ñuñoa",
                             Region = "Región Metropolitana de Santiago",
@@ -956,7 +962,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 100,
+                            Id = 100,
                             EsActivo = true,
                             NombreComuna = "Padre Hurtado",
                             Region = "Región Metropolitana de Santiago",
@@ -964,7 +970,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 101,
+                            Id = 101,
                             EsActivo = true,
                             NombreComuna = "Paine",
                             Region = "Región Metropolitana de Santiago",
@@ -972,7 +978,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 102,
+                            Id = 102,
                             EsActivo = true,
                             NombreComuna = "Pedro Aguirre Cerda",
                             Region = "Región Metropolitana de Santiago",
@@ -980,7 +986,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 103,
+                            Id = 103,
                             EsActivo = true,
                             NombreComuna = "Peñaflor",
                             Region = "Región Metropolitana de Santiago",
@@ -988,7 +994,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 104,
+                            Id = 104,
                             EsActivo = true,
                             NombreComuna = "Peñalolén",
                             Region = "Región Metropolitana de Santiago",
@@ -996,7 +1002,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 105,
+                            Id = 105,
                             EsActivo = true,
                             NombreComuna = "Pirque",
                             Region = "Región Metropolitana de Santiago",
@@ -1004,7 +1010,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 106,
+                            Id = 106,
                             EsActivo = true,
                             NombreComuna = "Providencia",
                             Region = "Región Metropolitana de Santiago",
@@ -1012,7 +1018,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 107,
+                            Id = 107,
                             EsActivo = true,
                             NombreComuna = "Pudahuel",
                             Region = "Región Metropolitana de Santiago",
@@ -1020,7 +1026,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 108,
+                            Id = 108,
                             EsActivo = true,
                             NombreComuna = "Puente Alto",
                             Region = "Región Metropolitana de Santiago",
@@ -1028,7 +1034,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 109,
+                            Id = 109,
                             EsActivo = true,
                             NombreComuna = "Quilicura",
                             Region = "Región Metropolitana de Santiago",
@@ -1036,7 +1042,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 110,
+                            Id = 110,
                             EsActivo = true,
                             NombreComuna = "Quinta Normal",
                             Region = "Región Metropolitana de Santiago",
@@ -1044,7 +1050,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 111,
+                            Id = 111,
                             EsActivo = true,
                             NombreComuna = "Recoleta",
                             Region = "Región Metropolitana de Santiago",
@@ -1052,7 +1058,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 112,
+                            Id = 112,
                             EsActivo = true,
                             NombreComuna = "Renca",
                             Region = "Región Metropolitana de Santiago",
@@ -1060,7 +1066,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 113,
+                            Id = 113,
                             EsActivo = true,
                             NombreComuna = "San Bernardo",
                             Region = "Región Metropolitana de Santiago",
@@ -1068,7 +1074,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 114,
+                            Id = 114,
                             EsActivo = true,
                             NombreComuna = "San Joaquín",
                             Region = "Región Metropolitana de Santiago",
@@ -1076,7 +1082,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 115,
+                            Id = 115,
                             EsActivo = true,
                             NombreComuna = "San José de Maipo",
                             Region = "Región Metropolitana de Santiago",
@@ -1084,7 +1090,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 116,
+                            Id = 116,
                             EsActivo = true,
                             NombreComuna = "San Miguel",
                             Region = "Región Metropolitana de Santiago",
@@ -1092,7 +1098,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 117,
+                            Id = 117,
                             EsActivo = true,
                             NombreComuna = "San Pedro",
                             Region = "Región Metropolitana de Santiago",
@@ -1100,7 +1106,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 118,
+                            Id = 118,
                             EsActivo = true,
                             NombreComuna = "San Ramón",
                             Region = "Región Metropolitana de Santiago",
@@ -1108,7 +1114,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 119,
+                            Id = 119,
                             EsActivo = true,
                             NombreComuna = "Santiago",
                             Region = "Región Metropolitana de Santiago",
@@ -1116,7 +1122,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 120,
+                            Id = 120,
                             EsActivo = true,
                             NombreComuna = "Talagante",
                             Region = "Región Metropolitana de Santiago",
@@ -1124,7 +1130,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 121,
+                            Id = 121,
                             EsActivo = true,
                             NombreComuna = "Tiltil",
                             Region = "Región Metropolitana de Santiago",
@@ -1132,7 +1138,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 122,
+                            Id = 122,
                             EsActivo = true,
                             NombreComuna = "Vitacura",
                             Region = "Región Metropolitana de Santiago",
@@ -1140,7 +1146,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 123,
+                            Id = 123,
                             EsActivo = true,
                             NombreComuna = "Cachapoal",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1148,7 +1154,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 124,
+                            Id = 124,
                             EsActivo = true,
                             NombreComuna = "Cardenal Caro",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1156,7 +1162,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 125,
+                            Id = 125,
                             EsActivo = true,
                             NombreComuna = "Chépica",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1164,7 +1170,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 126,
+                            Id = 126,
                             EsActivo = true,
                             NombreComuna = "Chimbarongo",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1172,7 +1178,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 127,
+                            Id = 127,
                             EsActivo = true,
                             NombreComuna = "Codegua",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1180,7 +1186,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 128,
+                            Id = 128,
                             EsActivo = true,
                             NombreComuna = "Coinco",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1188,7 +1194,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 129,
+                            Id = 129,
                             EsActivo = true,
                             NombreComuna = "Coltauco",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1196,7 +1202,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 130,
+                            Id = 130,
                             EsActivo = true,
                             NombreComuna = "Doñihue",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1204,7 +1210,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 131,
+                            Id = 131,
                             EsActivo = true,
                             NombreComuna = "Graneros",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1212,7 +1218,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 132,
+                            Id = 132,
                             EsActivo = true,
                             NombreComuna = "La Estrella",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1220,7 +1226,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 133,
+                            Id = 133,
                             EsActivo = true,
                             NombreComuna = "Las Cabras",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1228,7 +1234,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 134,
+                            Id = 134,
                             EsActivo = true,
                             NombreComuna = "Litueche",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1236,7 +1242,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 135,
+                            Id = 135,
                             EsActivo = true,
                             NombreComuna = "Lolol",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1244,7 +1250,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 136,
+                            Id = 136,
                             EsActivo = true,
                             NombreComuna = "Machalí",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1252,7 +1258,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 137,
+                            Id = 137,
                             EsActivo = true,
                             NombreComuna = "Malloa",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1260,7 +1266,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 138,
+                            Id = 138,
                             EsActivo = true,
                             NombreComuna = "Marchihue",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1268,7 +1274,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 139,
+                            Id = 139,
                             EsActivo = true,
                             NombreComuna = "Nancagua",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1276,7 +1282,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 140,
+                            Id = 140,
                             EsActivo = true,
                             NombreComuna = "Navidad",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1284,7 +1290,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 141,
+                            Id = 141,
                             EsActivo = true,
                             NombreComuna = "Olivar",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1292,7 +1298,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 142,
+                            Id = 142,
                             EsActivo = true,
                             NombreComuna = "Palmilla",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1300,7 +1306,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 143,
+                            Id = 143,
                             EsActivo = true,
                             NombreComuna = "Paredones",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1308,7 +1314,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 144,
+                            Id = 144,
                             EsActivo = true,
                             NombreComuna = "Peralillo",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1316,7 +1322,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 145,
+                            Id = 145,
                             EsActivo = true,
                             NombreComuna = "Peumo",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1324,7 +1330,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 146,
+                            Id = 146,
                             EsActivo = true,
                             NombreComuna = "Pichidegua",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1332,7 +1338,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 147,
+                            Id = 147,
                             EsActivo = true,
                             NombreComuna = "Pichilemu",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1340,7 +1346,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 148,
+                            Id = 148,
                             EsActivo = true,
                             NombreComuna = "Placilla",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1348,7 +1354,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 149,
+                            Id = 149,
                             EsActivo = true,
                             NombreComuna = "Pumanque",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1356,7 +1362,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 150,
+                            Id = 150,
                             EsActivo = true,
                             NombreComuna = "Quinta de Tilcoco",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1364,7 +1370,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 151,
+                            Id = 151,
                             EsActivo = true,
                             NombreComuna = "Rancagua",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1372,7 +1378,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 152,
+                            Id = 152,
                             EsActivo = true,
                             NombreComuna = "Rengo",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1380,7 +1386,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 153,
+                            Id = 153,
                             EsActivo = true,
                             NombreComuna = "Requínoa",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1388,7 +1394,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 154,
+                            Id = 154,
                             EsActivo = true,
                             NombreComuna = "San Fernando",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1396,7 +1402,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 155,
+                            Id = 155,
                             EsActivo = true,
                             NombreComuna = "San Vicente de Tagua Tagua",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1404,7 +1410,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 156,
+                            Id = 156,
                             EsActivo = true,
                             NombreComuna = "Santa Cruz",
                             Region = "Región del Libertador General Bernardo O'Higgins",
@@ -1412,7 +1418,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 157,
+                            Id = 157,
                             EsActivo = true,
                             NombreComuna = "Cauquenes",
                             Region = "Región del Maule",
@@ -1420,7 +1426,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 158,
+                            Id = 158,
                             EsActivo = true,
                             NombreComuna = "Chanco",
                             Region = "Región del Maule",
@@ -1428,7 +1434,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 159,
+                            Id = 159,
                             EsActivo = true,
                             NombreComuna = "Colbún",
                             Region = "Región del Maule",
@@ -1436,7 +1442,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 160,
+                            Id = 160,
                             EsActivo = true,
                             NombreComuna = "Constitución",
                             Region = "Región del Maule",
@@ -1444,7 +1450,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 161,
+                            Id = 161,
                             EsActivo = true,
                             NombreComuna = "Curepto",
                             Region = "Región del Maule",
@@ -1452,7 +1458,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 162,
+                            Id = 162,
                             EsActivo = true,
                             NombreComuna = "Curicó",
                             Region = "Región del Maule",
@@ -1460,7 +1466,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 163,
+                            Id = 163,
                             EsActivo = true,
                             NombreComuna = "Empedrado",
                             Region = "Región del Maule",
@@ -1468,7 +1474,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 164,
+                            Id = 164,
                             EsActivo = true,
                             NombreComuna = "Hualañé",
                             Region = "Región del Maule",
@@ -1476,7 +1482,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 165,
+                            Id = 165,
                             EsActivo = true,
                             NombreComuna = "Licantén",
                             Region = "Región del Maule",
@@ -1484,7 +1490,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 166,
+                            Id = 166,
                             EsActivo = true,
                             NombreComuna = "Linares",
                             Region = "Región del Maule",
@@ -1492,7 +1498,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 167,
+                            Id = 167,
                             EsActivo = true,
                             NombreComuna = "Longaví",
                             Region = "Región del Maule",
@@ -1500,7 +1506,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 168,
+                            Id = 168,
                             EsActivo = true,
                             NombreComuna = "Maule",
                             Region = "Región del Maule",
@@ -1508,7 +1514,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 169,
+                            Id = 169,
                             EsActivo = true,
                             NombreComuna = "Molina",
                             Region = "Región del Maule",
@@ -1516,7 +1522,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 170,
+                            Id = 170,
                             EsActivo = true,
                             NombreComuna = "Parral",
                             Region = "Región del Maule",
@@ -1524,7 +1530,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 171,
+                            Id = 171,
                             EsActivo = true,
                             NombreComuna = "Pelarco",
                             Region = "Región del Maule",
@@ -1532,7 +1538,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 172,
+                            Id = 172,
                             EsActivo = true,
                             NombreComuna = "Pelluhue",
                             Region = "Región del Maule",
@@ -1540,7 +1546,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 173,
+                            Id = 173,
                             EsActivo = true,
                             NombreComuna = "Pencahue",
                             Region = "Región del Maule",
@@ -1548,7 +1554,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 174,
+                            Id = 174,
                             EsActivo = true,
                             NombreComuna = "Rauco",
                             Region = "Región del Maule",
@@ -1556,7 +1562,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 175,
+                            Id = 175,
                             EsActivo = true,
                             NombreComuna = "Retiro",
                             Region = "Región del Maule",
@@ -1564,7 +1570,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 176,
+                            Id = 176,
                             EsActivo = true,
                             NombreComuna = "Romeral",
                             Region = "Región del Maule",
@@ -1572,7 +1578,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 177,
+                            Id = 177,
                             EsActivo = true,
                             NombreComuna = "Sagrada Familia",
                             Region = "Región del Maule",
@@ -1580,7 +1586,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 178,
+                            Id = 178,
                             EsActivo = true,
                             NombreComuna = "San Clemente",
                             Region = "Región del Maule",
@@ -1588,7 +1594,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 179,
+                            Id = 179,
                             EsActivo = true,
                             NombreComuna = "San Javier",
                             Region = "Región del Maule",
@@ -1596,7 +1602,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 180,
+                            Id = 180,
                             EsActivo = true,
                             NombreComuna = "San Rafael",
                             Region = "Región del Maule",
@@ -1604,7 +1610,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 181,
+                            Id = 181,
                             EsActivo = true,
                             NombreComuna = "Santa Cruz",
                             Region = "Región del Maule",
@@ -1612,7 +1618,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 182,
+                            Id = 182,
                             EsActivo = true,
                             NombreComuna = "Talca",
                             Region = "Región del Maule",
@@ -1620,7 +1626,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 183,
+                            Id = 183,
                             EsActivo = true,
                             NombreComuna = "Teno",
                             Region = "Región del Maule",
@@ -1628,7 +1634,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 184,
+                            Id = 184,
                             EsActivo = true,
                             NombreComuna = "Vichuquén",
                             Region = "Región del Maule",
@@ -1636,7 +1642,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 185,
+                            Id = 185,
                             EsActivo = true,
                             NombreComuna = "Villa Alegre",
                             Region = "Región del Maule",
@@ -1644,7 +1650,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 186,
+                            Id = 186,
                             EsActivo = true,
                             NombreComuna = "Yerbas Buenas",
                             Region = "Región del Maule",
@@ -1652,7 +1658,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 187,
+                            Id = 187,
                             EsActivo = true,
                             NombreComuna = "Alto Biobío",
                             Region = "Región del Biobío",
@@ -1660,7 +1666,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 188,
+                            Id = 188,
                             EsActivo = true,
                             NombreComuna = "Antuco",
                             Region = "Región del Biobío",
@@ -1668,7 +1674,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 189,
+                            Id = 189,
                             EsActivo = true,
                             NombreComuna = "Arauco",
                             Region = "Región del Biobío",
@@ -1676,7 +1682,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 190,
+                            Id = 190,
                             EsActivo = true,
                             NombreComuna = "Bulnes",
                             Region = "Región del Biobío",
@@ -1684,7 +1690,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 191,
+                            Id = 191,
                             EsActivo = true,
                             NombreComuna = "Cabrero",
                             Region = "Región del Biobío",
@@ -1692,7 +1698,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 192,
+                            Id = 192,
                             EsActivo = true,
                             NombreComuna = "Cañete",
                             Region = "Región del Biobío",
@@ -1700,7 +1706,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 193,
+                            Id = 193,
                             EsActivo = true,
                             NombreComuna = "Chiguayante",
                             Region = "Región del Biobío",
@@ -1708,7 +1714,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 194,
+                            Id = 194,
                             EsActivo = true,
                             NombreComuna = "Chillán",
                             Region = "Región del Biobío",
@@ -1716,7 +1722,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 195,
+                            Id = 195,
                             EsActivo = true,
                             NombreComuna = "Chillán Viejo",
                             Region = "Región del Biobío",
@@ -1724,7 +1730,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 196,
+                            Id = 196,
                             EsActivo = true,
                             NombreComuna = "Cobquecura",
                             Region = "Región del Biobío",
@@ -1732,7 +1738,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 197,
+                            Id = 197,
                             EsActivo = true,
                             NombreComuna = "Coelemu",
                             Region = "Región del Biobío",
@@ -1740,7 +1746,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 198,
+                            Id = 198,
                             EsActivo = true,
                             NombreComuna = "Coihueco",
                             Region = "Región del Biobío",
@@ -1748,7 +1754,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 199,
+                            Id = 199,
                             EsActivo = true,
                             NombreComuna = "Concepción",
                             Region = "Región del Biobío",
@@ -1756,7 +1762,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 200,
+                            Id = 200,
                             EsActivo = true,
                             NombreComuna = "Contulmo",
                             Region = "Región del Biobío",
@@ -1764,7 +1770,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 201,
+                            Id = 201,
                             EsActivo = true,
                             NombreComuna = "Coronel",
                             Region = "Región del Biobío",
@@ -1772,7 +1778,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 202,
+                            Id = 202,
                             EsActivo = true,
                             NombreComuna = "Curanilahue",
                             Region = "Región del Biobío",
@@ -1780,7 +1786,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 203,
+                            Id = 203,
                             EsActivo = true,
                             NombreComuna = "El Carmen",
                             Region = "Región del Biobío",
@@ -1788,7 +1794,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 204,
+                            Id = 204,
                             EsActivo = true,
                             NombreComuna = "Florida",
                             Region = "Región del Biobío",
@@ -1796,7 +1802,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 205,
+                            Id = 205,
                             EsActivo = true,
                             NombreComuna = "Hualpén",
                             Region = "Región del Biobío",
@@ -1804,7 +1810,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 206,
+                            Id = 206,
                             EsActivo = true,
                             NombreComuna = "Hualqui",
                             Region = "Región del Biobío",
@@ -1812,7 +1818,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 207,
+                            Id = 207,
                             EsActivo = true,
                             NombreComuna = "Laja",
                             Region = "Región del Biobío",
@@ -1820,7 +1826,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 208,
+                            Id = 208,
                             EsActivo = true,
                             NombreComuna = "Lebu",
                             Region = "Región del Biobío",
@@ -1828,7 +1834,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 209,
+                            Id = 209,
                             EsActivo = true,
                             NombreComuna = "Los Álamos",
                             Region = "Región del Biobío",
@@ -1836,7 +1842,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 210,
+                            Id = 210,
                             EsActivo = true,
                             NombreComuna = "Los Ángeles",
                             Region = "Región del Biobío",
@@ -1844,7 +1850,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 211,
+                            Id = 211,
                             EsActivo = true,
                             NombreComuna = "Lota",
                             Region = "Región del Biobío",
@@ -1852,7 +1858,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 212,
+                            Id = 212,
                             EsActivo = true,
                             NombreComuna = "Mulchén",
                             Region = "Región del Biobío",
@@ -1860,7 +1866,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 213,
+                            Id = 213,
                             EsActivo = true,
                             NombreComuna = "Nacimiento",
                             Region = "Región del Biobío",
@@ -1868,7 +1874,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 214,
+                            Id = 214,
                             EsActivo = true,
                             NombreComuna = "Negrete",
                             Region = "Región del Biobío",
@@ -1876,7 +1882,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 215,
+                            Id = 215,
                             EsActivo = true,
                             NombreComuna = "Ninhue",
                             Region = "Región del Biobío",
@@ -1884,7 +1890,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 216,
+                            Id = 216,
                             EsActivo = true,
                             NombreComuna = "Ñiquén",
                             Region = "Región del Biobío",
@@ -1892,7 +1898,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 217,
+                            Id = 217,
                             EsActivo = true,
                             NombreComuna = "Pemuco",
                             Region = "Región del Biobío",
@@ -1900,7 +1906,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 218,
+                            Id = 218,
                             EsActivo = true,
                             NombreComuna = "Penco",
                             Region = "Región del Biobío",
@@ -1908,7 +1914,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 219,
+                            Id = 219,
                             EsActivo = true,
                             NombreComuna = "Pinto",
                             Region = "Región del Biobío",
@@ -1916,7 +1922,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 220,
+                            Id = 220,
                             EsActivo = true,
                             NombreComuna = "Portezuelo",
                             Region = "Región del Biobío",
@@ -1924,7 +1930,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 221,
+                            Id = 221,
                             EsActivo = true,
                             NombreComuna = "Quilaco",
                             Region = "Región del Biobío",
@@ -1932,7 +1938,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 222,
+                            Id = 222,
                             EsActivo = true,
                             NombreComuna = "Quilleco",
                             Region = "Región del Biobío",
@@ -1940,7 +1946,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 223,
+                            Id = 223,
                             EsActivo = true,
                             NombreComuna = "Quillón",
                             Region = "Región del Biobío",
@@ -1948,7 +1954,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 224,
+                            Id = 224,
                             EsActivo = true,
                             NombreComuna = "Quirihue",
                             Region = "Región del Biobío",
@@ -1956,7 +1962,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 225,
+                            Id = 225,
                             EsActivo = true,
                             NombreComuna = "Ránquil",
                             Region = "Región del Biobío",
@@ -1964,7 +1970,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 226,
+                            Id = 226,
                             EsActivo = true,
                             NombreComuna = "San Carlos",
                             Region = "Región del Biobío",
@@ -1972,7 +1978,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 227,
+                            Id = 227,
                             EsActivo = true,
                             NombreComuna = "San Fabián",
                             Region = "Región del Biobío",
@@ -1980,7 +1986,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 228,
+                            Id = 228,
                             EsActivo = true,
                             NombreComuna = "San Ignacio",
                             Region = "Región del Biobío",
@@ -1988,7 +1994,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 229,
+                            Id = 229,
                             EsActivo = true,
                             NombreComuna = "San Nicolás",
                             Region = "Región del Biobío",
@@ -1996,7 +2002,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 230,
+                            Id = 230,
                             EsActivo = true,
                             NombreComuna = "San Pedro de la Paz",
                             Region = "Región del Biobío",
@@ -2004,7 +2010,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 231,
+                            Id = 231,
                             EsActivo = true,
                             NombreComuna = "San Rosendo",
                             Region = "Región del Biobío",
@@ -2012,7 +2018,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 232,
+                            Id = 232,
                             EsActivo = true,
                             NombreComuna = "Santa Bárbara",
                             Region = "Región del Biobío",
@@ -2020,7 +2026,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 233,
+                            Id = 233,
                             EsActivo = true,
                             NombreComuna = "Santa Juana",
                             Region = "Región del Biobío",
@@ -2028,7 +2034,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 234,
+                            Id = 234,
                             EsActivo = true,
                             NombreComuna = "Talcahuano",
                             Region = "Región del Biobío",
@@ -2036,7 +2042,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 235,
+                            Id = 235,
                             EsActivo = true,
                             NombreComuna = "Tirúa",
                             Region = "Región del Biobío",
@@ -2044,7 +2050,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 236,
+                            Id = 236,
                             EsActivo = true,
                             NombreComuna = "Tomé",
                             Region = "Región del Biobío",
@@ -2052,7 +2058,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 237,
+                            Id = 237,
                             EsActivo = true,
                             NombreComuna = "Treguaco",
                             Region = "Región del Biobío",
@@ -2060,7 +2066,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 238,
+                            Id = 238,
                             EsActivo = true,
                             NombreComuna = "Tucapel",
                             Region = "Región del Biobío",
@@ -2068,7 +2074,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 239,
+                            Id = 239,
                             EsActivo = true,
                             NombreComuna = "Yumbel",
                             Region = "Región del Biobío",
@@ -2076,7 +2082,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 240,
+                            Id = 240,
                             EsActivo = true,
                             NombreComuna = "Yungay",
                             Region = "Región del Biobío",
@@ -2084,7 +2090,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 241,
+                            Id = 241,
                             EsActivo = true,
                             NombreComuna = "Angol",
                             Region = "Región de La Araucanía",
@@ -2092,7 +2098,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 242,
+                            Id = 242,
                             EsActivo = true,
                             NombreComuna = "Carahue",
                             Region = "Región de La Araucanía",
@@ -2100,7 +2106,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 243,
+                            Id = 243,
                             EsActivo = true,
                             NombreComuna = "Cholchol",
                             Region = "Región de La Araucanía",
@@ -2108,7 +2114,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 244,
+                            Id = 244,
                             EsActivo = true,
                             NombreComuna = "Collipulli",
                             Region = "Región de La Araucanía",
@@ -2116,7 +2122,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 245,
+                            Id = 245,
                             EsActivo = true,
                             NombreComuna = "Cunco",
                             Region = "Región de La Araucanía",
@@ -2124,7 +2130,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 246,
+                            Id = 246,
                             EsActivo = true,
                             NombreComuna = "Curacautín",
                             Region = "Región de La Araucanía",
@@ -2132,7 +2138,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 247,
+                            Id = 247,
                             EsActivo = true,
                             NombreComuna = "Curarrehue",
                             Region = "Región de La Araucanía",
@@ -2140,7 +2146,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 248,
+                            Id = 248,
                             EsActivo = true,
                             NombreComuna = "Ercilla",
                             Region = "Región de La Araucanía",
@@ -2148,7 +2154,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 249,
+                            Id = 249,
                             EsActivo = true,
                             NombreComuna = "Freire",
                             Region = "Región de La Araucanía",
@@ -2156,7 +2162,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 250,
+                            Id = 250,
                             EsActivo = true,
                             NombreComuna = "Galvarino",
                             Region = "Región de La Araucanía",
@@ -2164,7 +2170,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 251,
+                            Id = 251,
                             EsActivo = true,
                             NombreComuna = "Gorbea",
                             Region = "Región de La Araucanía",
@@ -2172,7 +2178,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 252,
+                            Id = 252,
                             EsActivo = true,
                             NombreComuna = "Lautaro",
                             Region = "Región de La Araucanía",
@@ -2180,7 +2186,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 253,
+                            Id = 253,
                             EsActivo = true,
                             NombreComuna = "Loncoche",
                             Region = "Región de La Araucanía",
@@ -2188,7 +2194,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 254,
+                            Id = 254,
                             EsActivo = true,
                             NombreComuna = "Lonquimay",
                             Region = "Región de La Araucanía",
@@ -2196,7 +2202,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 255,
+                            Id = 255,
                             EsActivo = true,
                             NombreComuna = "Los Sauces",
                             Region = "Región de La Araucanía",
@@ -2204,7 +2210,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 256,
+                            Id = 256,
                             EsActivo = true,
                             NombreComuna = "Lumaco",
                             Region = "Región de La Araucanía",
@@ -2212,7 +2218,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 257,
+                            Id = 257,
                             EsActivo = true,
                             NombreComuna = "Melipeuco",
                             Region = "Región de La Araucanía",
@@ -2220,7 +2226,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 258,
+                            Id = 258,
                             EsActivo = true,
                             NombreComuna = "Nueva Imperial",
                             Region = "Región de La Araucanía",
@@ -2228,7 +2234,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 259,
+                            Id = 259,
                             EsActivo = true,
                             NombreComuna = "Padre Las Casas",
                             Region = "Región de La Araucanía",
@@ -2236,7 +2242,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 260,
+                            Id = 260,
                             EsActivo = true,
                             NombreComuna = "Perquenco",
                             Region = "Región de La Araucanía",
@@ -2244,7 +2250,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 261,
+                            Id = 261,
                             EsActivo = true,
                             NombreComuna = "Pitrufquén",
                             Region = "Región de La Araucanía",
@@ -2252,7 +2258,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 262,
+                            Id = 262,
                             EsActivo = true,
                             NombreComuna = "Pucón",
                             Region = "Región de La Araucanía",
@@ -2260,7 +2266,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 263,
+                            Id = 263,
                             EsActivo = true,
                             NombreComuna = "Purén",
                             Region = "Región de La Araucanía",
@@ -2268,7 +2274,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 264,
+                            Id = 264,
                             EsActivo = true,
                             NombreComuna = "Renaico",
                             Region = "Región de La Araucanía",
@@ -2276,7 +2282,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 265,
+                            Id = 265,
                             EsActivo = true,
                             NombreComuna = "Saavedra",
                             Region = "Región de La Araucanía",
@@ -2284,7 +2290,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 266,
+                            Id = 266,
                             EsActivo = true,
                             NombreComuna = "Temuco",
                             Region = "Región de La Araucanía",
@@ -2292,7 +2298,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 267,
+                            Id = 267,
                             EsActivo = true,
                             NombreComuna = "Teodoro Schmidt",
                             Region = "Región de La Araucanía",
@@ -2300,7 +2306,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 268,
+                            Id = 268,
                             EsActivo = true,
                             NombreComuna = "Toltén",
                             Region = "Región de La Araucanía",
@@ -2308,7 +2314,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 269,
+                            Id = 269,
                             EsActivo = true,
                             NombreComuna = "Traiguén",
                             Region = "Región de La Araucanía",
@@ -2316,7 +2322,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 270,
+                            Id = 270,
                             EsActivo = true,
                             NombreComuna = "Victoria",
                             Region = "Región de La Araucanía",
@@ -2324,7 +2330,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 271,
+                            Id = 271,
                             EsActivo = true,
                             NombreComuna = "Vilcún",
                             Region = "Región de La Araucanía",
@@ -2332,7 +2338,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 272,
+                            Id = 272,
                             EsActivo = true,
                             NombreComuna = "Villarrica",
                             Region = "Región de La Araucanía",
@@ -2340,7 +2346,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 273,
+                            Id = 273,
                             EsActivo = true,
                             NombreComuna = "Panguipulli",
                             Region = "Región de La Araucanía",
@@ -2348,7 +2354,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 274,
+                            Id = 274,
                             EsActivo = true,
                             NombreComuna = "Ancud",
                             Region = "Región de Los Lagos",
@@ -2356,7 +2362,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 275,
+                            Id = 275,
                             EsActivo = true,
                             NombreComuna = "Calbuco",
                             Region = "Región de Los Lagos",
@@ -2364,7 +2370,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 276,
+                            Id = 276,
                             EsActivo = true,
                             NombreComuna = "Castro",
                             Region = "Región de Los Lagos",
@@ -2372,7 +2378,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 277,
+                            Id = 277,
                             EsActivo = true,
                             NombreComuna = "Chaitén",
                             Region = "Región de Los Lagos",
@@ -2380,7 +2386,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 278,
+                            Id = 278,
                             EsActivo = true,
                             NombreComuna = "Chonchi",
                             Region = "Región de Los Lagos",
@@ -2388,7 +2394,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 279,
+                            Id = 279,
                             EsActivo = true,
                             NombreComuna = "Cochamó",
                             Region = "Región de Los Lagos",
@@ -2396,7 +2402,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 280,
+                            Id = 280,
                             EsActivo = true,
                             NombreComuna = "Curaco de Vélez",
                             Region = "Región de Los Lagos",
@@ -2404,7 +2410,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 281,
+                            Id = 281,
                             EsActivo = true,
                             NombreComuna = "Dalcahue",
                             Region = "Región de Los Lagos",
@@ -2412,7 +2418,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 282,
+                            Id = 282,
                             EsActivo = true,
                             NombreComuna = "Fresia",
                             Region = "Región de Los Lagos",
@@ -2420,7 +2426,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 283,
+                            Id = 283,
                             EsActivo = true,
                             NombreComuna = "Frutillar",
                             Region = "Región de Los Lagos",
@@ -2428,7 +2434,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 284,
+                            Id = 284,
                             EsActivo = true,
                             NombreComuna = "Futaleufú",
                             Region = "Región de Los Lagos",
@@ -2436,7 +2442,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 285,
+                            Id = 285,
                             EsActivo = true,
                             NombreComuna = "Hualaihué",
                             Region = "Región de Los Lagos",
@@ -2444,7 +2450,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 286,
+                            Id = 286,
                             EsActivo = true,
                             NombreComuna = "Llanquihue",
                             Region = "Región de Los Lagos",
@@ -2452,7 +2458,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 287,
+                            Id = 287,
                             EsActivo = true,
                             NombreComuna = "Los Muermos",
                             Region = "Región de Los Lagos",
@@ -2460,7 +2466,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 288,
+                            Id = 288,
                             EsActivo = true,
                             NombreComuna = "Maullín",
                             Region = "Región de Los Lagos",
@@ -2468,7 +2474,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 289,
+                            Id = 289,
                             EsActivo = true,
                             NombreComuna = "Osorno",
                             Region = "Región de Los Lagos",
@@ -2476,7 +2482,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 290,
+                            Id = 290,
                             EsActivo = true,
                             NombreComuna = "Palena",
                             Region = "Región de Los Lagos",
@@ -2484,7 +2490,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 291,
+                            Id = 291,
                             EsActivo = true,
                             NombreComuna = "Puerto Montt",
                             Region = "Región de Los Lagos",
@@ -2492,7 +2498,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 292,
+                            Id = 292,
                             EsActivo = true,
                             NombreComuna = "Puerto Octay",
                             Region = "Región de Los Lagos",
@@ -2500,7 +2506,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 293,
+                            Id = 293,
                             EsActivo = true,
                             NombreComuna = "Puerto Varas",
                             Region = "Región de Los Lagos",
@@ -2508,7 +2514,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 294,
+                            Id = 294,
                             EsActivo = true,
                             NombreComuna = "Purranque",
                             Region = "Región de Los Lagos",
@@ -2516,7 +2522,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 295,
+                            Id = 295,
                             EsActivo = true,
                             NombreComuna = "Puyehue",
                             Region = "Región de Los Lagos",
@@ -2524,7 +2530,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 296,
+                            Id = 296,
                             EsActivo = true,
                             NombreComuna = "Queilén",
                             Region = "Región de Los Lagos",
@@ -2532,7 +2538,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 297,
+                            Id = 297,
                             EsActivo = true,
                             NombreComuna = "Quellón",
                             Region = "Región de Los Lagos",
@@ -2540,7 +2546,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 298,
+                            Id = 298,
                             EsActivo = true,
                             NombreComuna = "Quemchi",
                             Region = "Región de Los Lagos",
@@ -2548,7 +2554,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 299,
+                            Id = 299,
                             EsActivo = true,
                             NombreComuna = "Quinchao",
                             Region = "Región de Los Lagos",
@@ -2556,7 +2562,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 300,
+                            Id = 300,
                             EsActivo = true,
                             NombreComuna = "Río Negro",
                             Region = "Región de Los Lagos",
@@ -2564,7 +2570,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 301,
+                            Id = 301,
                             EsActivo = true,
                             NombreComuna = "San Juan de la Costa",
                             Region = "Región de Los Lagos",
@@ -2572,7 +2578,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 302,
+                            Id = 302,
                             EsActivo = true,
                             NombreComuna = "San Pablo",
                             Region = "Región de Los Lagos",
@@ -2580,7 +2586,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 303,
+                            Id = 303,
                             EsActivo = true,
                             NombreComuna = "Toltén",
                             Region = "Región de Los Lagos",
@@ -2588,7 +2594,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 304,
+                            Id = 304,
                             EsActivo = true,
                             NombreComuna = "Vilcún",
                             Region = "Región de Los Lagos",
@@ -2596,7 +2602,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 305,
+                            Id = 305,
                             EsActivo = true,
                             NombreComuna = "Villarrica",
                             Region = "Región de Los Lagos",
@@ -2604,7 +2610,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 306,
+                            Id = 306,
                             EsActivo = true,
                             NombreComuna = "Panguipulli",
                             Region = "Región de Los Lagos",
@@ -2612,7 +2618,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 307,
+                            Id = 307,
                             EsActivo = true,
                             NombreComuna = "Aysén",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2620,7 +2626,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 308,
+                            Id = 308,
                             EsActivo = true,
                             NombreComuna = "Chile Chico",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2628,7 +2634,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 309,
+                            Id = 309,
                             EsActivo = true,
                             NombreComuna = "Cisnes",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2636,7 +2642,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 310,
+                            Id = 310,
                             EsActivo = true,
                             NombreComuna = "Cochrane",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2644,7 +2650,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 311,
+                            Id = 311,
                             EsActivo = true,
                             NombreComuna = "Coyhaique",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2652,7 +2658,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 312,
+                            Id = 312,
                             EsActivo = true,
                             NombreComuna = "Guaitecas",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2660,7 +2666,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 313,
+                            Id = 313,
                             EsActivo = true,
                             NombreComuna = "Lago Verde",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2668,7 +2674,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 314,
+                            Id = 314,
                             EsActivo = true,
                             NombreComuna = "OHiggins",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2676,7 +2682,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 315,
+                            Id = 315,
                             EsActivo = true,
                             NombreComuna = "Río Ibáñez",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2684,7 +2690,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 316,
+                            Id = 316,
                             EsActivo = true,
                             NombreComuna = "Tortel",
                             Region = "Región de Aysén del General Carlos Ibáñez del Campo",
@@ -2692,7 +2698,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 317,
+                            Id = 317,
                             EsActivo = true,
                             NombreComuna = "Antártica",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2700,7 +2706,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 318,
+                            Id = 318,
                             EsActivo = true,
                             NombreComuna = "Cabo de Hornos",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2708,7 +2714,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 319,
+                            Id = 319,
                             EsActivo = true,
                             NombreComuna = "Laguna Blanca",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2716,7 +2722,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 320,
+                            Id = 320,
                             EsActivo = true,
                             NombreComuna = "Natales",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2724,7 +2730,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 321,
+                            Id = 321,
                             EsActivo = true,
                             NombreComuna = "Porvenir",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2732,7 +2738,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 322,
+                            Id = 322,
                             EsActivo = true,
                             NombreComuna = "Primavera",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2740,7 +2746,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 323,
+                            Id = 323,
                             EsActivo = true,
                             NombreComuna = "Punta Arenas",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2748,7 +2754,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 324,
+                            Id = 324,
                             EsActivo = true,
                             NombreComuna = "Río Verde",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2756,7 +2762,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 325,
+                            Id = 325,
                             EsActivo = true,
                             NombreComuna = "San Gregorio",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2764,7 +2770,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 326,
+                            Id = 326,
                             EsActivo = true,
                             NombreComuna = "Timaukel",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2772,7 +2778,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 327,
+                            Id = 327,
                             EsActivo = true,
                             NombreComuna = "Torres del Paine",
                             Region = "Región de Magallanes y de la Antártica Chilena",
@@ -2780,7 +2786,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 328,
+                            Id = 328,
                             EsActivo = true,
                             NombreComuna = "Corral",
                             Region = "Región de Los Ríos",
@@ -2788,7 +2794,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 329,
+                            Id = 329,
                             EsActivo = true,
                             NombreComuna = "Futrono",
                             Region = "Región de Los Ríos",
@@ -2796,7 +2802,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 330,
+                            Id = 330,
                             EsActivo = true,
                             NombreComuna = "La Unión",
                             Region = "Región de Los Ríos",
@@ -2804,7 +2810,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 331,
+                            Id = 331,
                             EsActivo = true,
                             NombreComuna = "Lago Ranco",
                             Region = "Región de Los Ríos",
@@ -2812,7 +2818,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 332,
+                            Id = 332,
                             EsActivo = true,
                             NombreComuna = "Lanco",
                             Region = "Región de Los Ríos",
@@ -2820,7 +2826,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 333,
+                            Id = 333,
                             EsActivo = true,
                             NombreComuna = "Los Lagos",
                             Region = "Región de Los Ríos",
@@ -2828,7 +2834,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 334,
+                            Id = 334,
                             EsActivo = true,
                             NombreComuna = "Máfil",
                             Region = "Región de Los Ríos",
@@ -2836,7 +2842,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 335,
+                            Id = 335,
                             EsActivo = true,
                             NombreComuna = "Mariquina",
                             Region = "Región de Los Ríos",
@@ -2844,7 +2850,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 336,
+                            Id = 336,
                             EsActivo = true,
                             NombreComuna = "Paillaco",
                             Region = "Región de Los Ríos",
@@ -2852,7 +2858,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 337,
+                            Id = 337,
                             EsActivo = true,
                             NombreComuna = "Panguipulli",
                             Region = "Región de Los Ríos",
@@ -2860,7 +2866,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 338,
+                            Id = 338,
                             EsActivo = true,
                             NombreComuna = "Río Bueno",
                             Region = "Región de Los Ríos",
@@ -2868,7 +2874,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 339,
+                            Id = 339,
                             EsActivo = true,
                             NombreComuna = "Valdivia",
                             Region = "Región de Los Ríos",
@@ -2876,7 +2882,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 340,
+                            Id = 340,
                             EsActivo = true,
                             NombreComuna = "Arica",
                             Region = "Región de Arica y Parinacota",
@@ -2884,7 +2890,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 341,
+                            Id = 341,
                             EsActivo = true,
                             NombreComuna = "Camarones",
                             Region = "Región de Arica y Parinacota",
@@ -2892,7 +2898,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 342,
+                            Id = 342,
                             EsActivo = true,
                             NombreComuna = "General Lagos",
                             Region = "Región de Arica y Parinacota",
@@ -2900,7 +2906,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 343,
+                            Id = 343,
                             EsActivo = true,
                             NombreComuna = "Putre",
                             Region = "Región de Arica y Parinacota",
@@ -2908,7 +2914,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 344,
+                            Id = 344,
                             EsActivo = true,
                             NombreComuna = "Bulnes",
                             Region = "Región de Ñuble",
@@ -2916,7 +2922,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 345,
+                            Id = 345,
                             EsActivo = true,
                             NombreComuna = "Chillán",
                             Region = "Región de Ñuble",
@@ -2924,7 +2930,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 346,
+                            Id = 346,
                             EsActivo = true,
                             NombreComuna = "Chillán Viejo",
                             Region = "Región de Ñuble",
@@ -2932,7 +2938,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 347,
+                            Id = 347,
                             EsActivo = true,
                             NombreComuna = "Cobquecura",
                             Region = "Región de Ñuble",
@@ -2940,7 +2946,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 348,
+                            Id = 348,
                             EsActivo = true,
                             NombreComuna = "Coelemu",
                             Region = "Región de Ñuble",
@@ -2948,7 +2954,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 349,
+                            Id = 349,
                             EsActivo = true,
                             NombreComuna = "Coihueco",
                             Region = "Región de Ñuble",
@@ -2956,7 +2962,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 350,
+                            Id = 350,
                             EsActivo = true,
                             NombreComuna = "El Carmen",
                             Region = "Región de Ñuble",
@@ -2964,7 +2970,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 351,
+                            Id = 351,
                             EsActivo = true,
                             NombreComuna = "Ninhue",
                             Region = "Región de Ñuble",
@@ -2972,7 +2978,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 352,
+                            Id = 352,
                             EsActivo = true,
                             NombreComuna = "Ñiquén",
                             Region = "Región de Ñuble",
@@ -2980,7 +2986,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 353,
+                            Id = 353,
                             EsActivo = true,
                             NombreComuna = "Pemuco",
                             Region = "Región de Ñuble",
@@ -2988,7 +2994,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 354,
+                            Id = 354,
                             EsActivo = true,
                             NombreComuna = "Pinto",
                             Region = "Región de Ñuble",
@@ -2996,7 +3002,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 355,
+                            Id = 355,
                             EsActivo = true,
                             NombreComuna = "Portezuelo",
                             Region = "Región de Ñuble",
@@ -3004,7 +3010,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 356,
+                            Id = 356,
                             EsActivo = true,
                             NombreComuna = "Quillón",
                             Region = "Región de Ñuble",
@@ -3012,7 +3018,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 357,
+                            Id = 357,
                             EsActivo = true,
                             NombreComuna = "Quirihue",
                             Region = "Región de Ñuble",
@@ -3020,7 +3026,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 358,
+                            Id = 358,
                             EsActivo = true,
                             NombreComuna = "Ránquil",
                             Region = "Región de Ñuble",
@@ -3028,7 +3034,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 359,
+                            Id = 359,
                             EsActivo = true,
                             NombreComuna = "San Carlos",
                             Region = "Región de Ñuble",
@@ -3036,7 +3042,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 360,
+                            Id = 360,
                             EsActivo = true,
                             NombreComuna = "San Fabián",
                             Region = "Región de Ñuble",
@@ -3044,7 +3050,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 361,
+                            Id = 361,
                             EsActivo = true,
                             NombreComuna = "San Ignacio",
                             Region = "Región de Ñuble",
@@ -3052,7 +3058,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 362,
+                            Id = 362,
                             EsActivo = true,
                             NombreComuna = "San Nicolás",
                             Region = "Región de Ñuble",
@@ -3060,7 +3066,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 363,
+                            Id = 363,
                             EsActivo = true,
                             NombreComuna = "Treguaco",
                             Region = "Región de Ñuble",
@@ -3068,7 +3074,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         },
                         new
                         {
-                            IdComuna = 364,
+                            Id = 364,
                             EsActivo = true,
                             NombreComuna = "Yungay",
                             Region = "Región de Ñuble",
@@ -3101,11 +3107,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.EspecialidadMedico", b =>
                 {
-                    b.Property<int>("IdEspecialidadMedico")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdEspecialidadMedico");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEspecialidadMedico"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CasaEstudio")
                         .IsRequired()
@@ -3126,7 +3133,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int>("IdMedico")
                         .HasColumnType("int");
 
-                    b.HasKey("IdEspecialidadMedico");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdEspecialidad");
 
@@ -3271,11 +3278,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.FichaClinica", b =>
                 {
-                    b.Property<long>("IdFichaClinica")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdFichaClinica");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdFichaClinica"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
@@ -3308,7 +3316,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int?>("IdPersonal")
                         .HasColumnType("int");
 
-                    b.HasKey("IdFichaClinica");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdEstadoFichaClinica");
 
@@ -3325,11 +3333,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.FichaClinicaDetalle", b =>
                 {
-                    b.Property<long>("IdFichaClinicaDetalle")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdFichaClinicaDetalle");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdFichaClinicaDetalle"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AgudezaVisual")
                         .HasMaxLength(100)
@@ -3352,8 +3361,8 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<long>("IdFichaClinica")
-                        .HasColumnType("bigint");
+                    b.Property<int>("IdFichaClinica")
+                        .HasColumnType("int");
 
                     b.Property<string>("Observacion")
                         .HasMaxLength(500)
@@ -3365,7 +3374,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.HasKey("IdFichaClinicaDetalle");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdFichaClinica");
 
@@ -3374,11 +3383,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.HistorialClinico", b =>
                 {
-                    b.Property<long>("IdHistorialClinico")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdHistorialClinico");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdHistorialClinico"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Diagnostico")
                         .HasMaxLength(500)
@@ -3408,7 +3418,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(500)");
 
-                    b.HasKey("IdHistorialClinico");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdPaciente");
 
@@ -3417,11 +3427,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.LugarAtencion", b =>
                 {
-                    b.Property<int>("IdLugarAtencion")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdLugarAtencion");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdLugarAtencion"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Direccion")
                         .IsRequired()
@@ -3453,7 +3464,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.HasKey("IdLugarAtencion");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdComuna");
 
@@ -3596,7 +3607,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("Direccion")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Dv")
                         .IsRequired()
@@ -3663,6 +3676,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("Dependencia")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("EsActivo")
+                        .HasColumnType("bit");
+
                     b.Property<int>("IdPaciente")
                         .HasColumnType("int");
 
@@ -3683,6 +3699,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Amputacion")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecAmputacion")
@@ -3742,11 +3761,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.PatologiaPaciente", b =>
                 {
-                    b.Property<long>("IdPatologiaPaciente")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int")
+                        .HasColumnName("IdPatologiaPaciente");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("IdPatologiaPaciente"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
@@ -3769,7 +3789,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<int>("IdPatologia")
                         .HasColumnType("int");
 
-                    b.HasKey("IdPatologiaPaciente");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdPaciente");
 
@@ -3837,11 +3857,12 @@ namespace AtencionMedica.Infraestructure.Migrations
 
             modelBuilder.Entity("AtencionMedica.Domain.Entities.RecetaMedica", b =>
                 {
-                    b.Property<int>("IdRecetaMedica")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("IdRecetaMedica");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdRecetaMedica"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Cantidad")
                         .IsUnicode(false)
@@ -3866,8 +3887,8 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
-                    b.Property<long>("IdHistorialClinico")
-                        .HasColumnType("bigint");
+                    b.Property<int>("IdHistorialClinico")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdMedicamento")
                         .HasColumnType("int");
@@ -3882,7 +3903,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(500)");
 
-                    b.HasKey("IdRecetaMedica");
+                    b.HasKey("Id");
 
                     b.HasIndex("IdHistorialClinico");
 

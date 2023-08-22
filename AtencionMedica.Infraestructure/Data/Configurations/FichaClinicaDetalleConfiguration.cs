@@ -5,7 +5,10 @@
         public void Configure(EntityTypeBuilder<FichaClinicaDetalle> entity)
         {
             entity
-            .HasKey(e => e.IdFichaClinicaDetalle);
+            .HasKey(e => e.Id);
+
+            entity.Property(e => e.Id)
+                .HasColumnName("IdFichaClinicaDetalle");
 
             entity.ToTable("FichaClinicaDetalle");
 
