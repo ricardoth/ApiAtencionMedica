@@ -3,41 +3,92 @@
     public class ComplicacionPacienteService : IComplicacionPacienteService
     {
         private readonly IComplicacionPacienteRepository _complicacionPacienteRepository;
-        private readonly IValidator<ComplicacionPaciente> _validator;
 
-        public ComplicacionPacienteService(IComplicacionPacienteRepository complicacionPacienteRepository, IValidator<ComplicacionPaciente> validator)
+        public ComplicacionPacienteService(IComplicacionPacienteRepository complicacionPacienteRepository)
         {
             _complicacionPacienteRepository = complicacionPacienteRepository;   
-            _validator = validator;
         }
 
         public async Task<ICollection<ComplicacionPaciente>> GetComplicacionesPacientes()
         {
             var result = await _complicacionPacienteRepository.GetComplicacionPacientes();
-            if (result == null)
+            if (result is null)
                 throw new BadRequestException("No se pudo obtener la lista de la BD");
 
             return result;
         }
 
-        public Task<ComplicacionPaciente> GetComplicacionPaciente(int id)
+        public async Task<ComplicacionPaciente> GetComplicacionPaciente(int id)
         {
-            throw new NotImplementedException();
+            var result = await _complicacionPacienteRepository.GetComplicacionPaciente(id);
+
+            if (result is null)
+                throw new NotFoundException("No se encuentra el registro en la BD");
+
+            return result;
         }
 
-        public Task<bool> Actualizar(Complicacion complicacionPaciente)
+        public async Task Agregar(ComplicacionPaciente complicacionPaciente)
         {
-            throw new NotImplementedException();
+            if (complicacionPaciente.IdPaciente <= 0)
+                throw new BadRequestException("El IdPaciente no puede ser menor o igual a 0, por favor ingrese un Id válido");
+
+            if (complicacionPaciente.IdComplicacion <= 0)
+                throw new BadRequestException("El IdComplicacion no puede ser menor o igual a 0, por favor ingrese un Id válido");
+
+            try
+            {
+                await _complicacionPacienteRepository.Add(complicacionPaciente);
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException($"No se pudo crear el registro en la BD");
+            }
         }
 
-        public Task Agregar(ComplicacionPaciente complicacionPaciente)
+        public async Task<bool> Actualizar(ComplicacionPaciente complicacionPaciente)
         {
-            throw new NotImplementedException();
+            if (complicacionPaciente.Id <= 0)
+                throw new NotFoundException("Debe ingresar un Id válido");
+
+
+            if (complicacionPaciente.IdPaciente <= 0)
+                throw new BadRequestException("El IdPaciente no puede ser menor o igual a 0, por favor ingrese un Id válido");
+
+            if (complicacionPaciente.IdComplicacion <= 0)
+                throw new BadRequestException("El IdComplicacion no puede ser menor o igual a 0, por favor ingrese un Id válido");
+
+            try
+            {
+                var complicacionPacienteBd = await _complicacionPacienteRepository.GetComplicacionPaciente(complicacionPaciente.Id);
+                complicacionPacienteBd.IdComplicacion = complicacionPaciente.IdComplicacion;
+                complicacionPacienteBd.IdPaciente = complicacionPaciente.IdPaciente;
+                complicacionPacienteBd.FecComplicacion = complicacionPaciente.FecComplicacion;
+                complicacionPacienteBd.EsActivo = complicacionPaciente.EsActivo;
+
+                await _complicacionPacienteRepository.Update(complicacionPacienteBd);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException($"No se pudo actualizar el registro de la BD");
+            }
         }
 
-        public Task<bool> Eliminar(int id)
+        public async Task<bool> Eliminar(int id)
         {
-            throw new NotImplementedException();
+            if (id <= 0)
+                throw new NotFoundException("Debe ingresar un Id válido");
+
+            try
+            {
+                await _complicacionPacienteRepository.Delete(id);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException($"No se pudo eliminar el registro de la BD");
+            }
         }
     }
 }

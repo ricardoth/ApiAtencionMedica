@@ -14,13 +14,13 @@
 
         public async Task<ICollection<T>> GetAll() => await _context.Set<T>().ToListAsync();
        
-        public async Task<T> GetById(int id) => await _context.Set<T>().FindAsync(id);
+        public async Task<T?> GetById(int id) => await _context.Set<T>().FindAsync(id);
 
         public void Update(T entity) => _context.Set<T>().Update(entity);
 
         public async Task<bool> SoftDelete(int id)
         {
-            T entity = await GetById(id);
+            T? entity = await GetById(id);
             if (entity is null)
                 return false;
 
@@ -31,7 +31,7 @@
 
         public async Task<bool> HardDelete(int id)
         {
-            T entity = await GetById(id);
+            T? entity = await GetById(id);
             if (entity is null)
                 return false;
 
