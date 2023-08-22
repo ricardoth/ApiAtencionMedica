@@ -14,6 +14,10 @@
             serviceCollection.AddScoped(typeof(IPaginationRepository<>), typeof(PaginationRepository<>));
             serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>(); 
 
+            //Other Repositorys With Dependencies
+            serviceCollection.AddTransient<IComplicacionPacienteRepository, ComplicacionPacienteRepository>();
+
+
             //Seeders de BD Tablas Base
             serviceCollection.AddTransient<IInitialize, SeedData>();
 

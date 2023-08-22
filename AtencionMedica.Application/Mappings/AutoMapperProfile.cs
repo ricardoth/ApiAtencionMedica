@@ -31,6 +31,10 @@
             CreateMap<Paciente, PacienteDto>()
                 .ForMember(des => des.IdUsuario, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
+
+            CreateMap<ComplicacionPaciente, ComplicacionPacienteDto>()
+                .ForMember(des => des.IdComplicacionPaciente, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
         }
     }
 }
