@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AtencionMedica.Application.DTOs
+﻿namespace AtencionMedica.Application.DTOs
 {
-    internal class MedicoDto
+    public class MedicoDto
     {
+        public int IdMedico { get; set; }
+        public int Rut { get; set; }
+        public string? Dv { get; set; }
+        public string? Nombres { get; set; }
+        public string? ApellidoPaterno { get; set; }
+        public string? ApellidoMaterno { get; set; }
+        public string? Correo { get; set; }
+        public string? Telefono { get; set; }
+        public bool EsActivo { get; set; }
     }
 }
