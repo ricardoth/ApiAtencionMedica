@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using System.Text.Json.Serialization;
-
-namespace AtencionMedica.WebApi.Configurations
+﻿namespace AtencionMedica.WebApi.Configurations
 {
     public static class DependencyInjectorConfiguration
     {
@@ -15,12 +12,11 @@ namespace AtencionMedica.WebApi.Configurations
             });
             #endregion
 
-
             #region Others Dependencies
-            //service.AddAuthentication("BasicAuthentication")
-            //    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+            service.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
-            //service.Configure<BasicAuthCredentials>(configuration.GetSection("BasicAuthCredentials"));
+            service.Configure<BasicAuthCredentials>(configuration.GetSection("BasicAuthCredentials"));
             service.Configure<PaginationOptions>(configuration.GetSection("Pagination"));
             service.AddApplicationDependencies(configuration);
             service.AddDataAccess(configuration);
