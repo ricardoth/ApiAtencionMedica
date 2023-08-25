@@ -11,7 +11,7 @@
 
         public async Task<ICollection<ComplicacionPaciente>> GetComplicacionesPacientes()
         {
-            var result = await _complicacionPacienteRepository.GetComplicacionPacientes();
+            var result = await _complicacionPacienteRepository.GetAll();
             if (result is null)
                 throw new BadRequestException("No se pudo obtener la lista de la BD");
 
@@ -20,7 +20,7 @@
 
         public async Task<ComplicacionPaciente> GetComplicacionPaciente(int id)
         {
-            var result = await _complicacionPacienteRepository.GetComplicacionPaciente(id);
+            var result = await _complicacionPacienteRepository.GetById(id);
 
             if (result is null)
                 throw new NotFoundException("No se encuentra el registro en la BD");
@@ -60,7 +60,7 @@
 
             try
             {
-                var complicacionPacienteBd = await _complicacionPacienteRepository.GetComplicacionPaciente(complicacionPaciente.Id);
+                var complicacionPacienteBd = await _complicacionPacienteRepository.GetById(complicacionPaciente.Id);
                 complicacionPacienteBd.IdComplicacion = complicacionPaciente.IdComplicacion;
                 complicacionPacienteBd.IdPaciente = complicacionPaciente.IdPaciente;
                 complicacionPacienteBd.FecComplicacion = complicacionPaciente.FecComplicacion;

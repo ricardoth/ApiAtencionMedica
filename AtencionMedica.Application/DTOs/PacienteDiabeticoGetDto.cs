@@ -1,6 +1,6 @@
 ﻿namespace AtencionMedica.Application.DTOs
 {
-    public class PacienteDiabeticoDto
+    public class PacienteDiabeticoGetDto
     {
         public int IdPacienteDiabetico { get; set; }
         public int IdPaciente { get; set; }

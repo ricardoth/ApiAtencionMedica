@@ -8,7 +8,7 @@
             _context = context;
         }
 
-        public async Task<ICollection<ComplicacionPaciente>> GetComplicacionPacientes()
+        public async Task<ICollection<ComplicacionPaciente>> GetAll()
         {
             return await _context.ComplicacionPacientes
                 .Include(p => p.Paciente)
@@ -16,7 +16,7 @@
                 .ToListAsync();
         }
 
-        public async Task<ComplicacionPaciente?> GetComplicacionPaciente(int id)
+        public async Task<ComplicacionPaciente?> GetById(int id)
         {
             return await _context.ComplicacionPacientes
                 .Include(p => p.Paciente)
@@ -27,24 +27,24 @@
 
         public async Task Add(ComplicacionPaciente entity)
         {
-            await _context.AddAsync(entity);
+            await _context.ComplicacionPacientes.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
         public async Task Update(ComplicacionPaciente entity)
         {
-            _context.Update(entity);
+            _context.ComplicacionPacientes.Update(entity);
             await _context.SaveChangesAsync();
         }
 
         public async Task<bool> Delete(int id)
         {
-            var entity = await GetComplicacionPaciente(id);
+            var entity = await GetById(id);
             if (entity is null)
                 return false;
 
             entity.EsActivo = false;
-            _context.Update(entity);
+            _context.ComplicacionPacientes.Update(entity);
             await _context.SaveChangesAsync();
             return true;
         }
