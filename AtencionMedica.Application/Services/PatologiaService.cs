@@ -16,7 +16,7 @@
             var patologias = await _unitOfWork.PatologiaRepository.GetAll();
             
             if(patologias == null)
-                throw new BadRequestException($"No se pudo obtener la lista de registros de la BD");
+                throw new BadRequestException(ErrrorMessageStatus.NoRecordsFound);
 
             return patologias;
         }

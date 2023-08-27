@@ -13,7 +13,7 @@
         {
             var result = await _complicacionPacienteRepository.GetAll();
             if (result is null)
-                throw new BadRequestException("No se pudo obtener la lista de la BD");
+                throw new BadRequestException(ErrrorMessageStatus.NoRecordsFound);
 
             return result;
         }

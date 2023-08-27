@@ -11,3 +11,4 @@ global using FluentValidation;
 global using AtencionMedica.Domain.CustomEntities;
 global using AtencionMedica.Domain.QueryFilters;
 global using Microsoft.Extensions.Options;
+global using AtencionMedica.Domain.Errors;

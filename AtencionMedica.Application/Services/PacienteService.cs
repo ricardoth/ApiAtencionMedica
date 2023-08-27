@@ -31,7 +31,7 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException("No se pudo obtener la lista de la Bd");
+                throw new BadRequestException(ErrrorMessageStatus.NoRecordsFound);
             }
         }
 

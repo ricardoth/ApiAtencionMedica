@@ -24,7 +24,7 @@
             var result = await _unitOfWork.ComunaRepository.GetAll();
 
             if (result == null)
-                throw new BadRequestException("No se encuentran registros en la BD, no se pudo obtener la lista");
+                throw new BadRequestException(ErrrorMessageStatus.NoRecordsFound);
 
             return result;
         }

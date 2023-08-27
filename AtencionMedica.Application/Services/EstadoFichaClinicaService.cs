@@ -23,10 +23,10 @@
         {
             var result = await _unitOfWork.EstadoFichaClinicaRepository.GetAll();
 
-            if (result == null) 
-                throw new BadRequestException("No se pudo obtener el registro de la BD");
+            if (result == null)
+                throw new BadRequestException(ErrrorMessageStatus.NoRecordsFound);
 
-           return result;
+            return result;
         }
     }
 }
