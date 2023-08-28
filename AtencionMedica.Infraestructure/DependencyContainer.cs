@@ -17,6 +17,7 @@
             //Other Repositorys With Dependencies
             serviceCollection.AddTransient<IComplicacionPacienteRepository, ComplicacionPacienteRepository>();
             serviceCollection.AddTransient<IPacienteDiabeticoRepository, PacienteDiabeticoRepository>();
+            serviceCollection.AddTransient<IPacienteAdultoMayorRepository, PacienteAdultoMayorRepository>();
 
 
             //Seeders de BD Tablas Base

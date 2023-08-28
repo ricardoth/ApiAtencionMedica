@@ -4,8 +4,7 @@
     {
         private readonly IPacienteDiabeticoRepository _pacienteDiabeticoRepository;
 
-        public PacienteDiabeticoService(
-            IPacienteDiabeticoRepository pacienteDiabeticoRepository)
+        public PacienteDiabeticoService(IPacienteDiabeticoRepository pacienteDiabeticoRepository)
         {
             _pacienteDiabeticoRepository = pacienteDiabeticoRepository;
         }
@@ -41,7 +40,6 @@
             {
                 throw new BadRequestException(ErrorMessageStatus.CreateFailed);
             }
-
         }
 
         public async Task<bool> Actualizar(PacienteDiabetico pacienteDiabetico)

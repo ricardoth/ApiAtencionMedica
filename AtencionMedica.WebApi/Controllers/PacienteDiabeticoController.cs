@@ -2,6 +2,7 @@
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PacienteDiabeticoController : ControllerBase
     {
         private readonly IPacienteDiabeticoService _pacienteDiabeticoService;

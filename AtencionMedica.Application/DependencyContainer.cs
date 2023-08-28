@@ -23,6 +23,7 @@ namespace AtencionMedica.Application
             serviceCollection.AddTransient<IMedicoService, MedicoService>();
             serviceCollection.AddTransient<IComplicacionPacienteService, ComplicacionPacienteService>();
             serviceCollection.AddTransient<IPacienteDiabeticoService, PacienteDiabeticoService>();
+            serviceCollection.AddTransient<IPacienteAdultoMayorService, PacienteAdultoMayorService>();
             #endregion
         }
     }
