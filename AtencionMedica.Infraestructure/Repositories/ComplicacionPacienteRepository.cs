@@ -27,13 +27,14 @@
 
         public async Task Add(ComplicacionPaciente entity)
         {
+            entity.FecCreacion = DateTime.Now;
             await _context.ComplicacionPacientes.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
         public async Task Update(ComplicacionPaciente entity)
         {
-            entity.FecActualizacion = DateTime.UtcNow;
+            entity.FecActualizacion = DateTime.Now;
             _context.ComplicacionPacientes.Update(entity);
             await _context.SaveChangesAsync();
         }
@@ -45,7 +46,7 @@
                 return false;
 
             entity.EsActivo = false;
-            entity.FecActualizacion = DateTime.UtcNow;
+            entity.FecActualizacion = DateTime.Now;
             _context.ComplicacionPacientes.Update(entity);
             await _context.SaveChangesAsync();
             return true;

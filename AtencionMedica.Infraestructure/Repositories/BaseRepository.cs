@@ -10,7 +10,11 @@
             _context = context;
         }
 
-        public async Task Add(T entity) => await _context.Set<T>().AddAsync(entity);
+        public async Task Add(T entity)
+        {
+            entity.FecCreacion = DateTime.Now;
+            await _context.Set<T>().AddAsync(entity);
+        } 
 
         public async Task<ICollection<T>> GetAll() => await _context.Set<T>().ToListAsync();
        
@@ -18,7 +22,7 @@
 
         public void Update(T entity) 
         {
-            entity.FecActualizacion = DateTime.UtcNow;
+            entity.FecActualizacion = DateTime.Now;
             _context.Set<T>().Update(entity);
         } 
 
@@ -29,7 +33,7 @@
                 return false;
 
             entity.EsActivo = false;
-            entity.FecActualizacion = DateTime.UtcNow;
+            entity.FecActualizacion = DateTime.Now;
             _context.Set<T>().Update(entity);
             return true;
         }
