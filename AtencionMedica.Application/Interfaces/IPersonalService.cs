@@ -2,10 +2,10 @@
 {
     public interface IPersonalService
     {
-        Task<ICollection<Personal>> GetPacientes();
-        Task<Personal> GetPaciente(int id);
-        Task Agregar(Personal paciente);
-        Task<bool> Actualizar(Personal paciente);
+        Task<ICollection<Personal>> GetPersonales();
+        Task<Personal> GetPersonal(int id);
+        Task Agregar(Personal personal);
+        Task<bool> Actualizar(Personal personal);
         Task<bool> Eliminar(int id);
     }
 }
