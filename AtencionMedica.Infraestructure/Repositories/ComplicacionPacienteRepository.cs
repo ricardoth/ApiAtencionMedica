@@ -3,9 +3,12 @@
     public class ComplicacionPacienteRepository : IComplicacionPacienteRepository
     {
         private readonly AtencionMedicaContext _context;
-        public ComplicacionPacienteRepository(AtencionMedicaContext context)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ComplicacionPacienteRepository(AtencionMedicaContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<ICollection<ComplicacionPaciente>> GetAll()
@@ -29,14 +32,14 @@
         {
             entity.FecCreacion = DateTime.Now;
             await _context.ComplicacionPacientes.AddAsync(entity);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task Update(ComplicacionPaciente entity)
         {
             entity.FecActualizacion = DateTime.Now;
             _context.ComplicacionPacientes.Update(entity);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task<bool> Delete(int id)
@@ -48,7 +51,7 @@
             entity.EsActivo = false;
             entity.FecActualizacion = DateTime.Now;
             _context.ComplicacionPacientes.Update(entity);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return true;
         }
     }

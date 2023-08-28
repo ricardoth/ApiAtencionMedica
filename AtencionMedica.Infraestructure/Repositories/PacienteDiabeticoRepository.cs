@@ -3,10 +3,12 @@
     public class PacienteDiabeticoRepository : IPacienteDiabeticoRepository
     {
         private readonly AtencionMedicaContext _context;
+        private IUnitOfWork _unitOfWork;
 
-        public PacienteDiabeticoRepository(AtencionMedicaContext context)
+        public PacienteDiabeticoRepository(AtencionMedicaContext context, IUnitOfWork unitOfWork)
         {
             _context = context;        
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<ICollection<PacienteDiabetico>> GetAll()
@@ -28,14 +30,14 @@
         {
             entity.FecCreacion = DateTime.Now;
             await _context.PacienteDiabeticos.AddAsync(entity);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task Update(PacienteDiabetico entity)
         {
             entity.FecActualizacion = DateTime.Now;
             _context.PacienteDiabeticos.Update(entity);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task<bool> Delete(int id)
@@ -47,7 +49,7 @@
             entity.EsActivo = false;
             entity.FecActualizacion = DateTime.Now;
             _context.PacienteDiabeticos.Update(entity);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             return true;
         }
 

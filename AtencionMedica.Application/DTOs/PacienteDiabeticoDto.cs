@@ -11,6 +11,5 @@
         public DateTime? FecAmputacion { get; set; }
         public bool Retinopatia { get; set; }
         public DateTime? FecRetinopatia { get; set; }
-        public virtual PacienteDto? Paciente { get; set; }
     }
 }
