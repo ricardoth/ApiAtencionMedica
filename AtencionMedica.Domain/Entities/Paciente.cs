@@ -14,8 +14,6 @@
         public string? Correo { get; set; }
         public string? EstadoCivil { get; set; }
         public string? Sexo { get; set; }
-        public DateTime? FecCreacion { get; set; }
-        public DateTime? FecActualizacion { get; set; }
         public virtual ICollection<FichaClinica> FichaClinicas { get; set; }
         public virtual ICollection<PacienteAdultoMayor> PacienteAdultoMayors { get; set; }
         public virtual ICollection<PacienteDiabetico> PacienteDiabeticos { get; set; }

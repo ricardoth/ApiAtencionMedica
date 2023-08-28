@@ -13,8 +13,6 @@
         private readonly IRepository<Medico> _medicoRepository;
         private readonly IRepository<Modulo> _moduloRepository;
         private readonly IRepository<Paciente> _pacienteRepository;
-        //private readonly IRepository<PacienteAdultoMayor> _pacienteAdultoMayorRepository;
-        //private readonly IRepository<PacienteDiabetico> _pacienteDiabeticoRepository;
         private readonly IRepository<Personal> _personalRepository;
         
         public UnitOfWork(AtencionMedicaContext context)
@@ -32,8 +30,6 @@
         public IRepository<Medico> MedicoRepository => _medicoRepository ?? new BaseRepository<Medico>(_context);
         public IRepository<Modulo> ModuloRepository => _moduloRepository ?? new BaseRepository<Modulo>(_context);   
         public IRepository<Paciente> PacienteRepository => _pacienteRepository ?? new BaseRepository<Paciente>(_context);
-        //public IRepository<PacienteAdultoMayor> PacienteAdultoMayorRepository => _pacienteAdultoMayorRepository ?? new BaseRepository<PacienteAdultoMayor>(_context);
-        //public IRepository<PacienteDiabetico> PacienteDiabeticoRepository => _pacienteDiabeticoRepository ?? new BaseRepository<PacienteDiabetico>(_context);  
         public IRepository<Personal> PersonalRepository => _personalRepository ?? new BaseRepository<Personal>(_context);
 
         public void Dispose()

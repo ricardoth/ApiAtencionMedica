@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtencionMedica.Infraestructure.Migrations
 {
     [DbContext(typeof(AtencionMedicaContext))]
-    [Migration("20230822034108_InitBd_ReinicioDeBdPorMuchosCambios")]
-    partial class InitBd_ReinicioDeBdPorMuchosCambios
+    [Migration("20230828152716_InitDb-WithConcurrencyFecActualizacion")]
+    partial class InitDbWithConcurrencyFecActualizacion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
@@ -90,6 +91,13 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("NombreComplicacion")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -113,10 +121,17 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("FecComplicacion")
                         .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("IdComplicacion")
                         .HasColumnType("int");
@@ -144,6 +159,13 @@ namespace AtencionMedica.Infraestructure.Migrations
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NombreComuna")
                         .IsRequired()
@@ -3094,6 +3116,13 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("NombreEspecialidad")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -3122,6 +3151,13 @@ namespace AtencionMedica.Infraestructure.Migrations
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaObtencionEspecialidad")
                         .IsUnicode(false)
@@ -3153,6 +3189,13 @@ namespace AtencionMedica.Infraestructure.Migrations
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NombreEstadoAgendaMedico")
                         .IsRequired()
@@ -3208,6 +3251,13 @@ namespace AtencionMedica.Infraestructure.Migrations
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NombreEstadoFichaClinica")
                         .IsRequired()
@@ -3289,6 +3339,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
@@ -3349,6 +3400,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
@@ -3399,6 +3451,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
@@ -3443,6 +3496,13 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Fono")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -3482,6 +3542,13 @@ namespace AtencionMedica.Infraestructure.Migrations
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("NombreMedicamento")
                         .IsRequired()
@@ -3528,6 +3595,13 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Nombres")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -3564,6 +3638,13 @@ namespace AtencionMedica.Infraestructure.Migrations
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
+
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("IdLugarAtencion")
                         .HasColumnType("int");
@@ -3626,6 +3707,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .HasColumnType("varchar(20)");
 
                     b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
@@ -3679,6 +3761,13 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("IdPaciente")
                         .HasColumnType("int");
 
@@ -3704,9 +3793,16 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("FecAmputacion")
                         .IsUnicode(false)
                         .HasColumnType("datetime");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("FecEvaluacionDiabetes")
                         .IsUnicode(false)
@@ -3748,6 +3844,13 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("NombrePatologia")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -3772,6 +3875,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
@@ -3834,6 +3938,13 @@ namespace AtencionMedica.Infraestructure.Migrations
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FecCreacion")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Nombres")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -3872,6 +3983,7 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("FecActualizacion")
+                        .IsConcurrencyToken()
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 

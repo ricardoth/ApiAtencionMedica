@@ -14,7 +14,7 @@
             var result = await _unitOfWork.EstadoAgendaMedicoRepository.GetById(id);
 
             if (result == null)
-                throw new NotFoundException("No se encuentra el registro en la BD");
+                throw new NotFoundException(ErrorMessageStatus.NotFound);
 
             return result;
         }
@@ -24,7 +24,7 @@
             var result = await _unitOfWork.EstadoAgendaMedicoRepository.GetAll();
 
             if (result == null)
-                throw new BadRequestException(ErrrorMessageStatus.NoRecordsFound);
+                throw new BadRequestException(ErrorMessageStatus.NoRecordsFound);
 
             return result;
         }

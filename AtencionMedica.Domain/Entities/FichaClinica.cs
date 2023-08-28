@@ -14,8 +14,6 @@
         [ForeignKey("IdModulo")]
         public int IdModulo { get; set; }
         public DateTime? FechaAtencion { get; set; }
-        public DateTime? FecCreacion { get; set; }
-        public DateTime? FecActualizacion { get; set; }
         public virtual Paciente Paciente { get; set; }
         public virtual Medico Medico { get; set; }
         public virtual Personal? Personal { get; set; }

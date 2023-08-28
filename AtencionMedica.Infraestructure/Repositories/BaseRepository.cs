@@ -16,7 +16,11 @@
        
         public async Task<T?> GetById(int id) => await _context.Set<T>().FindAsync(id);
 
-        public void Update(T entity) => _context.Set<T>().Update(entity);
+        public void Update(T entity) 
+        {
+            entity.FecActualizacion = DateTime.UtcNow;
+            _context.Set<T>().Update(entity);
+        } 
 
         public async Task<bool> SoftDelete(int id)
         {
@@ -25,6 +29,7 @@
                 return false;
 
             entity.EsActivo = false;
+            entity.FecActualizacion = DateTime.UtcNow;
             _context.Set<T>().Update(entity);
             return true;
         }

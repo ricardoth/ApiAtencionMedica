@@ -12,8 +12,6 @@
         public string? Observacion { get; set; }
         public DateTime? FecInicio { get; set; } 
         public DateTime? FecFin { get; set; }
-        public DateTime? FecCreacion { get; set; }
-        public DateTime? FecActualizacion { get; set; }
         public virtual HistorialClinico HistorialClinico { get; set; }
         public virtual Medicamento Medicamento { get; set; }
 

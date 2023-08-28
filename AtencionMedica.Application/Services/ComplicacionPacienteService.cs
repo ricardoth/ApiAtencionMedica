@@ -13,7 +13,7 @@
         {
             var result = await _complicacionPacienteRepository.GetAll();
             if (result is null)
-                throw new BadRequestException(ErrrorMessageStatus.NoRecordsFound);
+                throw new BadRequestException(ErrorMessageStatus.NoRecordsFound);
 
             return result;
         }
@@ -23,7 +23,7 @@
             var result = await _complicacionPacienteRepository.GetById(id);
 
             if (result is null)
-                throw new NotFoundException("No se encuentra el registro en la BD");
+                throw new NotFoundException(ErrorMessageStatus.NotFound);
 
             return result;
         }
@@ -42,14 +42,14 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException($"No se pudo crear el registro en la BD");
+                throw new BadRequestException(ErrorMessageStatus.CreateFailed);
             }
         }
 
         public async Task<bool> Actualizar(ComplicacionPaciente complicacionPaciente)
         {
             if (complicacionPaciente.Id <= 0)
-                throw new NotFoundException("Debe ingresar un Id válido");
+                throw new NotFoundException(ErrorMessageStatus.NotValidId);
 
 
             if (complicacionPaciente.IdPaciente <= 0)
@@ -71,14 +71,14 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException($"No se pudo actualizar el registro de la BD");
+                throw new BadRequestException(ErrorMessageStatus.UpdateFailed);
             }
         }
 
         public async Task<bool> Eliminar(int id)
         {
             if (id <= 0)
-                throw new NotFoundException("Debe ingresar un Id válido");
+                throw new NotFoundException(ErrorMessageStatus.NotValidId);
 
             try
             {
@@ -87,7 +87,7 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException($"No se pudo eliminar el registro de la BD");
+                throw new BadRequestException(ErrorMessageStatus.DeleteFailed);
             }
         }
     }

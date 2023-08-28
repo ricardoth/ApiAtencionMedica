@@ -31,7 +31,7 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException(ErrrorMessageStatus.NoRecordsFound);
+                throw new BadRequestException(ErrorMessageStatus.NoRecordsFound);
             }
         }
 
@@ -39,7 +39,7 @@
         {
             var result = await _unitOfWork.PacienteRepository.GetById(id);
             if (result is null)
-                throw new NotFoundException("No se encuentra el registro en la BD");
+                throw new NotFoundException(ErrorMessageStatus.NotFound);
 
             return result;
         }
@@ -54,7 +54,7 @@
             }
 
             if (paciente.Id <= 0)
-                throw new NotFoundException("Debe ingresar un Id válido");
+                throw new NotFoundException(ErrorMessageStatus.NotValidId);
 
             try
             {
@@ -79,7 +79,7 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException("No se pudo actualizar el registro");
+                throw new BadRequestException(ErrorMessageStatus.UpdateFailed);
             }
         }
 
@@ -99,14 +99,14 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException("No se pudo agregar el registro a la Bd");
+                throw new BadRequestException(ErrorMessageStatus.CreateFailed);
             }
         }
 
         public async Task<bool> Eliminar(int id)
         {
             if (id <= 0)
-                throw new NotFoundException("Debe ingresar un Id válido");
+                throw new NotFoundException(ErrorMessageStatus.NotValidId);
 
             try
             {
@@ -116,7 +116,7 @@
             }
             catch (Exception ex)
             {
-                throw new BadRequestException("No se pudo eliminar el registro de la Bd");
+                throw new BadRequestException(ErrorMessageStatus.DeleteFailed);
             }
         }
     }

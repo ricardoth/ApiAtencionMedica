@@ -11,8 +11,6 @@
         public DateTime? FecFin { get; set; }
         public string? HoraInicio { get; set; }
         public string? HoraFin { get; set; }
-        public DateTime? FecCreacion { get; set; }
-        public DateTime? FecActualizacion { get; set; }
         public virtual Medico Medico { get; set; }    
         public virtual EstadoAgendaMedico EstadoAgendaMedico { get; set; }
     }

@@ -32,6 +32,7 @@
 
         public async Task Update(PacienteDiabetico entity)
         {
+            entity.FecActualizacion = DateTime.UtcNow;
             _context.PacienteDiabeticos.Update(entity);
             await _context.SaveChangesAsync();
         }
@@ -43,6 +44,7 @@
                 return false;
 
             entity.EsActivo = false;
+            entity.FecActualizacion = DateTime.UtcNow;
             _context.PacienteDiabeticos.Update(entity);
             await _context.SaveChangesAsync();
             return true;

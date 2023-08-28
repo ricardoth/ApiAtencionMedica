@@ -8,8 +8,6 @@
         public string? PresionIntraocular { get; set; }
         public string? FondoDeOjo { get; set; }
         public string? Observacion { get; set; }
-        public DateTime? FecCreacion { get; set; }
-        public DateTime? FecActualizacion { get; set; }
         public virtual FichaClinica FichaClinica { get; set; }
 
     }
