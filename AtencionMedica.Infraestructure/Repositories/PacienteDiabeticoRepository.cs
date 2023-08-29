@@ -25,33 +25,5 @@
                 .Where(cp => cp.Id == id)
                 .FirstOrDefaultAsync();
         }
-
-        public async Task Add(PacienteDiabetico entity)
-        {
-            entity.FecCreacion = DateTime.Now;
-            await _context.PacienteDiabeticos.AddAsync(entity);
-            await _unitOfWork.SaveChangesAsync();
-        }
-
-        public async Task Update(PacienteDiabetico entity)
-        {
-            entity.FecActualizacion = DateTime.Now;
-            _context.PacienteDiabeticos.Update(entity);
-            await _unitOfWork.SaveChangesAsync();
-        }
-
-        public async Task<bool> Delete(int id)
-        {
-            var entity = await GetById(id);
-            if (entity is null)
-                return false;
-
-            entity.EsActivo = false;
-            entity.FecActualizacion = DateTime.Now;
-            _context.PacienteDiabeticos.Update(entity);
-            await _unitOfWork.SaveChangesAsync();
-            return true;
-        }
-
     }
 }

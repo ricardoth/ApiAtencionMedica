@@ -14,6 +14,16 @@
         IRepository<Paciente> PacienteRepository { get; }
         IRepository<Personal> PersonalRepository { get; }
         IRepository<LugarAtencion> LugarAtencionRepository { get; }
+        IRepository<AgendaMedico> AgendaMedicoRepository { get; }
+        IRepository<EspecialidadMedico> EspecialidadMedicoRepository { get; }
+        IRepository<FichaClinica> FichaClinicaRepository { get; }
+        IRepository<FichaClinicaDetalle> FichaClinicaDetalleRepository { get; }
+        IRepository<HistorialClinico> HistorialClinicoRepository { get; }
+        IRepository<PatologiaPaciente> PatologiaPacienteRepository { get; }
+        IRepository<RecetaMedica> RecetaMedicaRepository { get; }
+        IRepository<ComplicacionPaciente> ComplicacionPacienteRepository { get; }
+        IRepository<PacienteAdultoMayor> PacienteAdultoMayorRepository { get; }
+        IRepository<PacienteDiabetico> PacienteDiabeticoRepository { get; }
 
         void SaveChanges();
         Task SaveChangesAsync();

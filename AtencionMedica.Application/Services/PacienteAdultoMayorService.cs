@@ -6,10 +6,12 @@ namespace AtencionMedica.Application.Services
     public class PacienteAdultoMayorService : IPacienteAdultoMayorService
     {
         private readonly IPacienteAdultoMayorRepository _pacienteAdultoMayorRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PacienteAdultoMayorService(IPacienteAdultoMayorRepository pacienteAdultoMayorRepository)
+        public PacienteAdultoMayorService(IPacienteAdultoMayorRepository pacienteAdultoMayorRepository, IUnitOfWork unitOfWork)
         {
             _pacienteAdultoMayorRepository = pacienteAdultoMayorRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<ICollection<PacienteAdultoMayor>> GetPacientesAdultosMayores()
@@ -37,7 +39,8 @@ namespace AtencionMedica.Application.Services
 
             try
             {
-                await _pacienteAdultoMayorRepository.Add(pacienteAdultoMayor);
+                await _unitOfWork.PacienteAdultoMayorRepository.Add(pacienteAdultoMayor);
+                await _unitOfWork.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -60,7 +63,8 @@ namespace AtencionMedica.Application.Services
                 pacienteAdultoMayorBd.Dependencia = pacienteAdultoMayor.Dependencia;
                 pacienteAdultoMayorBd.EsActivo = pacienteAdultoMayor.EsActivo;
 
-                await _pacienteAdultoMayorRepository.Update(pacienteAdultoMayorBd);
+                _unitOfWork.PacienteAdultoMayorRepository.Update(pacienteAdultoMayorBd);
+                await _unitOfWork.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -76,7 +80,8 @@ namespace AtencionMedica.Application.Services
 
             try
             {
-                await _pacienteAdultoMayorRepository.Delete(id);
+                await _unitOfWork.PacienteAdultoMayorRepository.SoftDelete(id);
+                await _unitOfWork.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)

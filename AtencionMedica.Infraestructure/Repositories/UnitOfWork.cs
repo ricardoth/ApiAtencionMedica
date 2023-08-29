@@ -17,6 +17,16 @@ namespace AtencionMedica.Infraestructure.Repositories
         private readonly IRepository<Paciente> _pacienteRepository;
         private readonly IRepository<Personal> _personalRepository;
         private readonly IRepository<LugarAtencion> _lugarAtencionRepository;
+        private readonly IRepository<AgendaMedico> _agendaMedicoRepository;
+        private readonly IRepository<EspecialidadMedico> _especialidadMedicoRepository;
+        private readonly IRepository<FichaClinica> _fichaClinicaRepository;
+        private readonly IRepository<FichaClinicaDetalle> _fichaClinicaDetalleRepository;
+        private readonly IRepository<HistorialClinico> _historialClinicoRepository;
+        private readonly IRepository<PatologiaPaciente> _patologiaPacienteRepository;
+        private readonly IRepository<RecetaMedica> _recetaMedicaRepository;
+        private readonly IRepository<PacienteDiabetico> _pacienteDiabeticoRepository;
+        private readonly IRepository<PacienteAdultoMayor> _pacienteAdultoMayorRepository;
+        private readonly IRepository<ComplicacionPaciente> _complicacionPacienteRepository;
 
         public UnitOfWork(AtencionMedicaContext context)
         {
@@ -35,6 +45,16 @@ namespace AtencionMedica.Infraestructure.Repositories
         public IRepository<Paciente> PacienteRepository => _pacienteRepository ?? new BaseRepository<Paciente>(_context);
         public IRepository<Personal> PersonalRepository => _personalRepository ?? new BaseRepository<Personal>(_context);
         public IRepository<LugarAtencion> LugarAtencionRepository => _lugarAtencionRepository ?? new BaseRepository<LugarAtencion>(_context);
+        public IRepository<AgendaMedico> AgendaMedicoRepository => _agendaMedicoRepository ?? new BaseRepository<AgendaMedico>(_context);
+        public IRepository<EspecialidadMedico> EspecialidadMedicoRepository => _especialidadMedicoRepository ?? new BaseRepository<EspecialidadMedico>(_context);
+        public IRepository<FichaClinica> FichaClinicaRepository => _fichaClinicaRepository ?? new BaseRepository<FichaClinica>(_context);
+        public IRepository<FichaClinicaDetalle> FichaClinicaDetalleRepository => _fichaClinicaDetalleRepository ?? new BaseRepository<FichaClinicaDetalle>(_context);
+        public IRepository<HistorialClinico> HistorialClinicoRepository => _historialClinicoRepository ?? new BaseRepository<HistorialClinico>(_context);
+        public IRepository<PatologiaPaciente> PatologiaPacienteRepository => _patologiaPacienteRepository ?? new BaseRepository<PatologiaPaciente>(_context);
+        public IRepository<RecetaMedica> RecetaMedicaRepository => _recetaMedicaRepository ?? new BaseRepository<RecetaMedica>(_context);
+        public IRepository<PacienteDiabetico> PacienteDiabeticoRepository => _pacienteDiabeticoRepository ?? new BaseRepository<PacienteDiabetico>(_context);
+        public IRepository<PacienteAdultoMayor> PacienteAdultoMayorRepository => _pacienteAdultoMayorRepository ?? new BaseRepository<PacienteAdultoMayor>(_context);
+        public IRepository<ComplicacionPaciente> ComplicacionPacienteRepository => _complicacionPacienteRepository ?? new BaseRepository<ComplicacionPaciente>(_context);
 
         public void Dispose()
         {
