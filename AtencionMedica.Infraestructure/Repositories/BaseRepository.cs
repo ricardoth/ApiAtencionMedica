@@ -14,7 +14,7 @@
         {
             entity.FecCreacion = DateTime.Now;
             await _context.Set<T>().AddAsync(entity);
-        } 
+        }
 
         public async Task<ICollection<T>> GetAll() => await _context.Set<T>().ToListAsync();
        

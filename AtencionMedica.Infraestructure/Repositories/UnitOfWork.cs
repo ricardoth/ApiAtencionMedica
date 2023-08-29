@@ -16,6 +16,7 @@ namespace AtencionMedica.Infraestructure.Repositories
         private readonly IRepository<Modulo> _moduloRepository;
         private readonly IRepository<Paciente> _pacienteRepository;
         private readonly IRepository<Personal> _personalRepository;
+        private readonly IRepository<LugarAtencion> _lugarAtencionRepository;
 
         public UnitOfWork(AtencionMedicaContext context)
         {
@@ -33,6 +34,7 @@ namespace AtencionMedica.Infraestructure.Repositories
         public IRepository<Modulo> ModuloRepository => _moduloRepository ?? new BaseRepository<Modulo>(_context);
         public IRepository<Paciente> PacienteRepository => _pacienteRepository ?? new BaseRepository<Paciente>(_context);
         public IRepository<Personal> PersonalRepository => _personalRepository ?? new BaseRepository<Personal>(_context);
+        public IRepository<LugarAtencion> LugarAtencionRepository => _lugarAtencionRepository ?? new BaseRepository<LugarAtencion>(_context);
 
         public void Dispose()
         {

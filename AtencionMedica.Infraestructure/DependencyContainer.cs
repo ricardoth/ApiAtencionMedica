@@ -18,6 +18,8 @@
             serviceCollection.AddTransient<IComplicacionPacienteRepository, ComplicacionPacienteRepository>();
             serviceCollection.AddTransient<IPacienteDiabeticoRepository, PacienteDiabeticoRepository>();
             serviceCollection.AddTransient<IPacienteAdultoMayorRepository, PacienteAdultoMayorRepository>();
+            serviceCollection.AddTransient<IModuloRepository, ModuloRepository>();
+            serviceCollection.AddTransient<ILugarAtencionRepository, LugarAtencionRepository>();
 
 
             //Seeders de BD Tablas Base

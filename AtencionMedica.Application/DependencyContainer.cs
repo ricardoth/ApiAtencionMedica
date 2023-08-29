@@ -25,6 +25,8 @@ namespace AtencionMedica.Application
             serviceCollection.AddTransient<IPacienteDiabeticoService, PacienteDiabeticoService>();
             serviceCollection.AddTransient<IPacienteAdultoMayorService, PacienteAdultoMayorService>();
             serviceCollection.AddTransient<IPersonalService, PersonalService>();
+            serviceCollection.AddTransient<IModuloService, ModuloService>();
+            serviceCollection.AddTransient<ILugarAtencionService, LugarAtencionService>();
             #endregion
         }
     }

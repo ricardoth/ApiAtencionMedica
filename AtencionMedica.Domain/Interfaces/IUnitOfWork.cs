@@ -12,9 +12,8 @@
         IRepository<Medico> MedicoRepository { get; }
         IRepository<Modulo> ModuloRepository { get; }
         IRepository<Paciente> PacienteRepository { get; }
-        //IRepository<PacienteAdultoMayor> PacienteAdultoMayorRepository { get; }
-        //IRepository<PacienteDiabetico> PacienteDiabeticoRepository { get; }
         IRepository<Personal> PersonalRepository { get; }
+        IRepository<LugarAtencion> LugarAtencionRepository { get; }
 
         void SaveChanges();
         Task SaveChangesAsync();
