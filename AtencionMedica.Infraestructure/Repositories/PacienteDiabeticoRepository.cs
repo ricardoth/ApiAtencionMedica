@@ -3,12 +3,10 @@
     public class PacienteDiabeticoRepository : IPacienteDiabeticoRepository
     {
         private readonly AtencionMedicaContext _context;
-        private IUnitOfWork _unitOfWork;
 
-        public PacienteDiabeticoRepository(AtencionMedicaContext context, IUnitOfWork unitOfWork)
+        public PacienteDiabeticoRepository(AtencionMedicaContext context)
         {
             _context = context;        
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<ICollection<PacienteDiabetico>> GetAll()

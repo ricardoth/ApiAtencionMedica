@@ -3,10 +3,12 @@
     public class ComplicacionPacienteService : IComplicacionPacienteService
     {
         private readonly IComplicacionPacienteRepository _complicacionPacienteRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ComplicacionPacienteService(IComplicacionPacienteRepository complicacionPacienteRepository)
+        public ComplicacionPacienteService(IComplicacionPacienteRepository complicacionPacienteRepository, IUnitOfWork unitOfWork)
         {
             _complicacionPacienteRepository = complicacionPacienteRepository;   
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<ICollection<ComplicacionPaciente>> GetComplicacionesPacientes()
@@ -38,7 +40,8 @@
 
             try
             {
-                await _complicacionPacienteRepository.Add(complicacionPaciente);
+                await _unitOfWork.ComplicacionPacienteRepository.Add(complicacionPaciente);
+                await _unitOfWork.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -66,7 +69,8 @@
                 complicacionPacienteBd.FecComplicacion = complicacionPaciente.FecComplicacion;
                 complicacionPacienteBd.EsActivo = complicacionPaciente.EsActivo;
 
-                await _complicacionPacienteRepository.Update(complicacionPacienteBd);
+                _unitOfWork.ComplicacionPacienteRepository.Update(complicacionPacienteBd);
+                await _unitOfWork.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -82,7 +86,8 @@
 
             try
             {
-                await _complicacionPacienteRepository.Delete(id);
+                await _unitOfWork.ComplicacionPacienteRepository.SoftDelete(id);
+                await _unitOfWork.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)

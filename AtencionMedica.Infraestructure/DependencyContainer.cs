@@ -12,14 +12,20 @@
 
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped(typeof(IPaginationRepository<>), typeof(PaginationRepository<>));
-            serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>(); 
+            serviceCollection.AddTransient<IUnitOfWork, UnitOfWork>();
 
             //Other Repositorys With Dependencies
+            serviceCollection.AddTransient<IAgendaMedicoRepository, AgendaMedicoRepository>();
             serviceCollection.AddTransient<IComplicacionPacienteRepository, ComplicacionPacienteRepository>();
+            serviceCollection.AddTransient<IEspecialidadMedicoRepository, EspecialidadMedicoRepository>();
+            serviceCollection.AddTransient<IFichaClinicaDetalleRepository, FichaClinicaDetalleRepository>();
+            serviceCollection.AddTransient<IFichaClinicaRepository, FichaClinicaRepository>();
+            serviceCollection.AddTransient<ILugarAtencionRepository, LugarAtencionRepository>();
+            serviceCollection.AddTransient<IModuloRepository, ModuloRepository>();
             serviceCollection.AddTransient<IPacienteDiabeticoRepository, PacienteDiabeticoRepository>();
             serviceCollection.AddTransient<IPacienteAdultoMayorRepository, PacienteAdultoMayorRepository>();
-            serviceCollection.AddTransient<IModuloRepository, ModuloRepository>();
-            serviceCollection.AddTransient<ILugarAtencionRepository, LugarAtencionRepository>();
+            serviceCollection.AddTransient<IPatologiaPacienteRepository, PatologiaPacienteRepository>();
+            serviceCollection.AddTransient<IRecetaMedicaRepository, RecetaMedicaRepository>();
 
 
             //Seeders de BD Tablas Base

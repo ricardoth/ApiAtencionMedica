@@ -1,7 +1,4 @@
-﻿using AtencionMedica.Domain.Entities;
-using AtencionMedica.Domain.Interfaces;
-
-namespace AtencionMedica.Application.Services
+﻿namespace AtencionMedica.Application.Services
 {
     public class PacienteAdultoMayorService : IPacienteAdultoMayorService
     {
