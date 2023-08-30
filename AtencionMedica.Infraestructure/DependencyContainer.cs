@@ -26,6 +26,7 @@
             serviceCollection.AddTransient<IPacienteAdultoMayorRepository, PacienteAdultoMayorRepository>();
             serviceCollection.AddTransient<IPatologiaPacienteRepository, PatologiaPacienteRepository>();
             serviceCollection.AddTransient<IRecetaMedicaRepository, RecetaMedicaRepository>();
+            serviceCollection.AddTransient<IHistorialClinicoRepository, HistorialClinicoRepository>();
 
 
             //Seeders de BD Tablas Base

@@ -28,6 +28,12 @@ namespace AtencionMedica.Application
             serviceCollection.AddTransient<IModuloService, ModuloService>();
             serviceCollection.AddTransient<ILugarAtencionService, LugarAtencionService>();
             serviceCollection.AddTransient<IAgendaMedicoService, AgendaMedicoService>();
+            serviceCollection.AddTransient<IEspecialidadMedicoService, EspecialidadMedicoService>();
+            serviceCollection.AddTransient<IFichaClinicaService, FichaClinicaService>();
+            serviceCollection.AddTransient<IFichaClinicaDetalleService, FichaClinicaDetalleService>();
+            serviceCollection.AddTransient<IHistorialClinicoService, HistorialClinicoService>();
+            serviceCollection.AddTransient<IPatologiaPacienteService, PatologiaPacienteService>();
+            serviceCollection.AddTransient<IRecetaMedicaService, RecetaMedicaService>();
             #endregion
         }
     }
