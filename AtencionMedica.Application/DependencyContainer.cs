@@ -27,6 +27,7 @@ namespace AtencionMedica.Application
             serviceCollection.AddTransient<IPersonalService, PersonalService>();
             serviceCollection.AddTransient<IModuloService, ModuloService>();
             serviceCollection.AddTransient<ILugarAtencionService, LugarAtencionService>();
+            serviceCollection.AddTransient<IAgendaMedicoService, AgendaMedicoService>();
             #endregion
         }
     }
