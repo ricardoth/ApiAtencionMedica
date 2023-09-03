@@ -1,13 +1,11 @@
-﻿using AtencionMedica.Domain.Entities;
-using AtencionMedica.Domain.Interfaces;
-
-namespace AtencionMedica.Application.Services
+﻿namespace AtencionMedica.Application.Services
 {
     public class RecetaMedicaService : IRecetaMedicaService
     {
         private readonly IRecetaMedicaRepository _recetaMedicaRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<RecetaMedica> _validator;
+
         public RecetaMedicaService(IRecetaMedicaRepository recetaMedicaRepository, IUnitOfWork unitOfWork, IValidator<RecetaMedica> validator)
         {
             _recetaMedicaRepository = recetaMedicaRepository;

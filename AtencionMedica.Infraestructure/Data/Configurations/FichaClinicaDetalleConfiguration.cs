@@ -13,15 +13,12 @@
             entity.ToTable("FichaClinicaDetalle");
 
             entity.Property(e => e.AgudezaVisual)
-               .HasMaxLength(100)
                .IsUnicode(false);
 
             entity.Property(e => e.PresionIntraocular)
-               .HasMaxLength(100)
                .IsUnicode(false);
 
             entity.Property(e => e.FondoDeOjo)
-               .HasMaxLength(100)
                .IsUnicode(false);
 
             entity.Property(e => e.Observacion)

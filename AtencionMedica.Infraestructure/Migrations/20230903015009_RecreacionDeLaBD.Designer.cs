@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtencionMedica.Infraestructure.Migrations
 {
     [DbContext(typeof(AtencionMedicaContext))]
-    [Migration("20230828152716_InitDb-WithConcurrencyFecActualizacion")]
-    partial class InitDbWithConcurrencyFecActualizacion
+    [Migration("20230903015009_RecreacionDeLaBD")]
+    partial class RecreacionDeLaBD
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -3391,10 +3391,9 @@ namespace AtencionMedica.Infraestructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AgudezaVisual")
-                        .HasMaxLength(100)
+                    b.Property<bool>("AgudezaVisual")
                         .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("EsActivo")
                         .HasColumnType("bit");
@@ -3408,10 +3407,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("datetime");
 
-                    b.Property<string>("FondoDeOjo")
-                        .HasMaxLength(100)
+                    b.Property<bool>("FondoDeOjo")
                         .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("bit");
 
                     b.Property<int>("IdFichaClinica")
                         .HasColumnType("int");
@@ -3421,10 +3419,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(500)");
 
-                    b.Property<string>("PresionIntraocular")
-                        .HasMaxLength(100)
+                    b.Property<bool>("PresionIntraocular")
                         .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

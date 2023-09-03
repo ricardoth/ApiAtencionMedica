@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AtencionMedica.Infraestructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDbWithConcurrencyFecActualizacion : Migration
+    public partial class RecreacionDeLaBD : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -521,9 +521,9 @@ namespace AtencionMedica.Infraestructure.Migrations
                     IdFichaClinicaDetalle = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdFichaClinica = table.Column<int>(type: "int", nullable: false),
-                    AgudezaVisual = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
-                    PresionIntraocular = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
-                    FondoDeOjo = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    AgudezaVisual = table.Column<bool>(type: "bit", unicode: false, nullable: false),
+                    PresionIntraocular = table.Column<bool>(type: "bit", unicode: false, nullable: false),
+                    FondoDeOjo = table.Column<bool>(type: "bit", unicode: false, nullable: false),
                     Observacion = table.Column<string>(type: "varchar(500)", unicode: false, maxLength: 500, nullable: true),
                     EsActivo = table.Column<bool>(type: "bit", nullable: false),
                     FecCreacion = table.Column<DateTime>(type: "datetime", unicode: false, nullable: true),
