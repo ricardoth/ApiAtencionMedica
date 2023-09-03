@@ -101,7 +101,5 @@
                 throw new BadRequestException(ErrorMessageStatus.DeleteFailed);
             }
         }
-
-        
     }
 }
