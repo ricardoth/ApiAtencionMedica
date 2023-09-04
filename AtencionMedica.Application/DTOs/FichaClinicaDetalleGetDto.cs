@@ -1,13 +1,14 @@
-﻿namespace AtencionMedica.Domain.Entities
+﻿namespace AtencionMedica.Application.DTOs
 {
-    public class FichaClinicaDetalle : BaseEntity
+    public class FichaClinicaDetalleGetDto
     {
-        [ForeignKey("IdFichaClinica")]
+        public int IdFichaClinicaDetalle { get; set; }
         public int IdFichaClinica { get; set; }
         public bool AgudezaVisual { get; set; }
         public bool PresionIntraocular { get; set; }
         public bool FondoDeOjo { get; set; }
         public string? Observacion { get; set; }
-        public virtual FichaClinica FichaClinica { get; set; }
+        public bool EsActivo { get; set; }
+        public virtual FichaClinicaDto FichaClinica { get; set; }
     }
 }

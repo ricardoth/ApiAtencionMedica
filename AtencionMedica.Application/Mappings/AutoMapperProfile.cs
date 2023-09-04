@@ -68,24 +68,86 @@
                 .ForMember(des => des.IdMedico, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
 
-            CreateMap<Modulo, ModuloGetDto>()
+            CreateMap<Modulo, ModuloDto>()
                .ForMember(des => des.IdModulo, opt => opt.MapFrom(src => src.Id))
                .ReverseMap()
                .ForMember(c => c.LugarAtencion, u => u.Ignore());
 
-            CreateMap<Modulo, ModuloDto>()
+            CreateMap<Modulo, ModuloGetDto>()
                 .ForMember(des => des.IdModulo, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
 
-            CreateMap<LugarAtencion, LugarAtencionGetDto>()
+            CreateMap<LugarAtencion, LugarAtencionDto>()
                .ForMember(des => des.IdLugarAtencion, opt => opt.MapFrom(src => src.Id))
                .ReverseMap()
                .ForMember(c => c.Comuna, u => u.Ignore());
 
-            CreateMap<LugarAtencion, LugarAtencionDto>()
+            CreateMap<LugarAtencion, LugarAtencionGetDto>()
                 .ForMember(des => des.IdLugarAtencion, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
 
+            CreateMap<EspecialidadMedico, EspecialidadMedicoDto>()
+              .ForMember(des => des.IdEspecialidadMedico, opt => opt.MapFrom(src => src.Id))
+              .ReverseMap()
+              .ForMember(c => c.Especialidad, u => u.Ignore())
+              .ForMember(c => c.Medico, u => u.Ignore());
+
+            CreateMap<EspecialidadMedico, EspecialidadMedicoGetDto>()
+                .ForMember(des => des.IdEspecialidadMedico, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
+
+            CreateMap<FichaClinicaDetalle, FichaClinicaDetalleDto>()
+              .ForMember(des => des.IdFichaClinicaDetalle, opt => opt.MapFrom(src => src.Id))
+              .ReverseMap()
+              .ForMember(c => c.FichaClinica, u => u.Ignore());
+
+            CreateMap<FichaClinicaDetalle, FichaClinicaDetalleGetDto>()
+                .ForMember(des => des.IdFichaClinicaDetalle, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
+
+            CreateMap<FichaClinica, FichaClinicaDto>()
+             .ForMember(des => des.IdFichaClinica, opt => opt.MapFrom(src => src.Id))
+             .ReverseMap()
+             .ForMember(c => c.Paciente, u => u.Ignore())
+             .ForMember(c => c.EstadoFichaClinica, u => u.Ignore())
+             .ForMember(c => c.Personal, u => u.Ignore())
+             .ForMember(c => c.Modulo, u => u.Ignore())
+             .ForMember(c => c.Medico, u => u.Ignore());
+
+            CreateMap<FichaClinica, FichaClinicaGetDto>()
+                .ForMember(des => des.IdFichaClinica, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
+
+
+            CreateMap<HistorialClinico, HistorialClinicoDto>()
+             .ForMember(des => des.IdHistorialClinico, opt => opt.MapFrom(src => src.Id))
+             .ReverseMap()
+             .ForMember(c => c.Paciente, u => u.Ignore());
+
+            CreateMap<HistorialClinico, HistorialClinicoGetDto>()
+                .ForMember(des => des.IdHistorialClinico, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
+
+
+            CreateMap<PatologiaPaciente, PatologiaPacienteDto>()
+             .ForMember(des => des.IdPatologiaPaciente, opt => opt.MapFrom(src => src.Id))
+             .ReverseMap()
+             .ForMember(c => c.Paciente, u => u.Ignore())
+             .ForMember(c => c.Patologia, u => u.Ignore());
+
+            CreateMap<PatologiaPaciente, PatologiaPacienteGetDto>()
+                .ForMember(des => des.IdPatologiaPaciente, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
+
+            CreateMap<RecetaMedica, RecetaMedicaDto>()
+             .ForMember(des => des.IdRecetaMedica, opt => opt.MapFrom(src => src.Id))
+             .ReverseMap()
+             .ForMember(c => c.HistorialClinico, u => u.Ignore())
+             .ForMember(c => c.Medicamento, u => u.Ignore());
+
+            CreateMap<RecetaMedica, RecetaMedicaGetDto>()
+                .ForMember(des => des.IdRecetaMedica, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
         }
     }
 }
