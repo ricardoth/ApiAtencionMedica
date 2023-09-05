@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/DecimatioWebApiapi/apis/AtencionMedicaWebApi",
+      "type": "apis.azure"
+    }
+  }
+}
