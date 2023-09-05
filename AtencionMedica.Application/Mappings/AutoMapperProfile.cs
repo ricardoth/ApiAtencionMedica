@@ -28,6 +28,19 @@
             CreateMap<Comuna, ComunaDto>()
                 .ForMember(des => des.IdComuna, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
+
+            CreateMap<Medico, MedicoDto>()
+                .ForMember(des => des.IdMedico, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
+
+            CreateMap<Modulo, ModuloDto>()
+               .ForMember(des => des.IdModulo, opt => opt.MapFrom(src => src.Id))
+               .ReverseMap()
+               .ForMember(c => c.LugarAtencion, u => u.Ignore());
+
+            CreateMap<Modulo, ModuloGetDto>()
+                .ForMember(des => des.IdModulo, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
             #endregion
 
             #region Pacientes
@@ -64,19 +77,7 @@
                 .ForMember(p => p.Paciente, u => u.Ignore());
             #endregion
 
-            CreateMap<Medico, MedicoDto>()
-                .ForMember(des => des.IdMedico, opt => opt.MapFrom(src => src.Id))
-                .ReverseMap();
-
-            CreateMap<Modulo, ModuloDto>()
-               .ForMember(des => des.IdModulo, opt => opt.MapFrom(src => src.Id))
-               .ReverseMap()
-               .ForMember(c => c.LugarAtencion, u => u.Ignore());
-
-            CreateMap<Modulo, ModuloGetDto>()
-                .ForMember(des => des.IdModulo, opt => opt.MapFrom(src => src.Id))
-                .ReverseMap();
-
+            #region Relaciones
             CreateMap<LugarAtencion, LugarAtencionDto>()
                .ForMember(des => des.IdLugarAtencion, opt => opt.MapFrom(src => src.Id))
                .ReverseMap()
@@ -148,6 +149,7 @@
             CreateMap<RecetaMedica, RecetaMedicaGetDto>()
                 .ForMember(des => des.IdRecetaMedica, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
+            #endregion
         }
     }
 }
